@@ -2,7 +2,7 @@
 import re
 from conftest import INDEX
 
-TYPES = ["dc", "ac", "l3", "jn", "pb", "sel", "estop", "ls", "reed", "prox", "k", "kt", "y", "lamp", "kc", "km", "ol", "qm", "mot", "mot6", "cyl", "sr"]
+TYPES = ["dc", "ac", "l3", "jn", "pb", "sel", "estop", "ls", "reed", "prox", "k", "kt", "y", "lamp", "kc", "km", "ol", "qm", "mot", "mot6", "cyl", "sr", "plc"]
 
 
 def _click(sim, cid):
@@ -25,6 +25,11 @@ def test_K01_englanninkieliset_tekstit_kattavat(sim):
     left = [l for l in body.split("\n") if re.search("[äöÄÖ]", l) and "Seinäjoki" not in l]
     assert not left, f"K01: suomenkielistä tekstiä englanninkielisessä näkymässä: {left[:5]}"
     sim.js("document.querySelector('#helpBtn').click()")
+    sim.call("setTab", "plc")
+    text = sim.js("document.querySelector('#plcEd').innerText")
+    left = [l for l in text.split("\n") if re.search("[äöÄÖ]", l)]
+    assert not left, f"K01: suomea PLC-editorissa: {left[:4]}"
+    sim.call("setTab", "td")
     body = sim.js("document.querySelector('#mbox').innerText")
     left = [l for l in body.split("\n") if re.search("[äöÄÖ]", l) and "Seinäjoki" not in l]
     assert not left, f"K01: suomea ohjeikkunassa: {left[:5]}"

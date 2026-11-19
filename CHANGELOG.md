@@ -1,5 +1,16 @@
 # Muutosloki
 
+## 1.1.0 – 2026-11-19
+
+- PLC-komponentti: syöttö L+ ja M, 8 digitaalituloa (I0.0–I0.7) ja 8 PNP-lähtöä (Q0.0–Q0.7), RUN/STOP, kierrosaika 10 ms.
+- Tikapuukaavioeditori (LD) alapaneelin välilehdellä:
+  - elementit: koskettimet, reunat, kela, asetus, nollaus, TON, TOF ja CTU
+  - rinnakkaishaarat, kommentit, kumoa
+  - ajonaikainen näkymä
+- PLC-esimerkit 9–11: käynnistys ja pysäytys, vilkkuvalo ja laskuri, askelketju.
+- Palaute-painike: valmiiksi täytetty GitHub-issue (lomakepohja *Toiminta ei vastaa odotusta*, virhe, kehitysehdotus) tai sähköposti.
+- Testit A23–A30 (PLC), U07–U08 (editori, tallennus) ja P01–P07 (palaute).
+
 ## 1.0.0 – 2026-11-19
 
 - Ensimmäinen julkaisu: relelogiikka ja ohjauspiirit selaimessa.

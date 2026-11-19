@@ -2,7 +2,7 @@
 
 [![Validointi](../../actions/workflows/validointi.yml/badge.svg)](../../actions/workflows/validointi.yml)
 
-Selaimessa toimiva opetussimulaattori relelogiikalle ja ohjauspiireille. Piiri piirretään kuten sähköpiirikaavio: syöttö, painikkeet, anturit, releiden kelat ja koskettimet, kontaktorit, suojalaitteet, moottorit, merkkilamput ja magneettiventtiilien kelat kytketään johtimilla. Releen kela ja sen koskettimet ovat erillisiä komponentteja, jotka liitetään toisiinsa releen tunnuksella (esimerkiksi K1). Aikakaavio näyttää releiden, anturien ja toimilaitteiden tilat ajan funktiona.
+Selaimessa toimiva opetussimulaattori relelogiikalle, ohjauspiireille ja PLC-ohjelmoinnille. Piiri piirretään kuten sähköpiirikaavio: syöttö, painikkeet, anturit, releiden kelat ja koskettimet, kontaktorit, suojalaitteet, moottorit, merkkilamput ja magneettiventtiilien kelat kytketään johtimilla. Releen kela ja sen koskettimet ovat erillisiä komponentteja, jotka liitetään toisiinsa releen tunnuksella (esimerkiksi K1). Aikakaavio näyttää releiden, anturien ja toimilaitteiden tilat ajan funktiona. PLC:tä ohjelmoidaan tikapuukaaviolla (LD), ja ohjelman tila näkyy ajon aikana.
 
 **Kokeile:** <https://jipirtti.github.io/Automaatiosimulaattori/> tai avaa `index.html` suoraan selaimessa. Asennusta tai palvelinta ei tarvita.
 
@@ -12,11 +12,11 @@ Tekijä: Juho Pirttilahti, Seinäjoen ammattikorkeakoulu (SEAMK), 2026. Suunnitt
 
 ## Ominaisuudet
 
-- 22 komponenttia:
+- 23 komponenttia:
   - syötöt: DC-teholähde, AC-syöttö 230 V, kolmivaihesyöttö 400 V ja kytkentäpiste
   - ohjauslaitteet: painike (palautuva tai lukittuva, NO tai NC), valintakytkin ja kaksikanavainen hätäseis
   - anturit: rajakytkin, reed-anturi ja 3-johdinlähestymiskytkin (PNP/NPN)
-  - releet: releen tai kontaktorin kela, aikarele (veto- ja päästöviive), apukosketin, kontaktorin pääkoskettimet ja turvarele
+  - releet ja logiikka: releen tai kontaktorin kela, aikarele (veto- ja päästöviive), apukosketin, kontaktorin pääkoskettimet, turvarele ja PLC (8 tuloa, 8 lähtöä)
   - suojalaitteet: moottorinsuojakytkin ja lämpörele
   - toimilaitteet: merkkilamppu, magneettiventtiilin kela, pneumatiikkasylinteri 5/2-venttiilillä ja oikosulkumoottori (3 tai 6 napaa, tähti ja kolmio)
 - Kosketinnumerot standardin mukaan: rele 13–14 ja 21–22, aikarele 17–18 ja 15–16, lämpörele 95–96 ja 97–98, pääkoskettimet 1–6.
@@ -25,8 +25,13 @@ Tekijä: Juho Pirttilahti, Seinäjoen ammattikorkeakoulu (SEAMK), 2026. Suunnitt
 - Lämpöreleen ja moottorinsuojakytkimen laukeaminen lämpömallilla. Moottorinsuojakytkimen magneettinen laukaisu oikosulussa.
 - Turvarele: kaksikanavainen hätäseispiiri, valvottu kuittaus (laskeva reuna), kanavien eriävyyden ja kanavien välisen oikosulun tunnistus.
 - Viat: hitsautunut tai kulunut kosketin, katkennut kela, katkennut johdin, hätäseisin hitsautunut kanava, jumittunut anturin lähtö.
+- PLC ja tikapuukaavio (LD, IEC 61131-3):
+  - elementit: sulkeutuva ja avautuva kosketin, nouseva ja laskeva reuna, kela, asetus, nollaus, ajastimet TON ja TOF sekä laskuri CTU
+  - rinnakkaishaarat ja ohjelmakierto 10 ms
+  - ajonaikainen näkymä: jännitteiset polut, ajastimien kuluneet ajat ja laskurien laskennat
 - Aikakaavio, jossa on enintään kahdeksan signaalia ja aikaeron mittaus kursoreilla.
-- Kahdeksan esimerkkipiiriä:
+- Palaute-painike, joka avaa valmiiksi täytetyn GitHub-issuen piirin kanssa.
+- 11 esimerkkipiiriä:
   - itsepito
   - moottorin suora käynnistys
   - suunnanvaihto ristiinlukituksella
@@ -35,6 +40,9 @@ Tekijä: Juho Pirttilahti, Seinäjoen ammattikorkeakoulu (SEAMK), 2026. Suunnitt
   - sähköpneumaattinen automaattinen paluu
   - sekvenssi A+ B+ A− B−
   - hätäseis turvareleellä
+  - PLC: käynnistys ja pysäytys
+  - PLC: vilkkuvalo ja laskuri
+  - PLC: askelketju A+ B+ A− B−
 - Piirin muokkaus samaan tapaan kuin hydrauliikka- ja elektroniikkasimulaattorissa: johtimien reitin veto, laatikkovalinta, kopioi ja liitä, kumoa, tallennus selaimeen ja tekstinä.
 
 > Simulaattori on opetusväline. Sillä ei voi osoittaa ohjausjärjestelmän turvallisuustasoa (PL, SIL) eikä suunnitella todellisia turvatoimintoja.
@@ -53,9 +61,9 @@ Tekijä: Juho Pirttilahti, Seinäjoen ammattikorkeakoulu (SEAMK), 2026. Suunnitt
 Simulaattorin toiminta validoidaan kahdella tasolla, ks. [VALIDOINTI.md](VALIDOINTI.md):
 
 - **Automaattisesti:**
-  - Validointitestit (`tests/test_validointi.py`, A01–A22) tarkistavat piirien toimintalogiikan kytkentäkaavion mukaan, esimerkiksi itsepidon, ristiinlukituksen, tähti–kolmiovaihdon ja turvareleen toiminnan.
+  - Validointitestit (`tests/test_validointi.py`, A01–A30) tarkistavat piirien toimintalogiikan kytkentäkaavion mukaan, esimerkiksi itsepidon, ristiinlukituksen, tähti–kolmiovaihdon ja turvareleen toiminnan.
   - Samat testit vertaavat aikoja käsinlaskuun, esimerkiksi aikareleiden viiveitä, sylinterien liikeaikoja ja lämpöreleen laukeamisaikaa.
-  - Kielitestit (K01–K03) ja käyttöliittymätestit (U01–U06) täydentävät niitä.
+  - Kielitestit (K01–K03) ja käyttöliittymätestit (U01–U08) ja palautetestit (P01–P07) täydentävät niitä.
   - GitHub Actions ajaa testit jokaisesta muutoksesta ja maanantaisin ajastetusti.
 - **Opettajan validointi:** jokainen toiminto tarkistetaan ja kirjataan validoiduksi. Validointikierros avautuu issueksi automaattisesti 15.1. ja 15.8.
 
@@ -68,6 +76,8 @@ python -m pytest tests -v
 ```
 
 ## Palaute
+
+Simulaattorin yläpalkin **Palaute**-painike avaa valmiiksi täytetyn issuen, johon on liitetty versio, kieli, selain, varoitukset ja piiri. Issueita voi avata myös suoraan:
 
 - **Toiminta ei vastaa odotusta:** avaa issue mallilla *Toiminta ei vastaa odotusta* ja liitä piiri JSON-muodossa (simulaattorin Tallenna / lataa).
 - **Virhe käyttöliittymässä:** mallilla *Virheilmoitus*.

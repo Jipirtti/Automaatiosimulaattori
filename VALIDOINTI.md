@@ -48,6 +48,21 @@ Kun simulaattorin toimintalogiikkaa muutetaan, muutoksen koskemat rivit palautet
 | A21 | PNP- ja NPN-anturi | 3-johdinanturi ja rele | Kuorma ohjautuu vain kohteen ollessa anturilla | täsmälleen | Ei validoitu |
 | A22 | Värähtely ja pakko-ohjatut koskettimet | Rele omalla NC-koskettimellaan; hitsautunut NO-kosketin | Värähtely ja varoitus; NC ei sulkeudu | täsmälleen | Ei validoitu |
 
+## A2. PLC (tests/test_plc.py)
+
+Ohjelmakierto on 10 ms. Tulon muutos näkyy ohjelmassa 0–10 ms viiveellä, ja ajastimen aika lasketaan siitä kierroksesta, jolla sen tulo muuttui.
+
+| ID | Toiminto | Piiri ja toimenpide | Odotettu tulos | Tol. | Opettajan validointi |
+| --- | --- | --- | --- | --- | --- |
+| A23 | PLC-itsepito ja vikaturvallinen pysäytys | Esim. 9 | S1 käynnistää ja pitää, S0 pysäyttää; S0:n johtimen katkeaminen pysäyttää | täsmälleen | Ei validoitu |
+| A24 | Ajastin TON | Esim. 10 | Ensimmäinen vilkahdus 0,5 s + 0–10 ms; jakso T1 + T2 + 2 kiertoa = 1,02 s | 1,2 % / 0,2 % | Ei validoitu |
+| A25 | Laskuri CTU ja nollaus | Esim. 10 | H2 syttyy 5. vilkahduksella; R C1 nollaa | täsmälleen | Ei validoitu |
+| A26 | RUN/STOP | Esim. 9 | STOP: lähdöt pois; RUN: ohjelma jatkaa | täsmälleen | Ei validoitu |
+| A27 | Askelketju (asetus/nollaus, TON) | Esim. 11 | Järjestys A+ B+ A− B−; odotus 0,5 s + 0–10 ms | 1,2 % | Ei validoitu |
+| A28 | Nouseva reuna | Esim. 11, S1 pohjassa | Vain yksi jakso | täsmälleen | Ei validoitu |
+| A29 | PLC ilman syöttöä | Esim. 9, L+ katki | Lähdöt pois, varoitus | täsmälleen | Ei validoitu |
+| A30 | Rinnakkaishaara, asetus ja nollaus | Testipiiri: (I0.0 TAI I0.1) → S M0.0, I0.2 → R M0.0, M0.0 → Q0.0 | M0.0 pysyy asetettuna, nollaus toimii | täsmälleen | Ei validoitu |
+
 ## B. Laadulliset toiminnot (opettajan validointi)
 
 | ID | Toiminto | Piiri ja toimenpide | Odotettu havainto | Opettajan validointi |
@@ -58,6 +73,7 @@ Kun simulaattorin toimintalogiikkaa muutetaan, muutoksen koskemat rivit palautet
 | L04 | Moottorinsuojakytkimen laukeaminen ylikuormasta | Esim. 8, M1 ylikuormitettu (200 %) | Q1 laukeaa noin 43 s kuluttua ja avaa pääpiirin | Ei validoitu |
 | L05 | Jatkuva sekvenssi | Esim. 7, S1 pohjassa | Jakso A+ B+ A− B− toistuu, kunnes S1 vapautetaan | Ei validoitu |
 | L06 | Automaattinen käynnistys turvareleessä | Esim. 8, Käynnistys: automaattinen, S33–S34 kytketty yhteen | Hätäseisin vapautus käynnistää uudelleen ilman kuittausta (ei sallittu hätäseisille) | Ei validoitu |
+| L07 | PLC-ohjelman ajonaikainen näkymä | Esim. 10 käynnissä, PLC-ohjelma-välilehti | Jännitteiset polut vihreinä, TON-laatikoissa kulunut aika, CTU:ssa laskenta, osoitteiden alla kytketyt laitteet | Ei validoitu |
 
 ## C. Rajaukset
 

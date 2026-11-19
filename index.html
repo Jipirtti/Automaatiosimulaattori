@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Automaatiosimulaattori – relelogiikka, ohjauspiirit, anturit ja toimilaitteet
+  Automaatiosimulaattori – relelogiikka, PLC, ohjauspiirit, anturit ja toimilaitteet
   Tekijä: Juho Pirttilahti, Seinäjoen ammattikorkeakoulu (SEAMK), 2026.
   Suunnittelu, sisältö ja validointi: Juho Pirttilahti. Ohjelmakoodi toteutettu tekoälyavusteisesti (Claude, Anthropic).
   Lisenssi: Creative Commons Nimeä 4.0 Kansainvälinen (CC BY 4.0), https://creativecommons.org/licenses/by/4.0/deed.fi
@@ -115,7 +115,39 @@ select{background:var(--paper);border:1px solid var(--line);border-radius:7px;pa
 .kbd{font-size:12.5px;color:var(--muted)}
 
 /* aikakaavio */
-.scope{grid-area:scope;border-top:1px solid var(--line);background:var(--panel);display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:10px;padding:8px 12px;min-height:0}
+.scope{grid-area:scope;border-top:1px solid var(--line);background:var(--panel);display:grid;grid-template-columns:minmax(0,1fr) 330px;grid-template-rows:auto minmax(0,1fr);gap:6px 10px;padding:6px 12px 8px;min-height:0}
+.app.plcmode{grid-template-rows:auto minmax(0,1fr) 54vh}
+.tabs{grid-column:1/-1;display:flex;gap:4px}
+.tabs button{border:1px solid var(--line);background:var(--paper);border-radius:7px;padding:3px 12px;cursor:pointer;font-size:14px}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.plced{grid-column:1/-1;overflow:auto;min-height:0;font-size:13px}
+.plced[hidden],.scr[hidden],.sctl[hidden]{display:none}
+.ldbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;position:sticky;top:0;background:var(--panel);padding:2px 0 6px;z-index:2}
+.ldbar button{border:1px solid var(--line);background:var(--paper);border-radius:6px;min-width:38px;height:30px;cursor:pointer;font:600 13px ui-monospace,Menlo,Consolas,monospace;color:var(--ink)}
+.ldbar button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.ldbar label{display:flex;align-items:center;gap:4px;color:var(--muted);margin-left:6px}
+.ldbar input{width:64px;min-height:28px;padding:2px 5px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);font:inherit}
+.ldbar .btn{min-height:30px;padding:2px 10px}
+.ldhead{margin:2px 0 6px}
+.ldr{margin:0 0 8px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:4px 6px;width:max-content;max-width:none}
+.ldrh{display:flex;gap:6px;align-items:center;margin-bottom:2px}
+.ldrh input{width:260px;min-height:24px;padding:1px 5px;border:1px solid var(--line);border-radius:5px;background:var(--paper);color:var(--ink);font:inherit}
+.ldrh button{border:1px solid var(--line);background:var(--paper);border-radius:5px;height:24px;cursor:pointer;color:var(--ink)}
+.ldrh button:disabled{opacity:.4;cursor:default}
+.rung{display:block}
+.ldcell{fill:transparent;stroke:var(--grid2);stroke-dasharray:2 3;cursor:pointer}
+.ldcell:hover{fill:rgba(30,93,186,.06)}
+.ldoutc{stroke:var(--line)}
+.ldsel{stroke:var(--sel);stroke-dasharray:none;stroke-width:2}
+.ldrail{stroke:var(--ink);stroke-width:3}
+.ldw{stroke:var(--ink);stroke-width:2;fill:none}
+.ldb{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.ldon{stroke:#2E9E4F;stroke-width:3}
+.ldb.ldon{fill:rgba(46,158,79,.12)}
+.lda{fill:var(--ink);font:600 11px "Barlow",system-ui,sans-serif;text-anchor:middle}
+.lds{fill:var(--muted);font:500 10px "Barlow",system-ui,sans-serif;text-anchor:middle}
+.ldt{fill:var(--ink);font:600 10px "Barlow",system-ui,sans-serif;text-anchor:middle}
+.ldp{fill:var(--muted);font:500 9.5px "Barlow",system-ui,sans-serif;text-anchor:middle}
 .scr{position:relative;min-height:0;display:flex;flex-direction:column;gap:4px}
 .scr canvas{flex:1;min-height:0;width:100%;display:block;background:var(--paper);border-radius:8px;border:1px solid var(--line);cursor:crosshair}
 .curs{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;min-height:18px}
@@ -215,6 +247,9 @@ select{background:var(--paper);border:1px solid var(--line);border-radius:7px;pa
         <option value="ex6" data-en="6. Electro-pneumatics: automatic return">6. Sähköpneumatiikka: automaattinen paluu</option>
         <option value="ex7" data-en="7. Sequence A+ B+ A− B−">7. Sekvenssi A+ B+ A− B−</option>
         <option value="ex8" data-en="8. Emergency stop with a safety relay">8. Hätäseis ja turvarele</option>
+        <option value="ex9" data-en="9. PLC: start and stop">9. PLC: käynnistys ja pysäytys</option>
+        <option value="ex10" data-en="10. PLC: flasher and counter">10. PLC: vilkkuvalo ja laskuri</option>
+        <option value="ex11" data-en="11. PLC: step sequence A+ B+ A− B−">11. PLC: askelketju A+ B+ A− B−</option>
       </select>
       <button class="btn" id="undoBtn" type="button" title="Ctrl+Z" data-en="Undo">Kumoa</button>
       <button class="btn" id="ioBtn" type="button" data-en="Save / load">Tallenna / lataa</button>
@@ -255,8 +290,10 @@ select{background:var(--paper);border:1px solid var(--line);border-radius:7px;pa
   <aside class="insp" id="insp" aria-label="Ominaisuudet ja mitoitus" data-en-aria="Properties and sizing"></aside>
 
   <section class="scope" aria-label="Aikakaavio" data-en-aria="Timing diagram">
+    <div class="tabs" role="group" aria-label="Alapaneeli" data-en-aria="Bottom panel"><button type="button" data-tab="td" aria-pressed="true" data-en="Timing diagram">Aikakaavio</button><button type="button" data-tab="plc" aria-pressed="false" data-en="PLC program">PLC-ohjelma</button></div>
     <div class="scr"><canvas id="tdv" aria-label="Aikakaavio" data-en-aria="Timing diagram"></canvas><div class="curs" id="curs"></div></div>
     <div class="sctl" id="sctl"></div>
+    <div class="plced" id="plcEd" hidden></div>
   </section>
 </div>
 
@@ -523,6 +560,19 @@ sr:{name:['Turvarele','Safety relay'],px:'K',bb:[-90,-40,90,40],actor:1,inLabel:
       led(10,s.pw,'#2E9E4F')+led(24,s.c1,'#2E9E4F')+led(38,s.c2,'#2E9E4F')+led(52,s.out,'#2E9E4F')+led(66,!!s.lock,'#D23B2E');},
   read:c=>c.st.lock?srLock(c.st.lock):'',active:c=>c.st.out}
 };
+TY.plc={name:['PLC (ohjelmoitava logiikka)','PLC (programmable logic controller)'],px:'PLC',bb:[-120,-50,190,50],inLabel:1,actor:1,
+  ports:[{n:'Lp',lab:'L+',x:-120,y:-10,d:[-1,0]},{n:'M',lab:'M',x:-120,y:10,d:[-1,0]},
+    ...[0,1,2,3,4,5,6,7].map(k=>({n:'i'+k,lab:'I0.'+k,x:-30+30*k,y:-50,d:[0,-1]})),
+    ...[0,1,2,3,4,5,6,7].map(k=>({n:'q'+k,lab:'Q0.'+k,x:-30+30*k,y:50,d:[0,1]}))],
+  prm:[P('kierto',['Kierrosaika','Cycle time'],'ms',1,1000,1)],
+  def:{kierto:10,prog:null},init:()=>plcInit(),
+  sw:c=>[0,1,2,3,4,5,6,7].map(k=>['Lp','q'+k,c.st.pw&&c.st.run&&c.st.Q[k]]),
+  draw:()=>RECT(-110,-30,300,60)+L(-120,-10,-110,-10)+L(-120,10,-110,10)+[0,1,2,3,4,5,6,7].map(k=>-30+30*k).map(x=>L(x,-50,x,-30)).join('')+[0,1,2,3,4,5,6,7].map(k=>L(-30+30*k,30,-30+30*k,50)).join(''),
+  dyn:c=>{const s=c.st,led=(x,y,on)=>`<circle cx="${x}" cy="${y}" r="3.5" class="led" style="fill:${on?'#2E9E4F':'var(--paper)'}"/>`;let h='';
+    for(let k=0;k<8;k++)h+=led(-30+30*k,-21,s.I[k])+led(-30+30*k,21,s.pw&&s.run&&s.Q[k]);
+    return h+TXT(-70,18,s.pw?(s.run?'RUN':'STOP'):'','syms','middle')+(s.pw?`<circle cx="-92" cy="14" r="3.5" class="led" style="fill:${s.run?'#2E9E4F':'#E39B17'}"/>`:'');},
+  hitAt:(c,x,y)=>x<-50&&y>0?'k':null,click:c=>{c.st.run=!c.st.run;},
+  read:c=>c.st.pw?'':tr('ei syöttöä','no supply'),active:c=>c.st.pw&&c.st.run};
 const LAMPC={vihrea:'#3CC46A',punainen:'#E5483B',keltainen:'#F2C230',valkoinen:'#F4F6F8',sininen:'#3D86E8'};
 
 /* kosketinvian huomiointi */
@@ -650,7 +700,8 @@ function stepSim(){
         else{if(e){if(!c.st.on)togg.push(t);c.st.on=true;c.st.te=0;}else if(c.st.on){c.st.te+=DT;if(c.st.te>=p.T-1e-9){c.st.on=false;togg.push(t);}}c.st.tc=!e&&c.st.on?c.st.te:0;}}
       else c.st.e=e;}
     else if(ty==='prox'){const U=vAcross(c,'bn','bu');c.st.pw=U>=10;c.st.U=U;}
-    else if(ty==='sr')srStep(c);}
+    else if(ty==='sr')srStep(c);
+    else if(ty==='plc')plcStep(c);}
   /* sylinterit */
   for(const c of comps)if(c.type==='cyl'){const ys=comps.filter(y=>y.type==='y'&&y.p.ref===c.label);
     const plus=ys.some(y=>y.st.e&&y.p.suunta==='plus'),minus=ys.some(y=>y.st.e&&y.p.suunta==='miinus');
@@ -710,6 +761,60 @@ function srStep(c){const s=c.st,p=c.p;const same=(a,b)=>rootOf(c,a)===rootOf(c,b
   if(!s.out&&both&&!s.lock&&!cross){if(p.kayn==='auto'?reset:(s.pr&&!reset))s.out=true;}
   s.pr=reset;}
 
+/* ---------- PLC ----------
+   Ohjelmoitava logiikka: syöttö L+ ja M (24 V DC), 8 digitaalituloa I0.0–I0.7 (tulo on 1, kun sen jännite M:ää vasten
+   on vähintään 15 V), 8 lähtöä Q0.0–Q0.7 (PNP-tyyppinen lähtö kytkee L+:n lähtöliitäntään). Ohjelma on tikapuukaavio
+   (LD, IEC 61131-3): askeleet suoritetaan järjestyksessä kerran kierrossa (oletus 10 ms). Kierron alussa tulot luetaan
+   prosessikuvaan, lopussa lähdöt kirjoitetaan. Operandit: I, Q, M (M0.0–M3.7), ajastimet T0–T15 ja laskurit C0–C15. */
+const LD_COLS=7, LD_ROWS=4;
+const LD_OUT=['coil','s','r','ton','tof','ctu'];
+const LD_CONTACT=['no','nc','p','n'];
+function newRung(rows=1){return {k:'',rows,cells:Array.from({length:LD_ROWS},()=>Array(LD_COLS+1).fill(null)),v:Array.from({length:LD_ROWS},()=>Array(LD_COLS+1).fill(false))};}
+function newProg(){return {rungs:[newRung()]};}
+const ADDR_RE=/^([IQM])(\d)\.([0-7])$|^([TC])(\d{1,2})$/;
+function parseAddr(a){const m=ADDR_RE.exec(String(a||'').trim().toUpperCase());if(!m)return null;
+  if(m[1]){const by=+m[2],bi=+m[3],i=by*8+bi;if((m[1]==='I'||m[1]==='Q')&&i>7)return null;if(m[1]==='M'&&i>31)return null;return {k:m[1],i,s:`${m[1]}${by}.${bi}`};}
+  const n=+m[5];if(n>15)return null;return {k:m[4],i:n,s:`${m[4]}${n}`};}
+function plcInit(){return {run:true,pw:false,U:0,acc:0,I:Array(8).fill(false),Q:Array(8).fill(false),M:Array(32).fill(false),T:{},C:{},E:{},view:null,scans:0};}
+function plcGet(s,a){const p=parseAddr(a);if(!p)return false;
+  switch(p.k){case 'I':return s.I[p.i];case 'Q':return s.Q[p.i];case 'M':return s.M[p.i];
+    case 'T':return !!(s.T[p.i]&&s.T[p.i].q);case 'C':return !!(s.C[p.i]&&s.C[p.i].q);}return false;}
+function plcSet(s,a,v){const p=parseAddr(a);if(!p)return;if(p.k==='Q')s.Q[p.i]=v;else if(p.k==='M')s.M[p.i]=v;}
+function plcStep(c){const s=c.st;
+  const U=vAcross(c,'Lp','M');s.U=U;s.pw=U>=0.7*24;
+  for(let k=0;k<8;k++)s.I[k]=s.pw&&vAcross(c,'i'+k,'M')>=15;
+  if(!s.pw){s.Q.fill(false);s.acc=0;s.view=null;return;}
+  s.acc+=DT;
+  if(s.acc>=c.p.kierto/1000-1e-9){s.acc=0;if(s.run)plcScan(c);else{s.Q.fill(false);s.view=null;}}}
+function plcScan(c){const s=c.st,P=c.p.prog;if(!P)return;const cyc=c.p.kierto/1000;s.scans++;
+  const view=[];
+  P.rungs.forEach((R,ri)=>{const n=R.rows;const pw=Array(n).fill(true),cellOut=Array.from({length:n},()=>Array(LD_COLS).fill(false));
+    const merge=b=>{let r=0;while(r<n){let e=r;while(e<n-1&&R.v[e][b])e++;if(e>r){let any=false;for(let k=r;k<=e;k++)any=any||pw[k];for(let k=r;k<=e;k++)pw[k]=any;}r=e+1;}};
+    for(let b=0;b<LD_COLS;b++){if(b>0)merge(b);
+      for(let r=0;r<n;r++){const el=R.cells[r][b];let cond=false;
+        if(el){if(el.t==='h')cond=true;else if(LD_CONTACT.includes(el.t)){const v=plcGet(s,el.a),key=`${ri}:${r}:${b}`,pv=!!s.E[key];
+            cond=el.t==='no'?v:el.t==='nc'?!v:el.t==='p'?(v&&!pv):(!v&&pv);s.E[key]=v;}}
+        pw[r]=pw[r]&&cond;cellOut[r][b]=pw[r];}}
+    merge(LD_COLS);
+    const pin=pw.slice();
+    for(let r=0;r<n;r++){const el=R.cells[r][LD_COLS];if(!el)continue;const on=pw[r],p=parseAddr(el.a);
+      if(el.t==='coil')plcSet(s,el.a,on);
+      else if(el.t==='s'){if(on){if(p&&(p.k==='Q'||p.k==='M'))plcSet(s,el.a,true);}}
+      else if(el.t==='r'){if(on){if(p&&p.k==='T')s.T[p.i]={et:0,q:false,run:false};else if(p&&p.k==='C')s.C[p.i]={cv:0,q:false,pin:false};else plcSet(s,el.a,false);}}
+      else if((el.t==='ton'||el.t==='tof')&&p&&p.k==='T'){const T=s.T[p.i]||(s.T[p.i]={et:0,q:false});const PT=(el.pt||0)/1000;
+        /* aika lasketaan siitä kierrosta, jolla tulo muuttui (kuten todellisessa PLC:ssä) */
+        if(el.t==='ton'){if(on){if(!T.run){T.run=true;T.et=0;}else T.et=Math.min(PT,T.et+cyc);T.q=T.et>=PT-1e-9;}else{T.run=false;T.et=0;T.q=false;}}
+        else{if(on){T.q=true;T.et=0;T.run=false;}else if(T.q){if(!T.run){T.run=true;T.et=0;}else T.et=Math.min(PT,T.et+cyc);if(T.et>=PT-1e-9){T.q=false;T.run=false;}}}}
+      else if(el.t==='ctu'&&p&&p.k==='C'){const C=s.C[p.i]||(s.C[p.i]={cv:0,q:false,pin:false});if(on&&!C.pin)C.cv++;C.pin=on;C.q=C.cv>=(el.pv||1);}}
+    view.push({cell:cellOut,pin});});
+  s.view=view;}
+function plcSymbol(c,port){
+  /* tulon tai lähdön johtimien toisessa päässä oleva laite (näytetään tikapuukaaviossa osoitteen alla) */
+  const k=c.id+':'+port;const seen=new Set([k]);const q=[k];let found='';
+  while(q.length&&!found){const x=q.shift();for(const w of wires){const o=w.a===x?w.b:w.b===x?w.a:null;if(!o||seen.has(o))continue;seen.add(o);
+      const cid=o.slice(0,o.indexOf(':')),cc=byId[cid];if(!cc)continue;if(cc.type==='jn'){q.push(o);continue;}if(cc!==c){found=dispLabel(cc);break;}}}
+  return found;}
+
 /* ---------- DOM-tasot ---------- */
 const cv=$('#cv'),world=$('#world'),lW=$('#lWires'),lC=$('#lComps'),lS=$('#lSel'),lP=$('#lPorts'),lL=$('#lLabels'),tmpW=$('#tmpWire');
 function mk(tag,cls,parent){const e=document.createElementNS(NS,tag);if(cls)e.setAttribute('class',cls);if(parent)parent.appendChild(e);return e;}
@@ -726,7 +831,7 @@ const dispLabel=c=>TY[c.type].contact?(c.p.ref||'?'):c.type==='jn'?'':c.label;
 function placeComp(c){c.el.setAttribute('transform',`translate(${c.x},${c.y}) rotate(${c.rot})`);
   const b=bbW(c);c.lt.textContent=dispLabel(c);const tall=TY[c.type].lside||!TY[c.type].wide&&(b[3]-b[1])>(b[2]-b[0])+4;
   const lx=TY[c.type].contact||c.type==='k'||c.type==='kt'||c.type==='y'||c.type==='lamp'?Math.min(b[0],c.x-14):b[0];
-  if(TY[c.type].inLabel){c.lt.setAttribute('x',b[0]+16);c.lt.setAttribute('y',c.y-12);c.lt.removeAttribute('text-anchor');c.rt.setAttribute('x',b[0]);c.rt.setAttribute('y',b[3]+28);c.rt.removeAttribute('text-anchor');return;}
+  if(TY[c.type].inLabel){c.lt.setAttribute('x',b[0]+(c.type==='plc'?20:16));c.lt.setAttribute('y',c.y-(c.type==='plc'?2:12));c.lt.removeAttribute('text-anchor');c.rt.setAttribute('x',b[0]);c.rt.setAttribute('y',b[3]+28);c.rt.removeAttribute('text-anchor');return;}
   if(tall){const cy=(b[1]+b[3])/2;c.lt.setAttribute('x',lx-6);c.lt.setAttribute('y',cy+4);c.lt.setAttribute('text-anchor','end');
     if(TY[c.type].src){c.lt.setAttribute('y',cy-4);c.rt.setAttribute('x',b[0]-6);c.rt.setAttribute('y',cy+14);c.rt.setAttribute('text-anchor','end');}
     else{c.rt.setAttribute('x',b[2]+6);c.rt.setAttribute('y',cy+4);c.rt.removeAttribute('text-anchor');}}
@@ -849,7 +954,8 @@ function render(){
   for(const c of comps){const t=TY[c.type];if(t.dyn){const s=t.dyn(c);if(s!==c.dyS){c.dyEl.innerHTML=s;c.dyS=s;}}}
   if(frame%3===0)for(const w of wires){if(!w.bp)continue;const [col,live]=wireColour(w);w.bp.setAttribute('stroke',col);w.bp.setAttribute('stroke-width',live?3:2);}
   if(frame%4===0)for(const c of comps){const r=showRead&&TY[c.type].read?TY[c.type].read(c):'';if(c.rt.textContent!==r)c.rt.textContent=r;}
-  if(frame%2===0)drawTD();
+  if(frame%2===0&&tdTab==='td')drawTD();
+  if(frame%5===0)refreshLDOnline();
   if(frame%10===0)updDer();
   if(frame%20===0)updWarns();
   $('#simTime').textContent=`t = ${nf(simT,simT<100?2:1)} s`;
@@ -874,6 +980,7 @@ function updWarns(){
       `${lb}: ${s.lock==='erivat'?'the safety relay channels differ (one channel did not open). The outputs stay open until both channels have been opened and the fault corrected.':'cross short between the channels. The outputs stay open until the fault is corrected and the channels opened.'}`,'','turvarele');
     if(c.type==='cyl'&&s.both)W(`${lb}: venttiilin molemmat kelat saavat ohjauksen yhtä aikaa (signaaliristiriita).`,`${lb}: both valve solenoids are energised at the same time (signal conflict).`,'','ristiriita');
     if((TY[c.type].contact||c.type==='y')&&!refComp(c))W(`${dispLabel(c)}: ${c.type==='y'?'sylinteriä':'kelaa tai laitetta'} ei ole valittu tai se puuttuu piiristä.`,`${dispLabel(c)}: the ${c.type==='y'?'cylinder':'coil or device'} is not selected or is missing from the circuit.`,'','viite');}
+  for(const c of comps)if(c.type==='plc'&&!c.st.pw)W(`${c.label}: PLC:llä ei ole syöttöä (L+ ja M 24 V).`,`${c.label}: the PLC has no supply (L+ and M 24 V).`,'','plc_syotto');
   if(togg.length>20)W('Rele värähtelee: rele katkaisee oman ohjauksensa (esimerkiksi avautuva kosketin oman kelan piirissä).','A relay oscillates: it interrupts its own control (for example a normally closed contact in its own coil circuit).','','varahtely');
   if(comps.length&&!S.srcs.length)W('Piirissä ei ole syöttöä. Lisää teholähde tai syöttö.','The circuit has no supply. Add a power supply.','info','syotto');
   if(!comps.length)W('Vedä komponentteja vasemmalta piirtoalustalle tai valitse esimerkkipiiri.','Drag components from the left onto the canvas or load an example circuit.','info','tyhja');
@@ -881,6 +988,107 @@ function updWarns(){
   if(flashMsg&&performance.now()-flashT<4000)out.unshift([flashMsg,'info','ilmoitus']);else flashMsg=null;
   lastWarnCodes=out.map(o=>o[2]).filter(c=>c!=='ilmoitus');$('#warns').innerHTML=out.slice(0,4).map(([s,c])=>`<div class="${c}">${esc(s)}</div>`).join('');
 }
+
+/* ---------- tikapuukaavioeditori ---------- */
+const LD={tool:'sel',addr:'I0.0',pt:1000,pv:5,selCell:null,plcId:null};
+const LD_TOOLS=[['sel','↖',['Valitse','Select']],['h','──',['Johdin','Wire']],['no','┤ ├',['Sulkeutuva kosketin (NO)','Normally open contact (NO)']],['nc','┤/├',['Avautuva kosketin (NC)','Normally closed contact (NC)']],
+  ['p','┤P├',['Nouseva reuna','Rising edge']],['n','┤N├',['Laskeva reuna','Falling edge']],['coil','( )',['Kela','Coil']],['s','(S)',['Asetus (Set)','Set']],['r','(R)',['Nollaus (Reset)','Reset']],
+  ['ton','TON',['Vetoviive TON','On-delay TON']],['tof','TOF',['Päästöviive TOF','Off-delay TOF']],['ctu','CTU',['Ylöslaskuri CTU','Up counter CTU']],['v','│',['Pystyyhteys (haara)','Vertical link (branch)']],['del','✕',['Poista','Delete']]];
+const CW=74,RH=50,X0=18;
+let tdTab='td';
+function ldPlc(){let c=LD.plcId&&byId[LD.plcId];if(!c||c.type!=='plc'){c=comps.find(x=>x.type==='plc')||null;LD.plcId=c?c.id:null;}return c;}
+function setTab(t){tdTab=t;document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tab===t));
+  document.querySelector('.app').classList.toggle('plcmode',t==='plc');$('#plcEd').hidden=t!=='plc';document.querySelector('.scope .scr').hidden=t==='plc';$('#sctl').hidden=t==='plc';
+  if(t==='plc')buildLD();else drawTD();requestAnimationFrame(()=>fitView());}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+function ldToolbar(){
+  return `<div class="ldbar">${LD_TOOLS.map(([k,s,l])=>`<button type="button" data-ldt="${k}" aria-pressed="${LD.tool===k}" title="${esc(L2(l))}">${esc(s)}</button>`).join('')}
+  <label>${tr('Osoite','Address')} <input id="ldAddr" value="${esc(LD.addr)}" maxlength="5" size="5" spellcheck="false"></label>
+  <label>${tr('Aika','Time')} <input id="ldPt" type="number" min="10" max="3600000" step="10" value="${LD.pt}"> ms</label>
+  <label>${tr('Raja','Preset')} <input id="ldPv" type="number" min="1" max="9999" step="1" value="${LD.pv}"></label>
+  <button type="button" class="btn" id="ldAddRung">${tr('+ Askel','+ Rung')}</button></div>`;}
+function elSvg(el,x,y,on,sym,plc){const cx=x+CW/2,cy=y+RH/2,hot=on?' ldon':'';let h='';
+  const wire=(a,b)=>`<line x1="${a}" y1="${cy}" x2="${b}" y2="${cy}" class="ldw${hot}"/>`;
+  if(!el)return '';
+  if(el.t==='h')return wire(x,x+CW);
+  const lab=`<text x="${cx}" y="${y+9}" class="lda">${esc(el.a||'')}</text>`+(sym?`<text x="${cx}" y="${y+RH-1}" class="lds">${esc(sym)}</text>`:'');
+  if(LD_CONTACT.includes(el.t)){h=wire(x,cx-7)+wire(cx+7,x+CW)+`<line x1="${cx-7}" y1="${cy-9}" x2="${cx-7}" y2="${cy+9}" class="ldw${hot}"/><line x1="${cx+7}" y1="${cy-9}" x2="${cx+7}" y2="${cy+9}" class="ldw${hot}"/>`;
+    if(el.t==='nc')h+=`<line x1="${cx-6}" y1="${cy+8}" x2="${cx+6}" y2="${cy-8}" class="ldw${hot}"/>`;
+    if(el.t==='p'||el.t==='n')h+=`<text x="${cx}" y="${cy+4}" class="ldt">${el.t.toUpperCase()}</text>`;
+    return h+lab;}
+  if(el.t==='coil'||el.t==='s'||el.t==='r'){h=wire(x,cx-9)+wire(cx+9,x+CW-6)+`<path d="M${cx-5},${cy-9} a12,12 0 0 0 0,18 M${cx+5},${cy-9} a12,12 0 0 1 0,18" class="ldw${hot}" fill="none"/>`;
+    if(el.t!=='coil')h+=`<text x="${cx}" y="${cy+4}" class="ldt">${el.t.toUpperCase()}</text>`;return h+lab;}
+  h=wire(x,x+8)+`<rect x="${x+8}" y="${cy-12}" width="${CW-20}" height="24" rx="3" class="ldb${hot}"/>`+`<text x="${cx-2}" y="${cy-1}" class="ldt">${el.t.toUpperCase()}</text>`+
+    `<text x="${cx-2}" y="${cy+9}" class="ldp">${ldBoxTxt(el,plc)}</text>`;
+  return h+lab;}
+function ldBoxTxt(el,plc){const p=parseAddr(el.a),s=plc&&plc.st;
+  if(el.t==='ctu'){const C=s&&p&&s.C[p.i];return C&&s.pw?`${C.cv}/${el.pv||1}`:'PV '+(el.pv||1);}
+  const T=s&&p&&s.T[p.i];return T&&s.pw&&T.et>0?`${nf(T.et,2)}/${nf((el.pt||0)/1000,(el.pt||0)%1000?2:0)}`:fs((el.pt||0)/1000);}
+function rungSvg(R,ri,plc){const n=R.rows,W=X0*2+(LD_COLS+1)*CW,H=n*RH+6;const V=plc&&plc.st.view&&plc.st.view[ri];const sel=LD.selCell;
+  let h=`<svg class="rung" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" data-ri="${ri}">`;
+  h+=`<line x1="${X0}" y1="0" x2="${X0}" y2="${H}" class="ldrail"/><line x1="${W-X0}" y1="0" x2="${W-X0}" y2="${H}" class="ldrail"/>`;
+  for(let r=0;r<n;r++){const y=r*RH+3;
+    for(let c=0;c<=LD_COLS;c++){const x=X0+c*CW;const el=R.cells[r][c];
+      const on=V&&V.cell[r]?(c<LD_COLS?V.cell[r][c]:V.pin[r]):false;
+      const isSel=sel&&sel[0]===ri&&sel[1]===r&&sel[2]===c;
+      h+=`<rect x="${x}" y="${y}" width="${CW}" height="${RH}" class="ldcell${isSel?' ldsel':''}${c===LD_COLS?' ldoutc':''}" data-r="${r}" data-c="${c}"/>`;
+      let sym='';if(el&&el.a&&plc){const p=parseAddr(el.a);if(p&&(p.k==='I'||p.k==='Q'))sym=plcSymbol(plc,(p.k==='I'?'i':'q')+p.i);}
+      h+=elSvg(el,x,y,on,sym,plc);
+      if(c===LD_COLS&&el)h+=`<line x1="${x+CW-6}" y1="${y+RH/2}" x2="${W-X0}" y2="${y+RH/2}" class="ldw"/>`;}
+    for(let b=1;b<=LD_COLS;b++)if(r<n-1&&R.v[r][b]){const x=X0+b*CW;h+=`<line x1="${x}" y1="${y+RH/2}" x2="${x}" y2="${y+RH+RH/2}" class="ldw${V&&V.cell[r]&&V.cell[r+1]&&(V.cell[r][b-1]||V.cell[r+1][b-1])?' ldon':''}"/>`;}}
+  return h+'</svg>';}
+function buildLD(){const el=$('#plcEd');if(!el||el.hidden)return;const plc=ldPlc();
+  if(!plc){el.innerHTML=`<p class="empty">${tr('Piirissä ei ole PLC:tä. Lisää PLC paletin ryhmästä Releet ja logiikka, kytke L+ ja M 24 V:n syöttöön, tulot antureihin ja painikkeisiin ja lähdöt kuormiin.','The circuit has no PLC. Add a PLC from the palette group Relays and logic, connect L+ and M to the 24 V supply, the inputs to sensors and buttons and the outputs to loads.')}</p>`;return;}
+  const P=plc.p.prog;
+  let h=ldToolbar()+`<div class="ldhead"><b>${esc(plc.label)}</b> · ${plc.st.pw?(plc.st.run?'RUN':'STOP'):tr('ei syöttöä','no supply')} · <span class="kbd">${tr('Valitse elementti työkaluriviltä, kirjoita osoite ja klikkaa ruutua. Valitse-työkalulla klikattu elementti näyttää osoitteensa, ja osoitteen tai ajan muutos kohdistuu siihen. Kelat, asetus, nollaus, ajastimet ja laskurit sijoitetaan oikeanpuoleiseen sarakkeeseen. Pystyyhteys yhdistää ruudun vasemman reunan alla olevaan riviin (rinnakkaishaara). Osoitteet: I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15, C0–C15.','Choose an element on the toolbar, type the address and click a cell. With the Select tool, a clicked element shows its address, and changing the address or time applies to it. Coils, set, reset, timers and counters go in the right-hand column. A vertical link joins the left edge of a cell to the row below (parallel branch). Addresses: I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15, C0–C15.')}</span></div><div id="ldRungs">`;
+  P.rungs.forEach((R,ri)=>{h+=`<div class="ldr" data-ri="${ri}"><div class="ldrh"><b>${tr('Askel','Rung')} ${ri+1}</b><input class="ldk" data-ri="${ri}" value="${esc(R.k||'')}" placeholder="${tr('kommentti','comment')}" maxlength="80">
+    <button type="button" data-ldr="addrow" title="${tr('Lisää rinnakkaisrivi','Add parallel row')}"${R.rows>=LD_ROWS?' disabled':''}>+ ${tr('rivi','row')}</button><button type="button" data-ldr="delrow" title="${tr('Poista alin rivi','Remove bottom row')}"${R.rows<=1?' disabled':''}>− ${tr('rivi','row')}</button>
+    <button type="button" data-ldr="up" title="${tr('Siirrä ylös','Move up')}"${ri===0?' disabled':''}>↑</button><button type="button" data-ldr="down" title="${tr('Siirrä alas','Move down')}"${ri===P.rungs.length-1?' disabled':''}>↓</button>
+    <button type="button" data-ldr="del" title="${tr('Poista askel','Delete rung')}">✕</button></div>${rungSvg(R,ri,plc)}</div>`;});
+  el.innerHTML=h+'</div>';
+}
+let ldLastView=null;
+function refreshLDOnline(){if(tdTab!=='plc')return;const plc=ldPlc();if(!plc)return;const v=JSON.stringify(plc.st.view)+JSON.stringify(plc.st.T)+JSON.stringify(plc.st.C)+plc.st.run+plc.st.pw;if(v===ldLastView)return;ldLastView=v;
+  const P=plc.p.prog;document.querySelectorAll('#ldRungs .ldr').forEach(d=>{const ri=+d.dataset.ri;const R=P.rungs[ri];if(!R)return;const old=d.querySelector('svg');if(old)old.outerHTML=rungSvg(R,ri,plc);});
+  const hd=document.querySelector('.ldhead b');if(hd)hd.nextSibling.textContent=` · ${plc.st.pw?(plc.st.run?'RUN':'STOP'):tr('ei syöttöä','no supply')} · `;}
+function ldEdit(fn){const plc=ldPlc();if(!plc)return;snapshot();fn(plc.p.prog);plc.pu.prog=plc.p.prog;save();buildLD();}
+function ldValidAddr(t,a){const p=parseAddr(a);if(!p)return tr('Virheellinen osoite. Käytä muotoa I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15 tai C0–C15.','Invalid address. Use I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15 or C0–C15.');
+  if((t==='ton'||t==='tof')&&p.k!=='T')return tr('Ajastimen osoite on T0–T15.','A timer address is T0–T15.');
+  if(t==='ctu'&&p.k!=='C')return tr('Laskurin osoite on C0–C15.','A counter address is C0–C15.');
+  if((t==='coil'||t==='s')&&!(p.k==='Q'||p.k==='M'))return tr('Kelan ja asetuksen osoite on Q tai M.','A coil or set address is Q or M.');
+  if(t==='r'&&p.k==='I')return tr('Tuloa ei voi nollata.','An input cannot be reset.');
+  return '';}
+$('#plcEd').addEventListener('click',e=>{const t=e.target;
+  const tb=t.closest('[data-ldt]');if(tb){LD.tool=tb.dataset.ldt;document.querySelectorAll('[data-ldt]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.ldt===LD.tool));return;}
+  if(t.id==='ldAddRung'){ldEdit(P=>P.rungs.push(newRung()));return;}
+  const rb=t.closest('[data-ldr]');if(rb){const ri=+rb.closest('.ldr').dataset.ri,a=rb.dataset.ldr;
+    ldEdit(P=>{const R=P.rungs[ri];if(a==='addrow'&&R.rows<LD_ROWS)R.rows++;
+      if(a==='delrow'&&R.rows>1){R.rows--;R.cells[R.rows].fill(null);R.v[R.rows-1].fill(false);R.v[R.rows].fill(false);}
+      if(a==='del'){P.rungs.splice(ri,1);if(!P.rungs.length)P.rungs.push(newRung());}
+      if(a==='up'&&ri>0)[P.rungs[ri-1],P.rungs[ri]]=[P.rungs[ri],P.rungs[ri-1]];
+      if(a==='down'&&ri<P.rungs.length-1)[P.rungs[ri+1],P.rungs[ri]]=[P.rungs[ri],P.rungs[ri+1]];});return;}
+  const cell=t.closest('.ldcell');if(!cell)return;const ri=+cell.closest('svg').dataset.ri,r=+cell.dataset.r,c=+cell.dataset.c;
+  const plc=ldPlc();const R=plc.p.prog.rungs[ri];const tool=LD.tool;
+  if(tool==='sel'){LD.selCell=[ri,r,c];const el=R.cells[r][c];if(el){if(el.a)LD.addr=el.a;if(el.pt)LD.pt=el.pt;if(el.pv)LD.pv=el.pv;}buildLD();return;}
+  if(tool==='del'){ldEdit(()=>{R.cells[r][c]=null;});return;}
+  if(tool==='v'){if(c===0||r>=R.rows-1){flashWarn(tr('Pystyyhteys tehdään ruudun vasempaan reunaan ylemmältä riviltä alemmalle. Lisää ensin rinnakkaisrivi.','A vertical link goes on the left edge of a cell from the upper row to the lower one. Add a parallel row first.'));return;}
+    ldEdit(()=>{R.v[r][c]=!R.v[r][c];});return;}
+  const out=LD_OUT.includes(tool);
+  if(out&&c!==LD_COLS){flashWarn(tr('Kela, asetus, nollaus, ajastin ja laskuri sijoitetaan oikeanpuoleiseen sarakkeeseen.','Coils, set, reset, timers and counters go in the right-hand column.'));return;}
+  if(!out&&c===LD_COLS){flashWarn(tr('Koskettimet ja johtimet sijoitetaan vasemmanpuoleisiin sarakkeisiin.','Contacts and wires go in the left-hand columns.'));return;}
+  if(tool==='h'){ldEdit(()=>{R.cells[r][c]={t:'h'};});return;}
+  const a=(parseAddr(LD.addr)||{}).s||LD.addr;const err=ldValidAddr(tool,a);if(err){flashWarn(err);return;}
+  ldEdit(()=>{const el={t:tool,a};if(tool==='ton'||tool==='tof')el.pt=LD.pt;if(tool==='ctu')el.pv=LD.pv;R.cells[r][c]=el;});
+});
+$('#plcEd').addEventListener('change',e=>{const t=e.target;
+  if(t.classList.contains('ldk')){ldEdit(P=>{P.rungs[+t.dataset.ri].k=t.value;});return;}
+  if(t.id==='ldAddr'||t.id==='ldPt'||t.id==='ldPv'){
+    if(t.id==='ldAddr')LD.addr=t.value.trim().toUpperCase();if(t.id==='ldPt')LD.pt=clamp(Math.round(+t.value||0),10,3600000);if(t.id==='ldPv')LD.pv=clamp(Math.round(+t.value||1),1,9999);
+    const s=LD.selCell,plc=ldPlc();if(!s||!plc||LD.tool!=='sel')return;const R=plc.p.prog.rungs[s[0]];const el=R&&R.cells[s[1]][s[2]];if(!el||el.t==='h')return;
+    if(t.id==='ldAddr'){const a=(parseAddr(LD.addr)||{}).s||LD.addr;const err=ldValidAddr(el.t,a);if(err){flashWarn(err);return;}ldEdit(()=>{el.a=a;});}
+    else if(t.id==='ldPt'&&(el.t==='ton'||el.t==='tof'))ldEdit(()=>{el.pt=LD.pt;});
+    else if(t.id==='ldPv'&&el.t==='ctu')ldEdit(()=>{el.pv=LD.pv;});}});
+$('#plcEd').addEventListener('keydown',e=>{e.stopPropagation();});
 
 /* ---------- ominaisuuspaneeli ---------- */
 const insp=$('#insp');
@@ -893,6 +1101,7 @@ function ctlHtml(c){const t=TY[c.type],s=c.st,p=c.p;const B=(txt,on,act='ctl')=>
   if(c.type==='qm')return B(s.on?tr('Päällä, kytke pois','On, switch off'):tr('Pois, kytke päälle','Off, switch on'),s.on);
   if(c.type==='ol'&&s.trip)return B(tr('Palauta (reset)','Reset'),true);
   if(t.src&&s.trip)return B(tr('Kuittaa laukeaminen','Reset trip'),true);
+  if(c.type==='plc')return B(s.run?tr('RUN, vaihda STOP','RUN, switch to STOP'):tr('STOP, vaihda RUN','STOP, switch to RUN'),s.run)+`<div class="ctl"><span>${tr('Ohjelma','Program')}</span><button class="btn" data-act="ldopen">${tr('Avaa PLC-ohjelma','Open PLC program')}</button></div>`;
   return '';}
 function refOpts(pd,c){const L=comps.filter(x=>pd.ref.includes(x.type)).map(x=>x.label);const cur=c.p[pd.k]||'';
   const none=pd.none?`<option value=""${!cur?' selected':''}>${L2(pd.none)}</option>`:`<option value=""${!cur?' selected':''}>–</option>`;
@@ -960,6 +1169,9 @@ function compRows(c){const s=c.st,p=c.p,ty=c.type,rows=[];
   if(ty==='cyl'){const ys=comps.filter(y=>y.type==='y'&&y.p.ref===c.label);
     rows.push(R('Asento','Position',`${nf(s.x*100,0)} %`),R('Liike','Motion',s.x>=0.999&&s.dir>0||s.x<=0.001&&s.dir<0?tr('pysähtynyt','stopped'):s.dir>0?tr('ulos (+)','out (+)'):tr('sisään (−)','in (−)')),
       R('Kelat','Solenoids',ys.length?ys.map(y=>`${y.label}${y.p.suunta==='plus'?'+':'−'}${y.st.e?' ●':''}`).join(', '):tr('ei kelaa','none')));return rows;}
+  if(ty==='plc'){const b=a=>a.map(x=>x?'1':'0').join('');return [R('Syöttö L+ – M','Supply L+ – M',U(s.U)),R('Tila','State',s.pw?(s.run?'RUN':'STOP'):tr('ei syöttöä','no supply')),
+    R('Tulot I0.0–I0.7','Inputs I0.0–I0.7',b(s.I)),R('Lähdöt Q0.0–Q0.7','Outputs Q0.0–Q0.7',b(s.Q)),R('Merkkerit M0.0–M0.7','Markers M0.0–M0.7',b(s.M.slice(0,8))),
+    R('Askelia ohjelmassa','Rungs in program',String((p.prog&&p.prog.rungs.length)||0)),R('Ohjelmakierroksia','Program scans',String(s.scans))];}
   if(ty==='sr')return [R('Syöttö A1–A2','Supply A1–A2',U(s.U)),R('Kanava 1 (S11–S12)','Channel 1 (S11–S12)',s.c1?tr('kiinni','closed'):tr('auki','open')),R('Kanava 2 (S21–S22)','Channel 2 (S21–S22)',s.c2?tr('kiinni','closed'):tr('auki','open')),
     R('Kuittaus (S33–S34)','Reset (S33–S34)',s.pr?tr('kiinni','closed'):tr('auki','open')),R('Lähdöt 13–14, 23–24','Outputs 13–14, 23–24',s.out?tr('kiinni','closed'):tr('auki','open')),R('Lukitus','Lockout',s.lock?srLock(s.lock):'–')];
   return rows;}
@@ -999,12 +1211,14 @@ insp.addEventListener('click',e=>{
   if(act==='ctl'){const c=byId[sel.id];const t=TY[c.type];
     if(c.type==='pb'){c.st.on=!c.st.on;}else if(t.click)t.click(c,'k');buildInsp();}
   if(act==='trace'){addTrace(sel.id);}
+  if(act==='ldopen'){LD.plcId=sel.id;setTab('plc');}
 });
 
 /* ---------- muokkaus ---------- */
 function newLabel(type){const pre=TY[type].px;if(!pre)return '';let i=1;while(comps.some(c=>c.label===pre+i))i++;return pre+i;}
 function addComp(type,x,y,p={},opt={}){
-  const c={id:opt.id||('c'+(nextId++)),type,x:Math.round(x/10)*10,y:Math.round(y/10)*10,rot:opt.rot||0,label:opt.label||newLabel(type),p:null,pu:Object.assign({},TY[type].def,p)};c.p=c.pu;
+  const c={id:opt.id||('c'+(nextId++)),type,x:Math.round(x/10)*10,y:Math.round(y/10)*10,rot:opt.rot||0,label:opt.label||newLabel(type),p:null,pu:JSON.parse(JSON.stringify(Object.assign({},TY[type].def,p)))};c.p=c.pu;
+  if(type==='plc'&&!c.pu.prog)c.pu.prog=newProg();
   if(TY[type].contact&&!c.pu.ref){const k=comps.filter(x=>x.type==='k');if(k.length)c.pu.ref=k[k.length-1].label;}
   c.st=TY[type].init(c);comps.push(c);byId[c.id]=c;mkCompDom(c);return c;
 }
@@ -1045,7 +1259,7 @@ function load(json,fit=true){
   for(const x of d.traces||[]){if(!byId[x.target]||traces.length>=8)continue;let col=Number.isInteger(x.col)&&!used.has(x.col)?x.col:[0,1,2,3,4,5,6,7].find(i=>!used.has(i));used.add(col);
     traces.push({id:'tr'+(nextId++),target:x.target,col});}
   TD.win=(d.td&&[2,5,10,20,30,60].includes(d.td.win))?d.td.win:10;setTDRun(true);
-  resetStates();syncAll();buildTDCtl();buildInsp();if(fit)fitView();
+  resetStates();syncAll();buildTDCtl();buildInsp();if(typeof buildLD==='function')buildLD();if(fit)fitView();
 }
 const undo=[];
 function snapshot(){undo.push(ser());if(undo.length>60)undo.shift();}
@@ -1165,13 +1379,67 @@ const EX={
    ['c7:0','c10:13',[[360,380],[550,380]]],['c10:14','c14:a1'],['c7:0','c10:23',[[360,390],[620,390]]],['c10:24','c15:a1'],['c14:a2','c8:0'],['c15:a2','c8:0']),
   traces:TRS('c9','c11','c10','c14','c15','c5'),td:{win:10}}
 };
+/* PLC-ohjelmien apufunktio: RG(kommentti, rivejä, [[rivi, sarake, tyyppi, osoite, lisä]], pystyyhteydet [[rivi, raja]]).
+   Riveille, joilla on lähtö ja vähintään yksi kosketin, täydennetään johdin viimeisestä koskettimesta lähtöön. */
+function RG(k,rows,els,links=[]){const R=newRung(rows);R.k=k;
+  for(const [r,c,t,a,x] of els)R.cells[r][c]=Object.assign({t},a?{a}:{},x||{});
+  for(const [r,b] of links)R.v[r][b]=true;
+  for(let r=0;r<rows;r++){if(!R.cells[r][LD_COLS])continue;let last=-1;for(let c=0;c<LD_COLS;c++)if(R.cells[r][c])last=c;if(last<0)continue;for(let c=last+1;c<LD_COLS;c++)R.cells[r][c]={t:'h'};}
+  return R;}
+/* PLC-esimerkkien yhteinen runko: 24 V, kisko, PLC (x0, y0) */
+function plcBase(x0,y0){return [K('c1','dc',x0-320,y0+40,{U:24},0,'G1'),K('c2','jn',x0-320,100),K('c3','jn',x0-320,y0+180)];}
+EX.ex9={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:[
+     RG('Itsepito: S1 (I0.1) käynnistää, S0 (I0.0) pysäyttää. S0 on avautuva painike, joten tulo on normaalisti 1 ja johtimen katkeaminen pysäyttää.',2,
+       [[0,0,'no','I0.1'],[1,0,'no','Q0.0'],[0,1,'no','I0.0'],[0,7,'coil','Q0.0']],[[0,1]]),
+     RG('Seis-merkkivalo H2, kun ei käy',1,[[0,0,'nc','Q0.0'],[0,7,'coil','Q0.1']])]}},0,'PLC1'),
+   K('c5','pb',380,150,{kosk:'NC'},0,'S0'),K('c6','pb',490,150,{kosk:'NO'},0,'S1'),
+   K('c7','lamp',470,470,{vari:'vihrea'},0,'H1'),K('c8','lamp',600,470,{vari:'punainen'},0,'H2')],
+  wires:Wr(['c1:p','c2:0'],['c1:n','c3:0'],['c1:p','c4:Lp'],['c1:n','c4:M'],['c2:0','c5:a'],['c2:0','c6:a'],
+   ['c5:b','c4:i0',[[380,240],[570,240]]],['c6:b','c4:i1',[[490,230],[600,230]]],
+   ['c4:q0','c7:x1',[[570,420],[470,420]]],['c4:q1','c8:x1'],['c7:x2','c3:0'],['c8:x2','c3:0']),
+  traces:TRS('c5','c6','c7','c8'),td:{win:10}};
+EX.ex10={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:[
+     RG('Taukoaika: T1 käy, kun S1 on päällä ja T2 ei ole päättynyt',1,[[0,0,'no','I0.0'],[0,1,'nc','T2'],[0,7,'ton','T1',{pt:500}]]),
+     RG('Palamisaika: T2 käy T1:n päätyttyä',1,[[0,0,'no','T1'],[0,7,'ton','T2',{pt:500}]]),
+     RG('Vilkkuva merkkivalo H1',1,[[0,0,'no','T1'],[0,7,'coil','Q0.0']]),
+     RG('Laskuri: vilkahdukset (nouseva reuna)',1,[[0,0,'no','Q0.0'],[0,7,'ctu','C1',{pv:5}]]),
+     RG('H2 palaa, kun viisi vilkahdusta on laskettu',1,[[0,0,'no','C1'],[0,7,'coil','Q0.1']]),
+     RG('Kuittaus S2 nollaa laskurin',1,[[0,0,'no','I0.1'],[0,7,'r','C1']])]}},0,'PLC1'),
+   K('c5','sel',380,150,{kosk:'NO'},0,'S1'),K('c6','pb',490,150,{kosk:'NO'},0,'S2'),
+   K('c7','lamp',470,470,{vari:'keltainen'},0,'H1'),K('c8','lamp',600,470,{vari:'vihrea'},0,'H2')],
+  wires:Wr(['c1:p','c2:0'],['c1:n','c3:0'],['c1:p','c4:Lp'],['c1:n','c4:M'],['c2:0','c5:a'],['c2:0','c6:a'],
+   ['c5:b','c4:i0',[[380,240],[570,240]]],['c6:b','c4:i1',[[490,230],[600,230]]],
+   ['c4:q0','c7:x1',[[570,420],[470,420]]],['c4:q1','c8:x1'],['c7:x2','c3:0'],['c8:x2','c3:0']),
+  traces:TRS('c5','c7','c8','c6'),td:{win:10}};
+EX.ex11={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:[
+     RG('Askel 1 (A+): S1 käynnistää, kun A ja B ovat takana eikä jakso ole käynnissä',1,
+       [[0,0,'p','I0.0'],[0,1,'no','I0.1'],[0,2,'no','I0.3'],[0,3,'nc','M0.1'],[0,4,'nc','M0.2'],[0,5,'nc','M0.3'],[0,6,'nc','M0.4'],[0,7,'s','M0.1']]),
+     RG('A ulkona (B2): odotus 0,5 s',1,[[0,0,'no','M0.1'],[0,1,'no','I0.2'],[0,7,'ton','T1',{pt:500}]]),
+     RG('Askel 2 (B+)',2,[[0,0,'no','T1'],[0,7,'s','M0.2'],[1,7,'r','M0.1']],[[0,7]]),
+     RG('Askel 3 (A−): B ulkona (B4)',2,[[0,0,'no','M0.2'],[0,1,'no','I0.4'],[0,7,'s','M0.3'],[1,7,'r','M0.2']],[[0,7]]),
+     RG('Askel 4 (B−): A takana (B1)',2,[[0,0,'no','M0.3'],[0,1,'no','I0.1'],[0,7,'s','M0.4'],[1,7,'r','M0.3']],[[0,7]]),
+     RG('Jakso valmis: B takana (B3)',1,[[0,0,'no','M0.4'],[0,1,'no','I0.3'],[0,7,'r','M0.4']]),
+     RG('Y1: A ulos',1,[[0,0,'no','M0.1'],[0,7,'coil','Q0.0']]),
+     RG('Y2: A sisään',1,[[0,0,'no','M0.3'],[0,7,'coil','Q0.1']]),
+     RG('Y3: B ulos',1,[[0,0,'no','M0.2'],[0,7,'coil','Q0.2']]),
+     RG('Y4: B sisään',1,[[0,0,'no','M0.4'],[0,7,'coil','Q0.3']])]}},0,'PLC1'),
+   K('c5','pb',340,150,{kosk:'NO'},0,'S1'),K('c6','reed',465,150,{kosk:'NO',ref:'A',asema:'taka'},0,'B1'),K('c7','reed',590,150,{kosk:'NO',ref:'A',asema:'etu'},0,'B2'),
+   K('c8','reed',715,150,{kosk:'NO',ref:'B',asema:'taka'},0,'B3'),K('c9','reed',840,150,{kosk:'NO',ref:'B',asema:'etu'},0,'B4'),
+   K('c10','y',460,470,{ref:'A',suunta:'plus'},0,'Y1'),K('c11','y',560,470,{ref:'A',suunta:'miinus'},0,'Y2'),K('c12','y',680,470,{ref:'B',suunta:'plus'},0,'Y3'),K('c13','y',780,470,{ref:'B',suunta:'miinus'},0,'Y4'),
+   K('c14','cyl',480,600,{venttiili:'bi',tout:1,tin:1},0,'A'),K('c15','cyl',760,600,{venttiili:'bi',tout:1,tin:1},0,'B')],
+  wires:Wr(['c1:p','c2:0'],['c1:n','c3:0'],['c1:p','c4:Lp'],['c1:n','c4:M'],
+   ['c2:0','c5:a'],['c2:0','c6:a'],['c2:0','c7:a'],['c2:0','c8:a'],['c2:0','c9:a'],
+   ['c5:b','c4:i0',[[340,240],[570,240]]],['c6:b','c4:i1',[[465,230],[600,230]]],['c7:b','c4:i2',[[590,220],[630,220]]],['c8:b','c4:i3',[[715,230],[660,230]]],['c9:b','c4:i4',[[840,210],[690,210]]],
+   ['c4:q0','c10:a1',[[570,420],[460,420]]],['c4:q1','c11:a1',[[600,410],[560,410]]],['c4:q2','c12:a1',[[630,410],[680,410]]],['c4:q3','c13:a1',[[660,420],[780,420]]],
+   ['c10:a2','c3:0'],['c11:a2','c3:0'],['c12:a2','c3:0'],['c13:a2','c3:0']),
+  traces:TRS('c5','c14','c15','c10','c12','c11','c13'),td:{win:10}};
 
 /* ---------- paletti ---------- */
 const PAL=[
   [['Syötöt','Supplies'],['dc','ac','l3','jn']],
   [['Ohjauslaitteet','Control devices'],['pb','sel','estop']],
   [['Anturit','Sensors'],['ls','reed','prox']],
-  [['Releet','Relays'],['k','kt','kc','km','sr']],
+  [['Releet ja logiikka','Relays and logic'],['k','kt','kc','km','sr','plc']],
   [['Suojalaitteet','Protective devices'],['qm','ol']],
   [['Toimilaitteet','Actuators'],['lamp','y','cyl','mot','mot6']]
 ];
@@ -1350,7 +1618,7 @@ function applyStatic(){
 }
 function setLang(l){if(l!=='fi'&&l!=='en')return;lang=l;try{localStorage.setItem('autsim-lang',l);}catch(e){}
   try{const u=new URL(location.href);if(u.searchParams.has('lang')){u.searchParams.set('lang',l);history.replaceState(null,'',u);}}catch(e){}
-  applyStatic();buildPalette();setRun(running);for(const c of comps){renderStatic(c);placeComp(c);}buildInsp();buildTDCtl();if(modal.classList.contains('open'))closeModal();updWarns();}
+  applyStatic();buildPalette();setRun(running);for(const c of comps){renderStatic(c);placeComp(c);}buildInsp();buildTDCtl();buildLD();if(modal.classList.contains('open'))closeModal();updWarns();}
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
 /* ---------- testi- ja validointirajapinta (tests/*.py) ---------- */
@@ -1359,7 +1627,7 @@ function runFor(sec){setRun(false);const n=Math.round(sec/DT);for(let i=0;i<n;i+
 const plain=o=>{const r={};for(const k in o)if(['number','boolean','string'].includes(typeof o[k]))r[k]=o[k];return r;};
 const actv=c=>{const t=TY[c.type];const v=t.active?t.active(c):null;return typeof v==='number'?v:!!v;};
 window.AutSim={
-  version:'1.0.0',
+  version:'1.1.0',mode:()=>'relelogiikka ja PLC',
   setLang:l=>{setLang(l);return lang;},lang:()=>lang,
   warningCodes:()=>{updWarns();return lastWarnCodes.slice();},
   warnings:()=>{updWarns();return [...document.querySelectorAll('#warns div')].map(d=>d.textContent);},
@@ -1379,6 +1647,10 @@ window.AutSim={
   runUntil:(l,maxSec)=>{setRun(false);const c=byLabel(l);const v0=actv(c);const n=Math.round(maxSec/DT);for(let i=0;i<n;i++){stepSim();if(actv(c)!==v0)return simT;}return null;},
   addTrace:l=>{addTrace(byLabel(l).id);return traces.map(x=>traceLabel(x));},traces:()=>traces.map(x=>traceLabel(x)),
   labels:()=>comps.map(c=>c.label),selection:()=>selIds().map(id=>byId[id].label),
+  plc:l=>{const s=byLabel(l).st;return {run:s.run,pw:s.pw,I:s.I.slice(),Q:s.Q.slice(),M:s.M.slice(),T:JSON.parse(JSON.stringify(s.T)),C:JSON.parse(JSON.stringify(s.C)),scans:s.scans};},
+  setProg:(l,prog)=>{const c=byLabel(l);c.pu.prog=JSON.parse(JSON.stringify(prog));c.p=c.pu;buildLD();return true;},
+  prog:l=>JSON.parse(JSON.stringify(byLabel(l).p.prog)),
+  setTab:t=>{setTab(t);return tdTab;},
   info:()=>({ports:S.np,groups:new Set(S.root).size,dt:DT})
 };
 
@@ -1390,6 +1662,265 @@ try{if(stored&&JSON.parse(stored).comps.length)load(stored);else load(EX.ex1);}c
 updWarns();
 requestAnimationFrame(loop);
 })();
+</script>
+<script>
+/* ---------- Palautekanava (SimPalaute) ----------
+ * Yhteinen palautemoduuli SEAMKin opetussimulaattoreille. Juho Pirttilahti, SEAMK 2026, CC BY 4.0.
+ * Lisää yläpalkkiin Palaute-painikkeen. Lomake liittää mukaan simulaattorin version, mallin, kielen,
+ * selaimen, varoitukset ja piirin (Tallenna / lataa -muoto) ja avaa valmiiksi täytetyn GitHub-issuen
+ * repon lomakepohjalla (.github/ISSUE_TEMPLATE/1-fysiikka.yml, 2-virhe.yml, 3-ehdotus.yml).
+ * Ilman GitHub-tiliä: Kopioi raportti tai Lähetä sähköpostilla.
+ * Käyttö: SimPalaute.init({repo:'omistaja/repo', nimi:{fi:'…',en:'…'}, api:()=>window.XxxSim, email:'…'})
+ * Valinnaiset: tekstit:{avain:{fi,en}} korvaa lomakkeen tekstejä, lajit:{fysiikka:{template,prefix}} korvaa lomakepohjan.
+ * api-olion odotetaan tarjoavan: version (arvo tai funktio), lang(), mode(), serialize(), warnings().
+ */
+(function(){
+'use strict';
+const URL_MAX=6000;      // GitHubin issues/new-linkin pituuskatto (varmuusmarginaalilla); pidempi piiri kopioidaan leikepöydälle
+const MAILTO_MAX=1800;   // osa sähköpostiohjelmista katkaisee pidemmät mailto-linkit
+
+const TX={
+  btn:{fi:'Palaute',en:'Feedback'},
+  btnTitle:{fi:'Ilmoita virheestä, fysiikkahavainnosta tai kehitysideasta',en:'Report a bug, a physics observation or an idea'},
+  h:{fi:'Palaute simulaattorista',en:'Simulator feedback'},
+  intro:{fi:'Palaute tallentuu simulaattorin GitHub-repoon issueksi, ja opettaja käy jokaisen läpi korjausehdotuksena.',
+         en:'Feedback is stored as an issue in the simulator\'s GitHub repository, and the teacher reviews each one as a proposed fix.'},
+  type:{fi:'Palautteen tyyppi',en:'Feedback type'},
+  t_fysiikka:{fi:'Fysiikka ei vastaa odotusta',en:'Physics does not match expectation'},
+  t_virhe:{fi:'Virhe käyttöliittymässä tai toiminnossa',en:'Bug in the interface or a function'},
+  t_ehdotus:{fi:'Kehitysehdotus',en:'Improvement idea'},
+  title:{fi:'Otsikko',en:'Title'},
+  titlePh:{fi:'Lyhyt kuvaus yhdellä rivillä',en:'Short one-line summary'},
+  a_fysiikka:{fi:'Ilmiö ja tilanne: mitä teit ja mitä tapahtui?',en:'Phenomenon and situation: what did you do and what happened?'},
+  a_virhe:{fi:'Mitä tapahtui?',en:'What happened?'},
+  a_ehdotus:{fi:'Mikä on tarve? Mitä opiskelija tai opettaja ei nyt pysty tekemään?',en:'What is the need? What can a student or teacher not do now?'},
+  b_fysiikka:{fi:'Odotettu tulos ja perustelu (kaava, laskelma, lähde tai mittaus)',en:'Expected result and justification (formula, calculation, source or measurement)'},
+  b_virhe:{fi:'Miten virheen saa toistettua?',en:'How can the bug be reproduced?'},
+  b_ehdotus:{fi:'Ehdotettu ratkaisu (valinnainen)',en:'Proposed solution (optional)'},
+  tunnus:{fi:'Validointitunnus (valinnainen, esim. V05)',en:'Validation ID (optional, e.g. V05)'},
+  piiri:{fi:'Liitä nykyinen piiri (suositus: virhe voidaan toistaa täsmälleen)',en:'Attach the current circuit (recommended: the issue can be reproduced exactly)'},
+  privacy:{fi:'Issuet ovat julkisia. Älä kirjoita henkilötietoja. GitHubissa avaaminen vaatii GitHub-tilin; ilman tiliä käytä Kopioi raportti- tai sähköpostipainiketta.',
+           en:'Issues are public. Do not include personal data. Opening on GitHub requires a GitHub account; without one, use Copy report or the e-mail button.'},
+  open:{fi:'Avaa GitHubissa',en:'Open on GitHub'},
+  copy:{fi:'Kopioi raportti',en:'Copy report'},
+  mail:{fi:'Lähetä sähköpostilla',en:'Send by e-mail'},
+  cancel:{fi:'Peruuta',en:'Cancel'},
+  req:{fi:'Täytä vähintään kentät: ',en:'Please fill in at least: '},
+  copied:{fi:'Raportti kopioitu leikepöydälle.',en:'Report copied to the clipboard.'},
+  copyFail:{fi:'Kopiointi ei onnistunut. Valitse teksti alta ja kopioi se itse.',en:'Copy failed. Select the text below and copy it yourself.'},
+  opened:{fi:'GitHub avautui uuteen välilehteen. Tarkista kentät ja paina Create / Submit new issue.',en:'GitHub opened in a new tab. Check the fields and press Create / Submit new issue.'},
+  bigCirc:{fi:'Piiri ei mahtunut linkkiin, joten se kopioitiin leikepöydälle. Liitä se GitHubissa kenttään "Piiri JSON-muodossa" (Ctrl+V).',
+           en:'The circuit did not fit in the link, so it was copied to the clipboard. Paste it on GitHub into the field "Piiri JSON-muodossa" (Ctrl+V).'},
+  bigCircPh:{fi:'(Piiri ei mahtunut linkkiin. Se on leikepöydällä: liitä se tähän Ctrl+V.)',en:'(The circuit did not fit in the link. It is on the clipboard: paste it here with Ctrl+V.)'},
+  bigAll:{fi:'Raportti oli liian pitkä linkkiin, joten koko raportti kopioitiin leikepöydälle. Liitä se GitHubin ensimmäiseen kenttään.',
+          en:'The report was too long for the link, so the whole report was copied to the clipboard. Paste it into the first field on GitHub.'},
+  bigAllPh:{fi:'(Raportti on leikepöydällä: liitä se tähän Ctrl+V.)',en:'(The report is on the clipboard: paste it here with Ctrl+V.)'},
+  mailNote:{fi:'Raportti kopioitiin myös leikepöydälle. Jos viestin teksti jäi vajaaksi, liitä raportti viestiin.',en:'The report was also copied to the clipboard. If the message text is incomplete, paste the report into it.'},
+  mailShort:{fi:'Raportti on leikepöydällä: liitä se tähän viestiin (Ctrl+V).',en:'The report is on the clipboard: paste it into this message (Ctrl+V).'}
+};
+// GitHub-lomakepohjat ovat suomeksi; nämä otsikot ja kenttätunnukset vastaavat niitä.
+const KIND={
+  fysiikka:{template:'1-fysiikka.yml',prefix:'[Fysiikka] ',a:'ilmio',b:'odotus',bReq:true,piiri:'piiri'},
+  virhe:{template:'2-virhe.yml',prefix:'[Virhe] ',a:'kuvaus',b:'toisto',bReq:false,piiri:'piiri'},
+  ehdotus:{template:'3-ehdotus.yml',prefix:'[Ehdotus] ',a:'tarve',b:'ratkaisu',bReq:false,piiri:null}
+};
+
+let C=null,root=null,btn=null,els={};
+const L=()=>{try{const l=C.api()&&C.api().lang();return l==='en'?'en':'fi';}catch(e){return 'fi';}};
+const t=k=>TX[k][L()];
+const safe=(f,d)=>{try{const v=f();return v===undefined?d:v;}catch(e){return d;}};
+
+function info(){
+  const a=C.api()||{};
+  const ver=safe(()=>typeof a.version==='function'?a.version():a.version,'?');
+  const w=safe(()=>a.warnings(),[]);
+  return {
+    nimi:C.nimi.fi, ver:String(ver),
+    malli:String(safe(()=>a.mode(),'?')), kieli:L(),
+    ua:navigator.userAgent, nakyma:innerWidth+'×'+innerHeight,
+    varoitukset:Array.isArray(w)&&w.length?w.join(' | '):'ei',
+    piiri:safe(()=>a.serialize(),'')
+  };
+}
+function techBlock(i){
+  return '\n\n---\nTekniset tiedot (liitetty automaattisesti):\n'+
+    '- Simulaattori: '+i.nimi+' '+i.ver+'\n- Malli: '+i.malli+', kieli: '+i.kieli+'\n'+
+    '- Selain: '+i.ua+'\n- Näkymä: '+i.nakyma+'\n- Varoitukset: '+i.varoitukset+'\n- Sivu: '+location.href.split('#')[0];
+}
+function values(){
+  return {kind:root.querySelector('input[name=spl-kind]:checked').value,
+    title:els.title.value.trim(), a:els.a.value.trim(), b:els.b.value.trim(),
+    tunnus:els.tunnus.value.trim(), liitaPiiri:els.piiri.checked};
+}
+function validate(v){
+  const miss=[];
+  if(!v.a)miss.push(TX['a_'+v.kind][L()]);
+  if(KIND[v.kind].bReq&&!v.b)miss.push(TX['b_'+v.kind][L()]);
+  if(miss.length){status(t('req')+miss.join('; '),true);(!v.a?els.a:els.b).focus();return false;}
+  return true;
+}
+function issueTitle(v){
+  const s=v.title||v.a.split('\n')[0];
+  return KIND[v.kind].prefix+(s.length>90?s.slice(0,87)+'…':s);
+}
+function report(v,i){
+  let r='# '+issueTitle(v)+'\n\nTyyppi: '+TX['t_'+v.kind].fi+'\n';
+  if(v.kind==='fysiikka'&&v.tunnus)r+='Validointitunnus: '+v.tunnus+'\n';
+  r+='\n## '+TX['a_'+v.kind].fi+'\n'+v.a+'\n';
+  if(v.b)r+='\n## '+TX['b_'+v.kind].fi+'\n'+v.b+'\n';
+  r+=techBlock(i).replace(/^\n\n---\n/,'\n');
+  if(v.liitaPiiri&&i.piiri)r+='\n\n## Piiri JSON-muodossa\n```json\n'+i.piiri+'\n```\n';
+  return r;
+}
+function buildUrl(fields){
+  const q=Object.entries(fields).filter(([,x])=>x!=null&&x!=='').map(([n,x])=>encodeURIComponent(n)+'='+encodeURIComponent(x)).join('&');
+  return 'https://github.com/'+C.repo+'/issues/new?'+q;
+}
+/* Palauttaa {url, clip, note}: clip = leikepöydälle kopioitava teksti, jos jotain ei mahtunut linkkiin. */
+function issueLink(v,i){
+  const k=KIND[v.kind],tech=techBlock(i);
+  const f={template:k.template,title:issueTitle(v)};
+  f[k.a]=v.a+tech; if(v.b)f[k.b]=v.b;
+  if(v.kind==='fysiikka'&&v.tunnus)f.tunnus=v.tunnus;
+  if(v.kind==='virhe')f.selain=i.ua+' · '+i.nimi+' '+i.ver;
+  const circ=v.liitaPiiri&&k.piiri&&i.piiri?i.piiri:'';
+  if(circ)f[k.piiri]=circ;
+  let url=buildUrl(f);
+  if(url.length<=URL_MAX)return {url,clip:null,note:null};
+  if(circ){f[k.piiri]=TX.bigCircPh.fi;url=buildUrl(f);if(url.length<=URL_MAX)return {url,clip:circ,note:t('bigCirc')};}
+  const g={template:k.template,title:issueTitle(v)};g[k.a]=TX.bigAllPh.fi;
+  return {url:buildUrl(g),clip:report(v,i),note:t('bigAll')};
+}
+function copyText(s){
+  // Kutsutaan klikkauksen käsittelijästä, jotta selain sallii leikepöydän käytön.
+  const fallback=()=>{const ta=document.createElement('textarea');ta.value=s;ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();
+    let ok=false;try{ok=document.execCommand('copy');}catch(e){}ta.remove();return ok;};
+  if(navigator.clipboard&&window.isSecureContext){
+    return navigator.clipboard.writeText(s).then(()=>true,()=>fallback());
+  }
+  return Promise.resolve(fallback());
+}
+function status(msg,err,manual){
+  els.status.textContent=msg;els.status.style.color=err?'var(--warn,#C0392B)':'';
+  els.manual.hidden=!manual;if(manual){els.manual.value=manual;}
+}
+function onOpenGithub(){
+  const v=values();if(!validate(v))return;
+  const i=info(),r=issueLink(v,i);
+  if(r.clip)copyText(r.clip).then(ok=>{if(!ok)status(r.note+' '+t('copyFail'),true,r.clip);});
+  window.open(r.url,'_blank','noopener');
+  // noopener-ikkunalla window.open palauttaa usein null myös onnistuessaan, joten estoa ei voi luotettavasti tunnistaa.
+  status((r.note?r.note+' ':'')+t('opened'));
+  els.link.href=r.url;els.link.hidden=false;
+  root.dataset.lastUrl=r.url; // testejä varten
+}
+function onCopy(){
+  const v=values();if(!validate(v))return;
+  const r=report(v,info());
+  copyText(r).then(ok=>ok?status(t('copied')):status(t('copyFail'),true,r));
+}
+function onMail(){
+  const v=values();if(!validate(v))return;
+  const r=report(v,info());
+  copyText(r);
+  const subj=encodeURIComponent(C.nimi.fi+': '+issueTitle(v));
+  let body=encodeURIComponent(r);
+  if(body.length>MAILTO_MAX)body=encodeURIComponent(t('mailShort'));
+  root.dataset.lastMail='mailto:'+C.email+'?subject='+subj+'&body='+body;
+  location.href=root.dataset.lastMail;
+  status(t('mailNote'));
+}
+function relabel(){
+  if(!root)return;
+  const l=L();
+  root.querySelectorAll('[data-spl]').forEach(el=>{const k=el.dataset.spl;el.textContent=TX[k][l];});
+  root.querySelectorAll('[data-spl-ph]').forEach(el=>{el.placeholder=TX[el.dataset.splPh][l];});
+  const kind=root.querySelector('input[name=spl-kind]:checked').value;
+  els.aLbl.textContent=TX['a_'+kind][l];els.bLbl.textContent=TX['b_'+kind][l];
+  els.tunnusRow.hidden=kind!=='fysiikka';
+  els.piiriRow.hidden=!KIND[kind].piiri;
+  root.querySelector('.mbox').setAttribute('aria-label',TX.h[l]);
+}
+function open(){relabel();status('');els.link.hidden=true;root.classList.add('open');els.title.focus();}
+function close(){root.classList.remove('open');btn.focus();}
+
+function build(){
+  btn=document.createElement('button');
+  btn.type='button';btn.className='btn';btn.id='palauteBtn';
+  btn.dataset.en=TX.btn.en;btn.dataset.fi=TX.btn.fi;btn.dataset.enTitle=TX.btnTitle.en;btn.dataset.fiTitle=TX.btnTitle.fi;
+  btn.textContent=t('btn');btn.title=t('btnTitle');
+  btn.addEventListener('click',open);
+  const grps=document.querySelectorAll(C.paikka+' .grp');
+  (grps.length?grps[grps.length-1]:document.querySelector(C.paikka)||document.body).appendChild(btn);
+
+  root=document.createElement('div');
+  root.className='modal';root.id='palauteModal';
+  root.innerHTML=
+   '<div class="mbox" role="dialog" aria-modal="true" style="max-width:640px">'+
+    '<h2 data-spl="h"></h2><p data-spl="intro"></p>'+
+    '<fieldset style="border:0;padding:0;margin:8px 0"><legend style="font-weight:600;margin-bottom:4px" data-spl="type"></legend>'+
+     ['fysiikka','virhe','ehdotus'].map((k,n)=>'<label style="display:block;margin:2px 0"><input type="radio" name="spl-kind" value="'+k+'"'+(n===1?' checked':'')+'> <span data-spl="t_'+k+'"></span></label>').join('')+
+    '</fieldset>'+
+    '<label style="display:block;font-weight:600;margin-top:8px"><span data-spl="title"></span><input id="splTitle" type="text" maxlength="120" data-spl-ph="titlePh" style="display:block;width:100%;box-sizing:border-box;margin-top:3px;padding:6px 8px;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink);font:inherit;font-weight:400"></label>'+
+    '<label style="display:block;font-weight:600;margin-top:8px"><span id="splALbl"></span><textarea id="splA" style="height:90px;font-family:inherit;font-size:14px;margin-top:3px;box-sizing:border-box"></textarea></label>'+
+    '<label style="display:block;font-weight:600;margin-top:8px"><span id="splBLbl"></span><textarea id="splB" style="height:80px;font-family:inherit;font-size:14px;margin-top:3px;box-sizing:border-box"></textarea></label>'+
+    '<label id="splTunnusRow" style="display:block;font-weight:600;margin-top:8px"><span data-spl="tunnus"></span><input id="splTunnus" type="text" maxlength="20" style="display:block;width:10em;margin-top:3px;padding:6px 8px;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink);font:inherit;font-weight:400"></label>'+
+    '<label id="splPiiriRow" style="display:block;margin-top:10px"><input id="splPiiri" type="checkbox" checked> <span data-spl="piiri"></span></label>'+
+    '<p class="mnote" data-spl="privacy" style="margin-top:10px"></p>'+
+    '<p id="splStatus" role="status" aria-live="polite" style="min-height:1.2em;margin:6px 0 0;font-size:14px"></p>'+
+    '<a id="splLink" target="_blank" rel="noopener" hidden style="font-size:13px;word-break:break-all">GitHub</a>'+
+    '<textarea id="splManual" readonly hidden style="height:120px"></textarea>'+
+    '<div class="mrow">'+
+     '<button type="button" class="btn pri" id="splOpen" data-spl="open" style="min-width:0"></button>'+
+     '<button type="button" class="btn" id="splCopy" data-spl="copy"></button>'+
+     (C.email?'<button type="button" class="btn" id="splMail" data-spl="mail"></button>':'')+
+     '<button type="button" class="btn" id="splCancel" data-spl="cancel"></button>'+
+    '</div></div>';
+  document.body.appendChild(root);
+  const $=s=>root.querySelector(s);
+  els={title:$('#splTitle'),a:$('#splA'),b:$('#splB'),aLbl:$('#splALbl'),bLbl:$('#splBLbl'),
+       tunnus:$('#splTunnus'),tunnusRow:$('#splTunnusRow'),piiri:$('#splPiiri'),piiriRow:$('#splPiiriRow'),
+       status:$('#splStatus'),link:$('#splLink'),manual:$('#splManual')};
+  root.querySelectorAll('input[name=spl-kind]').forEach(r=>r.addEventListener('change',relabel));
+  $('#splOpen').addEventListener('click',onOpenGithub);
+  $('#splCopy').addEventListener('click',onCopy);
+  if(C.email)$('#splMail').addEventListener('click',onMail);
+  $('#splCancel').addEventListener('click',close);
+  root.addEventListener('pointerdown',e=>{if(e.target===root)close();});
+  // Estetään simulaattorin pikanäppäimet (Delete, R, Ctrl+Z …) lomakkeen ollessa auki.
+  window.addEventListener('keydown',e=>{
+    if(!root.classList.contains('open'))return;
+    e.stopPropagation();
+    if(e.key==='Escape'){e.preventDefault();close();}
+  },true);
+  // Kielen vaihto kesken lomakkeen: päivitetään tekstit (simulaattori vaihtaa kielen samassa klikkauksessa).
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-lang]'))setTimeout(relabel,0);});
+}
+
+window.SimPalaute={
+  init(cfg){
+    if(C)return;
+    if(!cfg||!cfg.repo||!cfg.api||!cfg.nimi)throw new Error('SimPalaute.init: repo, nimi ja api vaaditaan');
+    C=Object.assign({paikka:'header.bar',email:''},cfg);
+    // Simulaattorikohtaiset tekstit ja lomakepohjat (esim. automaatiosimulaattorin 1-toiminta.yml).
+    if(cfg.tekstit)for(const k in cfg.tekstit)TX[k]=Object.assign({},TX[k],cfg.tekstit[k]);
+    if(cfg.lajit)for(const k in cfg.lajit)KIND[k]=Object.assign({},KIND[k],cfg.lajit[k]);
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();
+  },
+  open:()=>open(),
+  // Testirajapinta: rakentaa linkin ja raportin lomakkeen nykyisistä arvoista avaamatta mitään.
+  _preview:()=>{const v=values(),i=info();return {link:issueLink(v,i),report:report(v,i),valid:!!v.a&&(!KIND[v.kind].bReq||!!v.b)};},
+  _limits:{URL_MAX,MAILTO_MAX}
+};
+})();
+SimPalaute.init({repo:'Jipirtti/Automaatiosimulaattori',nimi:{fi:'Automaatiosimulaattori',en:'Automation Simulator'},api:()=>window.AutSim,email:'juho.pirttilahti@seamk.fi',
+  tekstit:{btnTitle:{fi:'Ilmoita virheestä, toimintahavainnosta tai kehitysideasta',en:'Report a bug, a behaviour observation or an idea'},
+    t_fysiikka:{fi:'Toiminta ei vastaa odotusta',en:'Behaviour does not match expectation'},
+    a_fysiikka:{fi:'Toiminto ja tilanne: mitä teit ja mitä tapahtui?',en:'Function and situation: what did you do and what happened?'},
+    b_fysiikka:{fi:'Odotettu toiminta ja perustelu (kytkentäkaavio, standardi, valmistajan ohje tai mittaus)',en:'Expected behaviour and justification (circuit diagram, standard, manufacturer manual or measurement)'},
+    tunnus:{fi:'Validointitunnus (valinnainen, esim. A05)',en:'Validation ID (optional, e.g. A05)'}},
+  lajit:{fysiikka:{template:'1-toiminta.yml',prefix:'[Toiminta] '}}});
 </script>
 </body>
 </html>

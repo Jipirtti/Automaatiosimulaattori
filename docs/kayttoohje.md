@@ -8,7 +8,7 @@ Juho Pirttilahti, Seinäjoen ammattikorkeakoulu (SEAMK), 2026. Suunnittelu, sis�
 
 ## Mikä simulaattori on
 
-Automaatiosimulaattori on selaimessa toimiva opetusväline relelogiikalle ja ohjauspiireille. Piiri piirretään kuten sähköpiirikaavio, ja se toimii heti piirtämisen jälkeen:
+Automaatiosimulaattori on selaimessa toimiva opetusväline relelogiikalle, ohjauspiireille ja PLC-ohjelmoinnille. Piiri piirretään kuten sähköpiirikaavio, ja se toimii heti piirtämisen jälkeen:
 
 - painikkeet painetaan hiirellä
 - releet vetävät viiveellä
@@ -16,7 +16,7 @@ Automaatiosimulaattori on selaimessa toimiva opetusväline relelogiikalle ja ohj
 - moottorit käynnistyvät
 - suojalaitteet laukeavat
 
-Aikakaavio näyttää tilojen muutokset ajan funktiona, ja sen kursoreilla mitataan aikoja.
+Aikakaavio näyttää tilojen muutokset ajan funktiona, ja sen kursoreilla mitataan aikoja. PLC:tä ohjelmoidaan tikapuukaaviolla (LD), ja ohjelman tila näkyy ajon aikana.
 
 Avaa simulaattori osoitteessa <https://jipirtti.github.io/Automaatiosimulaattori/>. Asennusta ei tarvita. Simulaattori toimii myös avaamalla tiedoston `index.html` suoraan selaimessa ilman verkkoyhteyttä.
 
@@ -26,11 +26,11 @@ Simulaattori on tarkoitettu ohjauspiirien toiminnan ymmärtämiseen. Sillä ei v
 
 | Alue | Sisältö |
 | --- | --- |
-| Yläpalkki | Kieli (FI, EN), Käynnistä/Pysäytä, Nollaa tila, simulointinopeus, aika, esimerkkipiirit, Kumoa, Tallenna / lataa, Sovita näkymä, Tyhjennä, Ohje, Käyttöohje |
-| Paletti (vasen) | Komponentit ryhmittäin: syötöt, ohjauslaitteet, anturit, releet, suojalaitteet, toimilaitteet |
+| Yläpalkki | Kieli (FI, EN), Käynnistä/Pysäytä, Nollaa tila, simulointinopeus, aika, esimerkkipiirit, Kumoa, Tallenna / lataa, Sovita näkymä, Tyhjennä, Ohje, Käyttöohje, Palaute |
+| Paletti (vasen) | Komponentit ryhmittäin: syötöt, ohjauslaitteet, anturit, releet ja logiikka, suojalaitteet, toimilaitteet |
 | Piirtoalusta (keskellä) | Piiri, työkalurivi (Valitse ja kytke, Aikakaavioon, Lukemat), johtimien värien selite ja varoitukset |
 | Ominaisuuspaneeli (oikea) | Valitun komponentin tunnus, ohjaus, asetukset ja tila |
-| Aikakaavio (alhaalla) | Enintään kahdeksan signaalia, aikaväli, kursorit |
+| Alapaneeli | Välilehdet *Aikakaavio* (enintään kahdeksan signaalia, aikaväli, kursorit) ja *PLC-ohjelma* (tikapuukaavioeditori) |
 
 Johtimen väri kertoo sen jännitteen:
 
@@ -89,6 +89,7 @@ Kelan vieressä näkyy luettelo sen koskettimista (ristiviittaus), esimerkiksi *
 | Apukosketin | n3–n4 / n1–n2 | Kuuluu laitteeseen (rele, aikarele, lämpörele, moottorinsuojakytkin), NO/NC, numero. |
 | Kontaktorin pääkoskettimet | 1–2, 3–4, 5–6 | Kuuluu kontaktoriin. |
 | Turvarele | A1, A2, S11–S12, S21–S22, S33–S34, 13–14, 23–24 | Käynnistys valvottu tai automaattinen (ks. Turvarele). |
+| PLC | L+, M, I0.0–I0.7, Q0.0–Q0.7 | Kierrosaika (10 ms). RUN/STOP vaihtuu klikkaamalla PLC:n vasenta alakulmaa tai ominaisuuspaneelista (ks. PLC ja tikapuukaavio). |
 | Moottorinsuojakytkin | 1–6 | Asetusvirta Ir. Kytketään päälle ja pois klikkaamalla. Laukeaa ylikuormasta (lämpömalli) ja oikosulusta (magneettinen laukaisu). |
 | Lämpörele | 1–6 (+ 95–96, 97–98 apukoskettimina) | Asetusvirta Ir, palautus käsin tai automaattisesti. Laukeaminen avaa 95–96 ja sulkee 97–98. Pääkoskettimet pysyvät kiinni. |
 | Merkkilamppu | X1, X2 | Väri, nimellisjännite. |
@@ -146,6 +147,76 @@ Turvarele valvoo kaksikanavaista hätäseispiiriä:
 | Kontaktorin kosketin hitsautunut | Kontaktorin peilikosketin (avautuva apukosketin) jää auki, joten kuittauspiiri ei sulkeudu eikä uudelleenkäynnistys onnistu. |
 
 Etupaneelin merkkivalot ovat vasemmalta oikealle syöttö, kanava 1, kanava 2, lähdöt ja vika (punainen).
+
+## PLC ja tikapuukaavio
+
+![PLC-ohjelma (esimerkki 10) ajon aikana: jännitteiset polut vihreinä](kuvat/plc.png)
+
+### Kytkentä
+
+- **Syöttö:** PLC:n L+ ja M kytketään 24 V:n teholähteeseen.
+- **Tulot:** tulot I0.0–I0.7 ovat 1, kun niiden jännite M:ää vasten on vähintään 15 V. Painikkeet ja anturit kytketään siis +24 V:sta tuloon. 3-johdinanturit kytketään PNP-lähdöllä.
+- **Lähdöt:** lähdöt Q0.0–Q0.7 ovat PNP-tyyppisiä. Lähdön ollessa 1 PLC kytkee L+:n lähtöliitäntään, joten kuorma (kela, lamppu, magneettiventtiili) kytketään lähdön ja 0 V:n väliin.
+- **Merkkivalot:** PLC:n merkkivalot näyttävät tulojen ja lähtöjen tilat sekä RUN/STOP-tilan.
+
+### Ohjelmakierto
+
+PLC suorittaa ohjelmaa kierroksittain (oletus 10 ms):
+
+1. Kierroksen alussa tulot luetaan prosessikuvaan.
+2. Askeleet suoritetaan järjestyksessä ylhäältä alas.
+3. Kierroksen lopussa lähdöt kirjoitetaan.
+
+Siksi tulon muutos näkyy ohjelmassa enintään yhden kierron viiveellä. STOP-tilassa lähdöt ovat pois ja ohjelma ei suoriudu.
+
+### Editori
+
+Avaa editori alapaneelin välilehdeltä **PLC-ohjelma** tai PLC:n ominaisuuspaneelin painikkeella *Avaa PLC-ohjelma*.
+
+Askeleen rakenne:
+
+- Jokaisessa askeleessa on seitsemän sarakkeen kosketinalue ja oikeanpuoleinen lähtösarake.
+- Rivejä voi olla enintään neljä.
+- Vasen kisko syöttää jokaisen rivin alkua.
+
+| Elementti | Merkintä | Toiminta |
+| --- | --- | --- |
+| Johdin | ── | Johtaa aina |
+| Sulkeutuva kosketin | ┤ ├ | Johtaa, kun operandi on 1 |
+| Avautuva kosketin | ┤/├ | Johtaa, kun operandi on 0 |
+| Nouseva reuna | ┤P├ | Johtaa yhden kierroksen, kun operandi muuttuu 0 → 1 |
+| Laskeva reuna | ┤N├ | Johtaa yhden kierroksen, kun operandi muuttuu 1 → 0 |
+| Kela | ( ) | Operandi = askeleen tila |
+| Asetus | (S) | Asettaa operandin 1:ksi, kun askel johtaa (pysyy) |
+| Nollaus | (R) | Nollaa operandin; ajastimelle ja laskurille nollaa ajan tai laskennan |
+| Vetoviive | TON | Lähtö T = 1, kun tulo on ollut 1 asetusajan |
+| Päästöviive | TOF | Lähtö T = 1 heti; palaa 0:ksi asetusajan kuluttua tulon 0:ksi menosta |
+| Ylöslaskuri | CTU | Laskee tulon nousevat reunat; lähtö C = 1, kun laskenta ≥ raja |
+| Pystyyhteys | │ | Yhdistää ruudun vasemman reunan alla olevaan riviin (rinnakkaishaara = TAI, tai yksi ehto usealle lähdölle) |
+
+Operandit:
+
+| Operandi | Osoitteet |
+| --- | --- |
+| Tulot | I0.0–I0.7 |
+| Lähdöt | Q0.0–Q0.7 |
+| Merkkerit (muistibitit) | M0.0–M3.7 |
+| Ajastimet | T0–T15 |
+| Laskurit | C0–C15 |
+
+Koskettimen operandina ajastin tai laskuri tarkoittaa sen lähtöbittiä.
+
+Editorin käyttö:
+
+1. Valitse elementti työkaluriviltä.
+2. Kirjoita osoite (ja ajastimelle aika, laskurille raja).
+3. Klikkaa ruutua.
+
+Valitse-työkalulla klikattu elementti näyttää osoitteensa. Osoitteen, ajan tai rajan muutos kohdistuu silloin siihen. Askelia lisätään painikkeella *+ Askel*. Askeleen otsikkorivillä lisätään ja poistetaan rivejä, siirretään askelta ja kirjoitetaan kommentti. Kumoa (Ctrl+Z) toimii myös ohjelmaan.
+
+Ajon aikana jännitteiset polut ja ohjatut lähdöt näkyvät vihreinä. Ajastimissa näkyy kulunut aika ja laskureissa laskenta. Osoitteen alla on laite, joka on kytketty kyseiseen tuloon tai lähtöön (esimerkiksi S1 tai H1).
+
+PLC-ohjelma tallentuu piirin mukana (selain, Tallenna / lataa).
 
 ## Viat
 
@@ -207,6 +278,9 @@ Esimerkit ladataan yläpalkin valikosta. Lataus korvaa nykyisen piirin, mutta Ku
 | 6. Sähköpneumatiikka: automaattinen paluu | S1 käynnistää, kun sylinteri on takana (B1). K1 pitää ja ohjaa Y1:n. PNP-anturi B2 (etuasento) vetää K2:n, jonka 21–22 katkaisee pidon. | Paina S1. Sylinteri menee ulos 1,5 s ja palaa 1,0 s. |
 | 7. Sekvenssi A+ B+ A− B− | Bistabiilit venttiilit ja reed-anturit: A+ = S1·B3, B+ = B2, A− = B4, B− = B1. | Paina S1 lyhyesti: yksi jakso, 4 s. Pidä S1 pohjassa: jakso toistuu. |
 | 8. Hätäseis ja turvarele | S0 kaksikanavaisena turvareleelle K0. Kuittaus S1 sarjassa K1 21–22 ja K2 21–22 kanssa. K1 ja K2 sarjassa pääpiirissä. | Kuittaa S1:llä. Paina S0, vapauta ja kuittaa. Aseta S0:n viaksi kanava 2 hitsautunut tai K1:n pääkoskettimien viaksi napa 1–2 hitsautunut. |
+| 9. PLC: käynnistys ja pysäytys | Itsepito ohjelmassa. S0 (NC) tuloon I0.0, S1 (NO) tuloon I0.1, H1 lähtöön Q0.0, H2 lähtöön Q0.1. | Käynnistä ja pysäytä. Katkaise S0:n johdin: miksi PLC pysähtyy? |
+| 10. PLC: vilkkuvalo ja laskuri | TON T1 (tauko) ja T2 (palaa) vuorottelevat, CTU C1 laskee vilkahdukset, H2 syttyy viidennestä, S2 nollaa laskurin. | Käännä S1 asentoon 1 ja seuraa PLC-ohjelmaa. Jakso on 1,02 s (2 × 0,5 s + kaksi 10 ms kiertoa). |
+| 11. PLC: askelketju A+ B+ A− B− | Sama laitteisto kuin esimerkissä 7, mutta ohjaus askelmerkkereillä M0.1–M0.4 (asetus ja nollaus) ja 0,5 s odotus TON T1:llä. | Paina S1. Pidä S1 pohjassa: jakso ei toistu, koska käynnistys on nousevan reunan (P) varassa. |
 
 ### Harjoitustehtäviä
 
@@ -220,6 +294,9 @@ Esimerkit ladataan yläpalkin valikosta. Lataus korvaa nykyisen piirin, mutta Ku
 8. Esimerkki 7: suunnittele sekvenssi A+ A− B+ B−. Miksi suora kytkentä antureista keloihin ei toimi, ja miten ongelma ratkaistaan releillä (kaskadi)?
 9. Esimerkki 8: aseta hätäseisille vika *Kanava 2 hitsautunut*. Mitä turvarele tekee, ja miten vika havaitaan? Toista kontaktorin K1 pääkoskettimen hitsautumisella. Miksi pääpiirissä on kaksi kontaktoria sarjassa?
 10. Esimerkki 8: vaihda turvareleen käynnistys automaattiseksi ja kytke S33–S34 suoraan yhteen. Miksi tämä ei ole sallittua hätäseisin yhteydessä?
+11. Esimerkki 9: muuta pysäytyspainike S0 sulkeutuvaksi ja ohjelma vastaavasti (I0.0 avautuvaksi koskettimeksi). Toimiiko ohjaus? Mitä tapahtuu, kun S0:n johdin katkeaa?
+12. Esimerkki 10: tee vilkkuvalo yhdellä ajastimella ja M-bitillä. Muuta laskuri laskemaan 10 vilkahdusta ja pysäyttämään vilkkuvalo.
+13. Esimerkki 11: lisää jaksojen laskuri ja jatkuva käyntitila valintakytkimellä (tulo I0.5). Toteuta esimerkin 2 suora käynnistys PLC:llä niin, että lämpöreleen 95–96 on PLC:n tulona.
 
 ## Varoitukset
 
@@ -237,10 +314,21 @@ Esimerkit ladataan yläpalkin valikosta. Lataus korvaa nykyisen piirin, mutta Ku
 | Venttiilin molemmat kelat ohjattuina | Bistabiilin venttiilin signaaliristiriita. |
 | Rele värähtelee | Rele katkaisee oman ohjauksensa, esimerkiksi oman avautuvan koskettimensa kautta. |
 | Kelaa tai laitetta ei ole valittu | Kosketinta tai magneettiventtiilin kelaa ei ole liitetty laitteeseen. |
+| PLC:llä ei ole syöttöä | L+ ja M eivät ole kytkettyinä 24 V:iin. Lähdöt ovat pois. |
 
 ## Tallennus ja jakaminen
 
 Piiri tallentuu automaattisesti selaimeen, ja se on tallessa, kun avaat sivun uudelleen. **Tallenna / lataa** näyttää piirin tekstinä (JSON), jonka voi kopioida talteen, lähettää toiselle tai liittää palauteissueen. Teksti sisältää komponentit, asetukset, viat, johtimet ja aikakaavion signaalit. Liittämällä tekstin kenttään ja valitsemalla *Lataa* piiri palautuu.
+
+## Palaute
+
+Yläpalkin **Palaute**-painike avaa lomakkeen. Siinä valitaan tyyppi:
+
+- toiminta ei vastaa odotusta
+- virhe käyttöliittymässä tai toiminnossa
+- kehitysehdotus
+
+Lomake avaa simulaattorin GitHub-repoon valmiiksi täytetyn issuen. Mukaan liitetään automaattisesti simulaattorin versio, kieli, selain, varoitukset ja (valittaessa) nykyinen piiri PLC-ohjelmineen, joten tilanne voidaan toistaa täsmälleen. Issuet ovat julkisia, eikä niihin kirjoiteta henkilötietoja. Ilman GitHub-tiliä raportin voi kopioida tai lähettää sähköpostilla.
 
 ## Mallin rajoitukset
 
@@ -254,6 +342,7 @@ Mallissa ei ole:
 - releiden kestoikää
 - turvareleen testipulsseja eikä diagnostiikan kattavuutta
 - paineilman virtausta eikä painetta
+- PLC:n analogisia tuloja ja lähtöjä, muita ohjelmointikieliä (FBD, ST, SFC) eikä aliohjelmia; PLC:ssä on 8 digitaalituloa ja 8 lähtöä
 
 **Simulaattorilla ei voi osoittaa turvatoiminnon suorituskykytasoa (PL, EN ISO 13849-1) eikä suunnitella todellisia turvatoimintoja.** Todellisen järjestelmän suunnittelussa noudatetaan standardeja ja komponenttivalmistajien ohjeita.
 

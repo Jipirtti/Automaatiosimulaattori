@@ -21,6 +21,9 @@ Automaatiosimulaattoria kehitetään avoimesti Seinäjoen ammattikorkeakoulussa 
 | `stepSim` | Aika-askel: oikosulut, kuormat, releet ja ajastimet, sylinterit, moottorit, suojalaitteet |
 | `motorStep`, `srStep`, `attribution` | Moottorin kytkentä ja dynamiikka, turvarele, moottorivirran kohdistus suojalaitteille |
 | `drawTD`, `recordTraces` | Aikakaavio |
+| `plcStep`, `plcScan` | PLC: tulojen luku, tikapuukaavion suoritus (rinnakkaishaarat, ajastimet, laskurit), lähdöt |
+| `buildLD`, `rungSvg`, `LD` | Tikapuukaavioeditori ja ajonaikainen näkymä |
+| `SimPalaute` | Palautekanava (sama moduuli kuin hydrauliikka- ja elektroniikkasimulaattorissa; tekstit ja lomakepohja `1-toiminta.yml` annetaan init-kutsussa) |
 | `EX` | Esimerkkipiirit |
 | `window.AutSim` | Testirajapinta |
 
