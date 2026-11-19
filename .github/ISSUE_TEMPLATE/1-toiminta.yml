@@ -1,0 +1,33 @@
+name: Toiminta ei vastaa odotusta
+description: Piirin toiminta, ajoitus tai suojalaitteen laukeaminen poikkeaa odotetusta.
+title: "[Toiminta] "
+labels: ["toiminta", "validointi"]
+body:
+  - type: markdown
+    attributes:
+      value: Kiitos! Toimintahavainnot käsitellään opettajan validoinnissa. Mitä tarkemmin kuvaat laskelman, sitä nopeammin asia ratkeaa.
+  - type: input
+    id: tunnus
+    attributes:
+      label: Validointitunnus
+      description: Jos havainto liittyy VALIDOINTI.md:n riviin, anna tunnus (esim. A05 tai L03).
+  - type: textarea
+    id: ilmio
+    attributes:
+      label: Ilmiö ja tilanne
+      description: Mitä teit simulaattorissa, ja mitä tapahtui?
+    validations:
+      required: true
+  - type: textarea
+    id: odotus
+    attributes:
+      label: Odotettu tulos ja perustelu
+      description: Miten piirin pitäisi toimia ja miksi: kaavio, standardi, valmistajan ohje tai mittaus.
+    validations:
+      required: true
+  - type: textarea
+    id: piiri
+    attributes:
+      label: Piiri JSON-muodossa
+      description: Tallenna / lataa -ikkunan teksti. Näin piiri voidaan toistaa täsmälleen.
+      render: json
