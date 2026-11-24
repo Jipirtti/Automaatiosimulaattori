@@ -24,6 +24,7 @@ Automaatiosimulaattoria kehitetään avoimesti Seinäjoen ammattikorkeakoulussa 
 | `plcStep`, `plcScan` | PLC: tulojen luku, tikapuukaavion suoritus (rinnakkaishaarat, ajastimet, laskurit), lähdöt |
 | `buildLD`, `rungSvg`, `LD` | Tikapuukaavioeditori ja ajonaikainen näkymä |
 | `SimPalaute` | Palautekanava (sama moduuli kuin hydrauliikka- ja elektroniikkasimulaattorissa; tekstit ja lomakepohja `1-toiminta.yml` annetaan init-kutsussa) |
+| `SimKuva` | Kaavion kopiointi kuvana (sama moduuli kaikissa simulaattoreissa; kaaviot, otsikot, selitteet ja painikkeiden paikat annetaan init-kutsussa) |
 | `EX` | Esimerkkipiirit |
 | `window.AutSim` | Testirajapinta |
 

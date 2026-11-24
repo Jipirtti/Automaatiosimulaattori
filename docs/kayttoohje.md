@@ -320,6 +320,16 @@ Esimerkit ladataan yläpalkin valikosta. Lataus korvaa nykyisen piirin, mutta Ku
 
 Piiri tallentuu automaattisesti selaimeen, ja se on tallessa, kun avaat sivun uudelleen. **Tallenna / lataa** näyttää piirin tekstinä (JSON), jonka voi kopioida talteen, lähettää toiselle tai liittää palauteissueen. Teksti sisältää komponentit, asetukset, viat, johtimet ja aikakaavion signaalit. Liittämällä tekstin kenttään ja valitsemalla *Lataa* piiri palautuu.
 
+## Kaavion kopiointi kuvana
+
+Jokaisen kaavion kulmassa on painike **Kopioi kuva**. Se kopioi kaavion leikepöydälle PNG-kuvana, jonka voi liittää suoraan raporttiin, diaan tai viestiin (Ctrl+V).
+
+- Kuva piirretään aina vaalealla taustalla, vaikka simulaattori olisi tummassa teemassa, ja kaksinkertaisella tarkkuudella.
+- Kuvassa ovat kaavion otsikko, kaavio, selite ja lähdemerkintä (simulaattorin nimi, Juho Pirttilahti, SEAMK, CC BY 4.0, verkko-osoite ja päivämäärä).
+- Painikkeet ovat piirtoalueen oikeassa yläkulmassa (piirikaavio ja johdinvärien selite) ja alapaneelin välilehtirivillä. Aikakaavio-välilehdellä kopioituu aikakaavio, PLC-ohjelma-välilehdellä koko tikapuukaavio askelineen ja kommentteineen.
+- Piirikaaviosta kopioituu koko piiri zoomauksesta ja näkymän rajauksesta riippumatta. Valintakehykset ja taustaruudukko jäävät pois.
+- Jos selain ei salli kopiointia leikepöydälle, kuva avautuu ikkunaan. Sieltä sen voi kopioida hiiren oikealla painikkeella (puhelimessa painamalla pitkään) tai tallentaa PNG-tiedostona.
+
 ## Palaute
 
 Yläpalkin **Palaute**-painike avaa lomakkeen. Siinä valitaan tyyppi:
