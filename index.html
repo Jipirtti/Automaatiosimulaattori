@@ -220,16 +220,16 @@ select{background:var(--paper);border:1px solid var(--line);border-radius:7px;pa
 <body>
 <div class="app">
   <header class="bar">
-    <div class="brand"><strong data-en="Automation Simulator">Automaatiosimulaattori</strong><span>Juho Pirttilahti, SEAMK 2026, CC BY 4.0</span></div>
-    <div class="langsw" role="group" aria-label="Kieli / Language"><button type="button" data-lang="fi" lang="fi">FI</button><button type="button" data-lang="en" lang="en">EN</button></div>
+    <div class="brand"><strong data-en="Automation Simulator" data-de="Automatisierungs-Simulator">Automaatiosimulaattori</strong><span>Juho Pirttilahti, SEAMK 2026, CC BY 4.0</span></div>
+    <div class="langsw" role="group" aria-label="Kieli / Language"><button type="button" data-lang="fi" lang="fi">FI</button><button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="de" lang="de">DE</button></div>
     <div class="grp">
       <button class="btn pri" id="runBtn" type="button">Pysäytä</button>
-      <button class="btn" id="resetBtn" type="button" title="Releet, ajastimet, sylinterit ja suojalaitteet alkutilaan, aika nollaan" data-en-title="Relays, timers, cylinders and protective devices to their initial state, time to zero" data-en="Reset state">Nollaa tila</button>
-      <label class="mini"><span data-en="Sim. speed">Nopeus</span>
+      <button class="btn" id="resetBtn" type="button" title="Releet, ajastimet, sylinterit ja suojalaitteet alkutilaan, aika nollaan" data-en-title="Relays, timers, cylinders and protective devices to their initial state, time to zero" data-de-title="Relais, Zeitrelais, Zylinder und Schutzgeräte in den Anfangszustand, Zeit auf null" data-en="Reset state" data-de="Zustand zurücksetzen">Nollaa tila</button>
+      <label class="mini"><span data-en="Sim. speed" data-de="Sim.-Geschwindigkeit">Nopeus</span>
         <select id="speed">
-          <option value="0.1" data-en="0.1 s/s (slow motion)">0,1 s/s (hidastus)</option>
+          <option value="0.1" data-en="0.1 s/s (slow motion)" data-de="0,1 s/s (Zeitlupe)">0,1 s/s (hidastus)</option>
           <option value="0.25">0,25 s/s</option>
-          <option value="1" data-en="1 s/s (real time)">1 s/s (reaaliaika)</option>
+          <option value="1" data-en="1 s/s (real time)" data-de="1 s/s (Echtzeit)">1 s/s (reaaliaika)</option>
           <option value="5">5 s/s</option>
           <option value="10">10 s/s</option>
         </select>
@@ -237,38 +237,38 @@ select{background:var(--paper);border:1px solid var(--line);border-radius:7px;pa
       <span class="time" id="simTime">t = 0,000 s</span>
     </div>
     <div class="grp">
-      <select id="exSel" aria-label="Esimerkkipiirit" data-en-aria="Example circuits">
-        <option value="" data-en="Example circuits…">Esimerkkipiirit…</option>
-        <option value="ex1" data-en="1. Self-holding circuit (start/stop)">1. Itsepitopiiri (käynnistys ja pysäytys)</option>
-        <option value="ex2" data-en="2. Direct-on-line start with thermal overload relay">2. Moottorin suora käynnistys ja lämpörele</option>
-        <option value="ex3" data-en="3. Reversing with interlocking">3. Suunnanvaihto ja ristiinlukitus</option>
-        <option value="ex4" data-en="4. Star–delta start">4. Tähti–kolmiokäynnistys</option>
-        <option value="ex5" data-en="5. On-delay and off-delay timers">5. Vetoviive- ja päästöviiverele</option>
-        <option value="ex6" data-en="6. Electro-pneumatics: automatic return">6. Sähköpneumatiikka: automaattinen paluu</option>
-        <option value="ex7" data-en="7. Sequence A+ B+ A− B−">7. Sekvenssi A+ B+ A− B−</option>
-        <option value="ex8" data-en="8. Emergency stop with a safety relay">8. Hätäseis ja turvarele</option>
-        <option value="ex9" data-en="9. PLC: start and stop">9. PLC: käynnistys ja pysäytys</option>
-        <option value="ex10" data-en="10. PLC: flasher and counter">10. PLC: vilkkuvalo ja laskuri</option>
-        <option value="ex11" data-en="11. PLC: step sequence A+ B+ A− B−">11. PLC: askelketju A+ B+ A− B−</option>
+      <select id="exSel" aria-label="Esimerkkipiirit" data-en-aria="Example circuits" data-de-aria="Beispielschaltungen">
+        <option value="" data-en="Example circuits…" data-de="Beispielschaltungen …">Esimerkkipiirit…</option>
+        <option value="ex1" data-en="1. Self-holding circuit (start/stop)" data-de="1. Selbsthaltung (Start/Stopp)">1. Itsepitopiiri (käynnistys ja pysäytys)</option>
+        <option value="ex2" data-en="2. Direct-on-line start with thermal overload relay" data-de="2. Direktanlauf mit Motorschutzrelais">2. Moottorin suora käynnistys ja lämpörele</option>
+        <option value="ex3" data-en="3. Reversing with interlocking" data-de="3. Wendeschaltung mit Verriegelung">3. Suunnanvaihto ja ristiinlukitus</option>
+        <option value="ex4" data-en="4. Star–delta start" data-de="4. Stern-Dreieck-Anlauf">4. Tähti–kolmiokäynnistys</option>
+        <option value="ex5" data-en="5. On-delay and off-delay timers" data-de="5. Anzugs- und abfallverzögerte Zeitrelais">5. Vetoviive- ja päästöviiverele</option>
+        <option value="ex6" data-en="6. Electro-pneumatics: automatic return" data-de="6. Elektropneumatik: automatischer Rückhub">6. Sähköpneumatiikka: automaattinen paluu</option>
+        <option value="ex7" data-en="7. Sequence A+ B+ A− B−" data-de="7. Ablauf A+ B+ A− B−">7. Sekvenssi A+ B+ A− B−</option>
+        <option value="ex8" data-en="8. Emergency stop with a safety relay" data-de="8. Not-Halt mit Sicherheitsschaltgerät">8. Hätäseis ja turvarele</option>
+        <option value="ex9" data-en="9. PLC: start and stop" data-de="9. SPS: Start und Stopp">9. PLC: käynnistys ja pysäytys</option>
+        <option value="ex10" data-en="10. PLC: flasher and counter" data-de="10. SPS: Blinker und Zähler">10. PLC: vilkkuvalo ja laskuri</option>
+        <option value="ex11" data-en="11. PLC: step sequence A+ B+ A− B−" data-de="11. SPS: Schrittkette A+ B+ A− B−">11. PLC: askelketju A+ B+ A− B−</option>
       </select>
-      <button class="btn" id="undoBtn" type="button" title="Ctrl+Z" data-en="Undo">Kumoa</button>
-      <button class="btn" id="ioBtn" type="button" data-en="Save / load">Tallenna / lataa</button>
-      <button class="btn" id="fitBtn" type="button" data-en="Fit view">Sovita näkymä</button>
-      <button class="btn danger" id="clearBtn" type="button" data-en="Clear">Tyhjennä</button>
-      <button class="btn" id="helpBtn" type="button" data-en="Help">Ohje</button>
-      <a class="btn" id="manualLink" href="https://jipirtti.github.io/Automaatiosimulaattori/docs/kayttoohje.html" target="_blank" rel="noopener" data-en="Manual (FI)">Käyttöohje</a>
+      <button class="btn" id="undoBtn" type="button" title="Ctrl+Z" data-en="Undo" data-de="Rückgängig">Kumoa</button>
+      <button class="btn" id="ioBtn" type="button" data-en="Save / load" data-de="Speichern / Laden">Tallenna / lataa</button>
+      <button class="btn" id="fitBtn" type="button" data-en="Fit view" data-de="Ansicht einpassen">Sovita näkymä</button>
+      <button class="btn danger" id="clearBtn" type="button" data-en="Clear" data-de="Leeren">Tyhjennä</button>
+      <button class="btn" id="helpBtn" type="button" data-en="Help" data-de="Hilfe">Ohje</button>
+      <a class="btn" id="manualLink" href="https://jipirtti.github.io/Automaatiosimulaattori/docs/kayttoohje.html" target="_blank" rel="noopener" data-en="User manual" data-de="Bedienungsanleitung">Käyttöohje</a>
     </div>
   </header>
 
-  <aside class="pal" id="pal" aria-label="Komponentit" data-en-aria="Components"></aside>
+  <aside class="pal" id="pal" aria-label="Komponentit" data-en-aria="Components" data-de-aria="Bauteile"></aside>
 
   <main class="stage" id="stage">
-    <div class="tools" role="toolbar" aria-label="Työkalut" data-en-aria="Tools">
-      <button type="button" data-tool="sel" aria-pressed="true" title="V"><span data-en="Select and connect">Valitse ja kytke</span></button>
-      <button type="button" data-tool="T" aria-pressed="false" title="Klikkaa komponenttia: sen tila aikakaavioon" data-en-title="Click a component: its state to the timing diagram"><i class="sw" style="background:#0E8FB8"></i><span data-en="To timing diagram">Aikakaavioon</span></button>
-      <label><input type="checkbox" id="showRead" checked> <span data-en="Readings">Lukemat</span></label>
+    <div class="tools" role="toolbar" aria-label="Työkalut" data-en-aria="Tools" data-de-aria="Werkzeuge">
+      <button type="button" data-tool="sel" aria-pressed="true" title="V"><span data-en="Select and connect" data-de="Auswählen und verbinden">Valitse ja kytke</span></button>
+      <button type="button" data-tool="T" aria-pressed="false" title="Klikkaa komponenttia: sen tila aikakaavioon" data-en-title="Click a component: its state to the timing diagram" data-de-title="Bauteil anklicken: sein Zustand ins Zeitdiagramm"><i class="sw" style="background:#0E8FB8"></i><span data-en="To timing diagram" data-de="Ins Zeitdiagramm">Aikakaavioon</span></button>
+      <label><input type="checkbox" id="showRead" checked> <span data-en="Readings" data-de="Messwerte">Lukemat</span></label>
     </div>
-    <svg id="cv" aria-label="Piirtoalusta" data-en-aria="Drawing canvas">
+    <svg id="cv" aria-label="Piirtoalusta" data-en-aria="Drawing canvas" data-de-aria="Zeichenfläche">
       <defs>
         <pattern id="gridPat" width="20" height="20" patternUnits="userSpaceOnUse">
           <path d="M20 0H0V20" fill="none" stroke="var(--grid)" stroke-width="1"/>
@@ -287,11 +287,11 @@ select{background:var(--paper);border:1px solid var(--line);border-radius:7px;pa
     <div class="tip" id="tip"></div>
   </main>
 
-  <aside class="insp" id="insp" aria-label="Ominaisuudet ja mitoitus" data-en-aria="Properties and sizing"></aside>
+  <aside class="insp" id="insp" aria-label="Ominaisuudet ja mitoitus" data-en-aria="Properties and sizing" data-de-aria="Eigenschaften und Auslegung"></aside>
 
-  <section class="scope" aria-label="Aikakaavio" data-en-aria="Timing diagram">
-    <div class="tabs" role="group" aria-label="Alapaneeli" data-en-aria="Bottom panel"><button type="button" data-tab="td" aria-pressed="true" data-en="Timing diagram">Aikakaavio</button><button type="button" data-tab="plc" aria-pressed="false" data-en="PLC program">PLC-ohjelma</button></div>
-    <div class="scr"><canvas id="tdv" aria-label="Aikakaavio" data-en-aria="Timing diagram"></canvas><div class="curs" id="curs"></div></div>
+  <section class="scope" aria-label="Aikakaavio" data-en-aria="Timing diagram" data-de-aria="Zeitdiagramm">
+    <div class="tabs" role="group" aria-label="Alapaneeli" data-en-aria="Bottom panel" data-de-aria="Unterer Bereich"><button type="button" data-tab="td" aria-pressed="true" data-en="Timing diagram" data-de="Zeitdiagramm">Aikakaavio</button><button type="button" data-tab="plc" aria-pressed="false" data-en="PLC program" data-de="SPS-Programm">PLC-ohjelma</button></div>
+    <div class="scr"><canvas id="tdv" aria-label="Aikakaavio" data-en-aria="Timing diagram" data-de-aria="Zeitdiagramm"></canvas><div class="curs" id="curs"></div></div>
     <div class="sctl" id="sctl"></div>
     <div class="plced" id="plcEd" hidden></div>
   </section>
@@ -304,10 +304,12 @@ select{background:var(--paper);border:1px solid var(--line);border-radius:7px;pa
 const $=s=>document.querySelector(s);
 const NS='http://www.w3.org/2000/svg';
 /* ---------- kieli / language ---------- */
-let lang=(()=>{try{const u=new URLSearchParams(location.search).get('lang');if(u==='fi'||u==='en')return u;const st=localStorage.getItem('autsim-lang');if(st==='fi'||st==='en')return st;}catch(e){}
-  return (navigator.language||'fi').toLowerCase().startsWith('fi')?'fi':'en';})();
-const tr=(fi,en)=>lang==='en'?en:fi;
-const L2=a=>Array.isArray(a)?(lang==='en'?a[1]:a[0]):a;      // [fi, en] → current language
+const LANGS=['fi','en','de'];
+let lang=(()=>{try{const u=new URLSearchParams(location.search).get('lang');if(LANGS.includes(u))return u;const st=localStorage.getItem('autsim-lang');if(LANGS.includes(st))return st;}catch(e){}
+  const n=(navigator.language||'fi').toLowerCase();return n.startsWith('fi')?'fi':n.startsWith('de')?'de':'en';})();
+const DEN={"Contact": "Kontakt", "Normally open (NO)": "Schließer (NO)", "Normally closed (NC)": "Öffner (NC)", "Rated voltage": "Bemessungsspannung", "Fault": "Fehler", "No fault": "Kein Fehler", "Welded (stays closed)": "Verschweißt (bleibt geschlossen)", "Does not conduct (worn)": "Leitet nicht (verschlissen)", "Coil open circuit": "Spule unterbrochen", "Front end (extended)": "Vordere Endlage (ausgefahren)", "Rear end (retracted)": "Hintere Endlage (eingefahren)", "Actuator": "Betätigt durch", "Manual (click)": "Von Hand (Klick)", "Position": "Stellung", "DC power supply": "Gleichspannungs-Netzteil", "Voltage": "Spannung", "AC supply 230 V": "Wechselspannung 230 V", "Three-phase supply 400 V": "Drehstrom 400 V", "Line voltage": "Außenleiterspannung", "Junction": "Verbindungspunkt", "Push button": "Taster", "Action": "Betätigungsart", "Momentary (spring return)": "Tastend (Federrückstellung)", "Latching": "Rastend", "Selector switch": "Wahlschalter", "Emergency stop": "Not-Halt", "Channel 1 (11–12) welded": "Kanal 1 (11–12) verschweißt", "Channel 2 (21–22) welded": "Kanal 2 (21–22) verschweißt", "Limit switch": "Positionsschalter", "Reed switch": "Reedschalter", "Proximity sensor (3-wire)": "Näherungsschalter (3-Leiter)", "Type": "Typ", "Inductive": "Induktiv", "Capacitive": "Kapazitiv", "Optical": "Optisch", "Output": "Ausgang", "PNP (switches +)": "PNP (plusschaltend)", "NPN (switches 0 V)": "NPN (minusschaltend)", "Output function": "Schaltfunktion", "Output stuck on": "Ausgang dauerhaft durchgeschaltet", "Output never switches": "Ausgang schaltet nie", "Relay / contactor (coil)": "Relais / Schütz (Spule)", "Control relay (10 ms)": "Hilfsrelais (10 ms)", "Contactor (25 ms)": "Schütz (25 ms)", "Timer relay": "Zeitrelais", "Function": "Funktion", "On-delay": "Anzugsverzögert", "Off-delay": "Abfallverzögert", "Set time T": "Einstellzeit T", "Solenoid valve coil": "Magnetventilspule", "Cylinder": "Zylinder", "Drives": "Steuert", "Out (+)": "Aus (+)", "Indicator lamp": "Meldeleuchte", "Colour": "Farbe", "Green": "Grün", "Red": "Rot", "Yellow": "Gelb", "White": "Weiß", "Blue": "Blau", "Auxiliary contact": "Hilfskontakt", "Belongs to": "Gehört zu", "Contact number (1st digit)": "Ordnungsziffer (1. Ziffer)", "Contactor main contacts": "Hauptkontakte des Schützes", "Belongs to contactor": "Gehört zu Schütz", "Pole 1–2 welded": "Pol 1–2 verschweißt", "All poles welded": "Alle Pole verschweißt", "Thermal overload relay": "Motorschutzrelais (thermisch)", "Current setting Ir": "Stromeinstellung Ir", "Reset": "Rückstellung", "Automatic": "Automatisch", "Motor protection switch": "Motorschutzschalter", "Initial state": "Anfangszustand", "Off": "Aus", "Induction motor 3~": "Drehstrom-Asynchronmotor 3~", "Rated current In": "Bemessungsstrom In", "Acceleration time (direct-on-line)": "Hochlaufzeit (Direktanlauf)", "Load": "Last", "Rated load (100 %)": "Bemessungslast (100 %)", "Overload (200 %)": "Überlast (200 %)", "Locked rotor": "Blockierter Läufer", "Induction motor 3~ (6 terminals, Y/Δ)": "Drehstrom-Asynchronmotor 3~ (6 Anschlüsse, Y/Δ)", "Rated current In (delta)": "Bemessungsstrom In (Dreieck)", "Acceleration time (delta)": "Hochlaufzeit (Dreieck)", "Pneumatic cylinder and 5/2 valve": "Pneumatikzylinder mit 5/2-Wegeventil", "Valve": "Ventil", "Monostable (spring return)": "Monostabil (Federrückstellung)", "Bistable (two solenoids)": "Bistabil (zwei Magnetspulen)", "Stroke time out": "Ausfahrzeit", "Stroke time in": "Einfahrzeit", "Safety relay": "Sicherheitsschaltgerät", "Start": "Start", "Monitored (reset, falling edge)": "Überwacht (Reset, fallende Flanke)", "PLC (programmable logic controller)": "SPS (speicherprogrammierbare Steuerung)", "Cycle time": "Zykluszeit", "Select": "Auswählen", "Wire": "Leitung", "Normally open contact (NO)": "Schließer (NO)", "Normally closed contact (NC)": "Öffner (NC)", "Rising edge": "Steigende Flanke", "Falling edge": "Fallende Flanke", "Coil": "Spule", "On-delay TON": "Einschaltverzögerung TON", "Off-delay TOF": "Ausschaltverzögerung TOF", "Up counter CTU": "Vorwärtszähler CTU", "Vertical link (branch)": "Senkrechte Verbindung (Verzweigung)", "Delete": "Löschen", "Supplies": "Versorgung", "Control devices": "Befehlsgeräte", "Sensors": "Sensoren", "Relays and logic": "Relais und Logik", "Protective devices": "Schutzgeräte", "Actuators": "Aktoren"};
+const tr=(fi,en,de)=>lang==='en'?en:lang==='de'?(de??DEN[en]??en):fi;
+const L2=a=>Array.isArray(a)?(lang==='en'?a[1]:lang==='de'?(a[2]??DEN[a[1]]??a[1]):a[0]):a;      // [fi, en] → current language
 
 /* ---------- vakiot ja apufunktiot ---------- */
 const DT=1e-3;                       // aika-askel 1 ms
@@ -316,7 +318,7 @@ const H_TRIP=1.44;                   // laukeamisraja: (1,2·Ir)² pysyvässä t
 const H_RESET=1.2;                   // palautus sallittu, kun lämpötila on laskenut tämän alle
 const SQ3=Math.sqrt(3);
 const clamp=(x,a,b)=>x<a?a:x>b?b:x;
-const nf=(x,d=1)=>Number.isFinite(x)?(Math.abs(x)<0.5*Math.pow(10,-d)?0:x).toLocaleString(lang==='en'?'en-US':'fi-FI',{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:false}):'–';
+const nf=(x,d=1)=>Number.isFinite(x)?(Math.abs(x)<0.5*Math.pow(10,-d)?0:x).toLocaleString(({fi:'fi-FI',en:'en-US',de:'de-DE'})[lang],{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:false}):'–';
 const esc=s=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 const fs=x=>`${nf(x,x<10?2:1)} s`;
 
@@ -378,7 +380,7 @@ dc:{name:['DC-teholähde','DC power supply'],px:'G',bb:[-20,-40,20,40],src:1,
   draw:c=>L(0,-40,0,-16)+L(0,16,0,40)+RECT(-18,-16,36,32)+TXT(0,-2,`${nf(c.p.U,0)} V`,'syms')+L(-7,7,7,7)+L(-7,11,7,11,'sy dash'),
   dyn:c=>c.st.trip?TXT(0,30,'!','sym'):'',
   hit:()=>'k',click:c=>{c.st.trip=false;},
-  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED'):''},
+  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED','AUSGELÖST'):''},
 ac:{name:['AC-syöttö 230 V','AC supply 230 V'],px:'G',bb:[-20,-40,20,40],src:1,
   ports:[{n:'L',lab:'L',x:0,y:-40,d:[0,-1]},{n:'N',lab:'N',x:0,y:40,d:[0,1]}],
   prm:[P('U',['Jännite','Voltage'],'V',1,1000,1)],def:{U:230},init:()=>({trip:false}),
@@ -386,7 +388,7 @@ ac:{name:['AC-syöttö 230 V','AC supply 230 V'],px:'G',bb:[-20,-40,20,40],src:1
   draw:c=>L(0,-40,0,-16)+L(0,16,0,40)+CIRC(0,0,16)+TXT(0,-3,`${nf(c.p.U,0)} V`,'syms')+`<path class="sy" d="M-6,8 q3,-5 6,0 t6,0"/>`,
   dyn:c=>c.st.trip?TXT(0,30,'!','sym'):'',
   hit:()=>'k',click:c=>{c.st.trip=false;},
-  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED'):''},
+  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED','AUSGELÖST'):''},
 l3:{name:['Kolmivaihesyöttö 400 V','Three-phase supply 400 V'],px:'G',bb:[-44,-18,74,30],src:1,wide:1,
   ports:[{n:'L1',lab:'L1',x:-30,y:30,d:[0,1]},{n:'L2',lab:'L2',x:0,y:30,d:[0,1]},{n:'L3',lab:'L3',x:30,y:30,d:[0,1]},{n:'N',lab:'N',x:60,y:30,d:[0,1]}],
   prm:[P('U',['Pääjännite','Line voltage'],'V',1,1000,1)],def:{U:400},init:()=>({trip:false}),
@@ -395,7 +397,7 @@ l3:{name:['Kolmivaihesyöttö 400 V','Three-phase supply 400 V'],px:'G',bb:[-44,
   draw:c=>RECT(-44,-18,118,30)+TXT(15,2,`3~ ${nf(c.p.U,0)} V 50 Hz`,'syms')+L(-30,12,-30,30)+L(0,12,0,30)+L(30,12,30,30)+L(60,12,60,30),
   dyn:c=>c.st.trip?TXT(66,-4,'!','sym'):'',
   hit:()=>'k',click:c=>{c.st.trip=false;},
-  read:c=>c.st.trip?tr('LAUENNUT (oikosulku)','TRIPPED (short circuit)'):''},
+  read:c=>c.st.trip?tr('LAUENNUT (oikosulku)','TRIPPED (short circuit)','AUSGELÖST (Kurzschluss)'):''},
 jn:{name:['Kytkentäpiste','Junction'],px:'X',bb:[-6,-6,6,6],ports:[{n:'0',x:0,y:0,d:[0,0]}],prm:[],def:{},init:()=>({}),
   draw:()=>CIRC(0,0,3.5,'fi')},
 pb:{name:['Painike','Push button'],px:'S',bb:[-34,-30,14,30],press:1,
@@ -424,7 +426,7 @@ estop:{name:['Hätäseis','Emergency stop'],px:'S',bb:[-44,-30,40,30],
   dyn:c=>{const p=c.st.on,d=p?5:0;return C_NC_DY(0,!p||c.p.vika==='k1')+C_NC_DY(30,!p||c.p.vika==='k2')+LINK(-30+d,26)+
     `<path class="${p?'cond':'syf'}" d="M${-30+d},-10 A10,10 0 0 0 ${-30+d},10 Z"/>`;},
   hit:()=>'k',click:c=>{c.st.on=!c.st.on;},
-  read:c=>c.st.on?tr('painettu','pressed'):'',active:c=>c.st.on},
+  read:c=>c.st.on?tr('painettu','pressed','betätigt'):'',active:c=>c.st.on},
 ls:{name:['Rajakytkin','Limit switch'],px:'B',bb:[-34,-30,14,30],
   ports:[{n:'a',lab:c=>swLab(c.p.kosk==='NO',1),x:0,y:-30,d:[0,-1]},{n:'b',lab:c=>swLab(c.p.kosk==='NO',0),x:0,y:30,d:[0,1]}],
   prm:[KOSK,...ACTP,VIKA_C],def:{kosk:'NO',ref:'',asema:'etu',vika:'ei'},init:()=>({on:false}),
@@ -454,7 +456,7 @@ prox:{name:['Lähestymiskytkin (3-johdin)','Proximity sensor (3-wire)'],px:'B',b
     `<polygon class="sy" points="-6,0 0,-7 6,0 0,7"/>`+L(-6,0,6,0)+TXT(-15,-5,{ind:'',kap:'C',opt:'⇢'}[c.p.laji]||'','syms','start'),
   dyn:c=>CIRC(14,-10,3,proxOut(c)?'cond':'syf'),
   hit:c=>c.p.ref?null:'k',click:c=>{if(!c.p.ref)c.st.on=!c.st.on;},
-  read:c=>sensRead(c)+(c.st.pw?'':' · '+tr('ei syöttöä','no supply')),active:c=>proxOut(c)},
+  read:c=>sensRead(c)+(c.st.pw?'':' · '+tr('ei syöttöä','no supply','keine Versorgung')),active:c=>proxOut(c)},
 k:{name:['Rele / kontaktori (kela)','Relay / contactor (coil)'],px:'K',bb:[-14,-30,14,30],actor:1,
   ports:[{n:'a1',lab:'A1',x:0,y:-30,d:[0,-1]},{n:'a2',lab:'A2',x:0,y:30,d:[0,1]}],
   prm:[SEL('laji',['Laji','Type'],[['rele','Apurele (10 ms)','Control relay (10 ms)'],['kontaktori','Kontaktori (25 ms)','Contactor (25 ms)']]),UN(),VIKA_K],
@@ -477,7 +479,7 @@ y:{name:['Magneettiventtiilin kela','Solenoid valve coil'],px:'Y',bb:[-14,-30,14
   def:{ref:'',suunta:'plus',Un:'24',vika:'ei'},init:()=>({e:false}),
   loads:c=>[['a1','a2',+c.p.Un]],
   draw:()=>'',dyn:c=>COIL(c.st.e,L(-13,9,13,-9)),
-  read:c=>c.p.ref?`${c.p.ref}${c.p.suunta==='plus'?'+':'−'}`:tr('ei sylinteriä','no cylinder'),active:c=>c.st.e},
+  read:c=>c.p.ref?`${c.p.ref}${c.p.suunta==='plus'?'+':'−'}`:tr('ei sylinteriä','no cylinder','kein Zylinder'),active:c=>c.st.e},
 lamp:{name:['Merkkilamppu','Indicator lamp'],px:'H',bb:[-14,-30,14,30],
   ports:[{n:'x1',lab:'X1',x:0,y:-30,d:[0,-1]},{n:'x2',lab:'X2',x:0,y:30,d:[0,1]}],
   prm:[SEL('vari',['Väri','Colour'],[['vihrea','Vihreä','Green'],['punainen','Punainen','Red'],['keltainen','Keltainen','Yellow'],['valkoinen','Valkoinen','White'],['sininen','Sininen','Blue']]),UN()],
@@ -510,7 +512,7 @@ ol:{name:['Lämpörele','Thermal overload relay'],px:'F',bb:[-40,-30,40,30],acto
   draw:()=>[-30,0,30].map(x=>L(x,-30,x,-10)+L(x,10,x,30)+`<path class="sy" d="M${x},-10 v5 h6 v10 h-6 v5"/>`).join('')+RECT(-38,-12,76,24,'sy'),
   dyn:c=>c.st.trip?TXT(0,-16,'!','sym'):'',
   hit:()=>'k',click:c=>{olReset(c);},
-  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED'):`Ir ${nf(c.p.Ir,1)} A`,active:c=>c.st.trip},
+  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED','AUSGELÖST'):`Ir ${nf(c.p.Ir,1)} A`,active:c=>c.st.trip},
 qm:{name:['Moottorinsuojakytkin','Motor protection switch'],px:'Q',bb:[-50,-30,40,30],actor:1,lside:1,
   ports:[{n:'1',lab:'1',x:-30,y:-30,d:[0,-1]},{n:'2',lab:'2',x:-30,y:30,d:[0,1]},{n:'3',lab:'3',x:0,y:-30,d:[0,-1]},{n:'4',lab:'4',x:0,y:30,d:[0,1]},{n:'5',lab:'5',x:30,y:-30,d:[0,-1]},{n:'6',lab:'6',x:30,y:30,d:[0,1]}],
   prm:[P('Ir',['Asetusvirta Ir','Current setting Ir'],'A',0.1,1000,0.1),SEL('init',['Alkutila','Initial state'],[['on','Päällä','On'],['off','Pois','Off']])],
@@ -518,8 +520,8 @@ qm:{name:['Moottorinsuojakytkin','Motor protection switch'],px:'Q',bb:[-50,-30,4
   sw:c=>{const on=c.st.on;return [['1','2',on],['3','4',on],['5','6',on]];},
   draw:()=>[-30,0,30].map(x=>C_NO_ST(x)+L(x-3,-15,x+3,-9)+L(x+3,-15,x-3,-9)).join('')+TXT(-44,-14,'I>','syms','start'),
   dyn:c=>[-30,0,30].map(x=>C_NO_DY(x,c.st.on)).join('')+LINK(-46,26)+(c.st.trip?TXT(-44,22,'!','sym','start'):''),
-  hit:()=>'k',click:c=>{if(c.st.on){c.st.on=false;}else{if(c.st.h>H_RESET){flashWarn(tr(`${c.label}: anna jäähtyä ennen uudelleenkytkentää.`,`${c.label}: let it cool down before switching on again.`));return;}c.st.on=true;c.st.trip=false;}},
-  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED'):c.st.on?tr('päällä','on'):tr('pois','off'),active:c=>c.st.on},
+  hit:()=>'k',click:c=>{if(c.st.on){c.st.on=false;}else{if(c.st.h>H_RESET){flashWarn(tr(`${c.label}: anna jäähtyä ennen uudelleenkytkentää.`,`${c.label}: let it cool down before switching on again.`,`${c.label}: vor dem Wiedereinschalten abkühlen lassen.`));return;}c.st.on=true;c.st.trip=false;}},
+  read:c=>c.st.trip?tr('LAUENNUT','TRIPPED','AUSGELÖST'):c.st.on?tr('päällä','on','ein'):tr('pois','off','aus'),active:c=>c.st.on},
 mot:{name:['Oikosulkumoottori 3~','Induction motor 3~'],px:'M',bb:[-36,-50,36,26],wide:1,motor:1,lside:1,
   ports:[{n:'U1',lab:'U1',x:-30,y:-50,d:[0,-1]},{n:'V1',lab:'V1',x:0,y:-50,d:[0,-1]},{n:'W1',lab:'W1',x:30,y:-50,d:[0,-1]}],
   prm:[P('In',['Nimellisvirta In','Rated current In'],'A',0.1,1000,0.1),P('ta',['Kiihdytysaika (suora käynnistys)','Acceleration time (direct-on-line)'],'s',0.05,30,0.05),
@@ -554,7 +556,7 @@ sr:{name:['Turvarele','Safety relay'],px:'K',bb:[-90,-40,90,40],actor:1,inLabel:
   loads:()=>[['A1','A2',24]],
   sw:c=>[['13','14',c.st.out],['23','24',c.st.out]],
   draw:()=>RECT(-80,-30,170,60)+L(-90,-10,-80,-10)+L(-90,10,-80,10)+[-70,-40,-10,20,50,80].map(x=>L(x,-40,x,-30)).join('')+
-    L(-50,40,-50,26)+L(-20,40,-20,26)+L(20,40,20,26)+L(50,40,50,26)+TXT(40,-10,tr('Turvarele','Safety relay'),'syms'),
+    L(-50,40,-50,26)+L(-20,40,-20,26)+L(20,40,20,26)+L(50,40,50,26)+TXT(40,-10,tr('Turvarele','Safety relay','Sicherheitsschaltgerät'),'syms'),
   dyn:c=>{const s=c.st,led=(x,on,col)=>`<circle cx="${x}" cy="4" r="3.5" class="led" style="fill:${on?col:'var(--paper)'}"/>`;
     return (s.out?L(-50,26,-20,26,'sy hotl')+L(20,26,50,26,'sy hotl'):L(-50,26,-22,18)+L(20,26,48,18))+
       led(10,s.pw,'#2E9E4F')+led(24,s.c1,'#2E9E4F')+led(38,s.c2,'#2E9E4F')+led(52,s.out,'#2E9E4F')+led(66,!!s.lock,'#D23B2E');},
@@ -572,7 +574,7 @@ TY.plc={name:['PLC (ohjelmoitava logiikka)','PLC (programmable logic controller)
     for(let k=0;k<8;k++)h+=led(-30+30*k,-21,s.I[k])+led(-30+30*k,21,s.pw&&s.run&&s.Q[k]);
     return h+TXT(-70,18,s.pw?(s.run?'RUN':'STOP'):'','syms','middle')+(s.pw?`<circle cx="-92" cy="14" r="3.5" class="led" style="fill:${s.run?'#2E9E4F':'#E39B17'}"/>`:'');},
   hitAt:(c,x,y)=>x<-50&&y>0?'k':null,click:c=>{c.st.run=!c.st.run;},
-  read:c=>c.st.pw?'':tr('ei syöttöä','no supply'),active:c=>c.st.pw&&c.st.run};
+  read:c=>c.st.pw?'':tr('ei syöttöä','no supply','keine Versorgung'),active:c=>c.st.pw&&c.st.run};
 const LAMPC={vihrea:'#3CC46A',punainen:'#E5483B',keltainen:'#F2C230',valkoinen:'#F4F6F8',sininen:'#3D86E8'};
 
 /* kosketinvian huomiointi */
@@ -588,15 +590,15 @@ function contactClosed(c){const r=refComp(c);let on=actorOn(r);const no=c.p.kosk
 function sensed(c){const r=c.p.ref?comps.find(x=>x.label===c.p.ref&&x.type==='cyl'):null;
   if(!r)return !!c.st.on;return c.p.asema==='etu'?r.st.x>=0.999:r.st.x<=0.001;}
 function proxOut(c){if(c.p.vika==='kiinni')return !!c.st.pw;if(c.p.vika==='auki'||!c.st.pw)return false;const a=sensed(c);return c.p.kosk==='NO'?a:!a;}
-function sensRead(c){if(c.p.ref)return `${c.p.ref} ${c.p.asema==='etu'?tr('etu','front'):tr('taka','rear')}`;return sensed(c)?tr('tunnistaa','detecting'):'';}
+function sensRead(c){if(c.p.ref)return `${c.p.ref} ${c.p.asema==='etu'?tr('etu','front','vorn'):tr('taka','rear','hinten')}`;return sensed(c)?tr('tunnistaa','detecting','erkennt'):'';}
 function xref(c){const cs=comps.filter(x=>x.p&&x.p.ref===c.label&&(x.type==='kc'||x.type==='km'));
   return cs.map(x=>x.type==='km'?'1–6':`${cNum(x,1)}–${cNum(x,0)}`).join(' · ');}
-function cylRead(c){const x=c.st.x;if(x>=0.999)return tr('ulkona','extended');if(x<=0.001)return tr('sisällä','retracted');return `${nf(x*100,0)} %`;}
-function motRead(c){const s=c.st;if(Math.abs(s.n)<1&&!s.I)return '';return `${nf(Math.abs(s.n),0)} ${tr('r/min','rpm')}${s.conn==='Y'?' Y':s.conn==='D'?' Δ':''} · ${nf(s.I,1)} A`;}
+function cylRead(c){const x=c.st.x;if(x>=0.999)return tr('ulkona','extended','ausgefahren');if(x<=0.001)return tr('sisällä','retracted','eingefahren');return `${nf(x*100,0)} %`;}
+function motRead(c){const s=c.st;if(Math.abs(s.n)<1&&!s.I)return '';return `${nf(Math.abs(s.n),0)} ${tr('r/min','rpm','1/min')}${s.conn==='Y'?' Y':s.conn==='D'?' Δ':''} · ${nf(s.I,1)} A`;}
 function motDyn(c){const s=c.st,a=s.ang||0;let h=`<circle cx="${r1(17*Math.cos(a))}" cy="${r1(17*Math.sin(a))}" r="2.6" class="fi"/>`;
   if(s.dir)h+=`<path class="mot" d="M${s.dir>0?'-9,-30 A30,30 0 0 1 9,-30':'9,-30 A30,30 0 0 0 -9,-30'}"/>`;return h;}
-function srLock(k){return {erivat:tr('kanavat eriävät','channels differ'),ristikko:tr('kanavien välinen oikosulku','cross short between channels')}[k]||k;}
-function olReset(c){if(!c.st.trip)return;if(c.st.h>H_RESET){flashWarn(tr(`${c.label}: lämpörele on vielä kuuma, anna jäähtyä ennen palautusta.`,`${c.label}: the overload relay is still hot, let it cool down before reset.`));return;}c.st.trip=false;}
+function srLock(k){return {erivat:tr('kanavat eriävät','channels differ','Kanäle ungleich'),ristikko:tr('kanavien välinen oikosulku','cross short between channels','Querschluss zwischen den Kanälen')}[k]||k;}
+function olReset(c){if(!c.st.trip)return;if(c.st.h>H_RESET){flashWarn(tr(`${c.label}: lämpörele on vielä kuuma, anna jäähtyä ennen palautusta.`,`${c.label}: the overload relay is still hot, let it cool down before reset.`,`${c.label}: Das Motorschutzrelais ist noch warm, vor dem Rückstellen abkühlen lassen.`));return;}c.st.trip=false;}
 
 /* ---------- geometria ---------- */
 function rotP(x,y,r){switch(((r%360)+360)%360){case 90:return[-y,x];case 180:return[-x,-y];case 270:return[y,-x];default:return[x,y];}}
@@ -866,7 +868,7 @@ function groupColour(r){const T=S.gT.get(r);if(!T||!T.length)return S.srLive&&S.
   return T.some(x=>x.tag==='+')?WC.plus:WC.zero;}
 function wireColour(w){const i=S.pi[w.a];if(i===undefined||w.broken)return [WC.dead,false];const c=groupColour(S.root[i]);return c?[c,true]:[WC.dead,false];}
 function buildLegend(){const it=(c,t)=>`<span class="legw"><i style="background:${c}"></i>${t}</span>`;
-  $('#legend').innerHTML=it(WC.plus,'+ / L')+it(WC.zero,'0 V / N')+it(WC.L1,'L1')+it(WC.L2,'L2')+it(WC.L3,'L3')+it(WC.dead,tr('jännitteetön','de-energised'));}
+  $('#legend').innerHTML=it(WC.plus,'+ / L')+it(WC.zero,'0 V / N')+it(WC.L1,'L1')+it(WC.L2,'L2')+it(WC.L3,'L3')+it(WC.dead,tr('jännitteetön','de-energised','abgefallen'));}
 
 /* ---------- aikakaavio ---------- */
 const TCOL=['#D69A00','#0E8FB8','#C2399A','#2E9E4F','#7B5BD6','#D2552D','#3A8F8F','#8A6D3B'];
@@ -877,9 +879,9 @@ function traceVal(tr_){const c=byId[tr_.target];if(!c)return 0;const t=TY[c.type
 const isAnalog=tr_=>{const c=byId[tr_.target];return !!c&&(c.type==='cyl'||!!TY[c.type].motor);};
 function traceLabel(tr_){const c=byId[tr_.target];if(!c)return '?';const t=c.type;
   const d=dispLabel(c);
-  if(TY[t].contact)return `${d} ${t==='km'?tr('pääkosk.','main c.'):cNum(c,1)+'–'+cNum(c,0)}`;
-  if(t==='cyl')return `${d} ${tr('asento','position')}`;if(TY[t].motor)return `${d} n`;
-  if(t==='k'||t==='kt')return `${d}`;if(t==='ol')return `${d} ${tr('lauennut','tripped')}`;return d;}
+  if(TY[t].contact)return `${d} ${t==='km'?tr('pääkosk.','main c.','Hauptk.'):cNum(c,1)+'–'+cNum(c,0)}`;
+  if(t==='cyl')return `${d} ${tr('asento','position','Stellung')}`;if(TY[t].motor)return `${d} n`;
+  if(t==='k'||t==='kt')return `${d}`;if(t==='ol')return `${d} ${tr('lauennut','tripped','ausgelöst')}`;return d;}
 function initTraceBuf(tr_){tr_.B=new Float32Array(TD.N);}
 function recordTraces(t){if(!TD.run)return;const h=TD.head;TD.t[h]=t;for(const x of traces){if(!x.B)initTraceBuf(x);x.B[h]=traceVal(x);}
   TD.head=(h+1)%TD.N;TD.cnt=Math.min(TD.cnt+1,TD.N);}
@@ -899,7 +901,7 @@ function drawTD(){
   g.strokeStyle=grid;g.lineWidth=1;g.fillStyle=mut;g.textAlign='center';
   for(let s=Math.ceil(t0/step)*step;s<=t1+1e-9;s+=step){const x=Math.round(X(s))+0.5;g.beginPath();g.moveTo(x,top);g.lineTo(x,bot);g.stroke();g.fillText(nf(s,step<1?1:0),x,H-9);}
   g.textAlign='left';
-  if(!traces.length){g.fillStyle=mut;g.fillText(tr('Lisää signaali: valitse työkaluriviltä Aikakaavioon ja klikkaa komponenttia (kela, kosketin, painike, anturi, sylinteri, moottori…).','Add a signal: choose To timing diagram on the toolbar and click a component (coil, contact, button, sensor, cylinder, motor…).'),12,(top+bot)/2);return;}
+  if(!traces.length){g.fillStyle=mut;g.fillText(tr('Lisää signaali: valitse työkaluriviltä Aikakaavioon ja klikkaa komponenttia (kela, kosketin, painike, anturi, sylinteri, moottori…).','Add a signal: choose To timing diagram on the toolbar and click a component (coil, contact, button, sensor, cylinder, motor…).','Signal hinzufügen: In der Werkzeugleiste Ins Zeitdiagramm wählen und ein Bauteil anklicken (Spule, Kontakt, Taster, Sensor, Zylinder, Motor …).'),12,(top+bot)/2);return;}
   traces.forEach((x,i)=>{const y0=top+i*rh,yb=y0+rh-5,yt=y0+5,col=TCOL[x.col%TCOL.length];
     g.strokeStyle=grid;g.beginPath();g.moveTo(lw,Math.round(y0+rh)+0.5);g.lineTo(W,Math.round(y0+rh)+0.5);g.stroke();
     g.fillStyle=col;g.font='600 12px Barlow, system-ui, sans-serif';g.fillText(traceLabel(x),6,y0+rh/2);g.font='12px Barlow, system-ui, sans-serif';
@@ -914,16 +916,16 @@ function drawTD(){
   /* kursorit */
   g.strokeStyle=ink;g.setLineDash([4,3]);for(const c of TD.cur){if(c<t0||c>t1)continue;const x=Math.round(X(c))+0.5;g.beginPath();g.moveTo(x,top);g.lineTo(x,bot);g.stroke();}g.setLineDash([]);
 }
-function cursText(){const c=TD.cur;if(!c.length)return tr('Klikkaa aikakaaviota: kursori näyttää hetken, kaksi kursoria aikaeron.','Click the timing diagram: a cursor shows the instant, two cursors the time difference.');
+function cursText(){const c=TD.cur;if(!c.length)return tr('Klikkaa aikakaaviota: kursori näyttää hetken, kaksi kursoria aikaeron.','Click the timing diagram: a cursor shows the instant, two cursors the time difference.','Klicken Sie ins Zeitdiagramm: Ein Cursor zeigt den Zeitpunkt, zwei Cursor zeigen die Zeitdifferenz.');
   if(c.length===1)return `t₁ = ${fs(c[0])}`;return `t₁ = ${fs(c[0])}   t₂ = ${fs(c[1])}   Δt = ${fs(Math.abs(c[1]-c[0]))}`;}
 $('#tdv').addEventListener('click',e=>{if(!tdGeo)return;const r=e.target.getBoundingClientRect(),x=e.clientX-r.left;if(x<tdGeo.lw)return;
   const t=tdGeo.t0+(x-tdGeo.lw)/(tdGeo.W-tdGeo.lw-8)*(tdGeo.t1-tdGeo.t0);TD.cur.push(t);if(TD.cur.length>2)TD.cur.shift();$('#curs').textContent=cursText();drawTD();});
-function setTDRun(r){TD.run=r;const b=$('#tdRun');if(b){b.textContent=r?tr('Pysäytä kaavio','Stop diagram'):tr('Jatka','Continue');b.classList.toggle('on',!r);}}
+function setTDRun(r){TD.run=r;const b=$('#tdRun');if(b){b.textContent=r?tr('Pysäytä kaavio','Stop diagram','Diagramm anhalten'):tr('Jatka','Continue','Fortsetzen');b.classList.toggle('on',!r);}}
 function buildTDCtl(){
   const el=$('#sctl');const wo=[2,5,10,20,30,60].map(v=>`<option value="${v}"${TD.win===v?' selected':''}>${v} s</option>`).join('');
-  let h=`<div class="row"><span class="lbl">${tr('Aikaväli','Time span')}</span><select id="tdWin">${wo}</select><button class="btn" id="tdRun" type="button"></button><button class="btn" id="tdClr" type="button">${tr('Tyhjennä','Clear')}</button></div>`;
-  if(!traces.length)h+=`<p class="empty">${tr('Ei signaaleja. Valitse työkaluriviltä Aikakaavioon ja klikkaa komponenttia. Signaaleja voi olla kahdeksan.','No signals. Choose To timing diagram on the toolbar and click a component. Up to eight signals.')}</p>`;
-  for(const x of traces)h+=`<div class="ch" data-tr="${x.id}"><i style="background:${TCOL[x.col%TCOL.length]}"></i><span class="tg">${esc(traceLabel(x))}</span><button type="button" data-rm title="${tr('Poista signaali','Remove signal')}" aria-label="${tr('Poista signaali','Remove signal')}">✕</button></div>`;
+  let h=`<div class="row"><span class="lbl">${tr('Aikaväli','Time span','Zeitbereich')}</span><select id="tdWin">${wo}</select><button class="btn" id="tdRun" type="button"></button><button class="btn" id="tdClr" type="button">${tr('Tyhjennä','Clear','Leeren')}</button></div>`;
+  if(!traces.length)h+=`<p class="empty">${tr('Ei signaaleja. Valitse työkaluriviltä Aikakaavioon ja klikkaa komponenttia. Signaaleja voi olla kahdeksan.','No signals. Choose To timing diagram on the toolbar and click a component. Up to eight signals.','Keine Signale. Wählen Sie in der Werkzeugleiste Ins Zeitdiagramm und klicken Sie ein Bauteil an. Bis zu acht Signale.')}</p>`;
+  for(const x of traces)h+=`<div class="ch" data-tr="${x.id}"><i style="background:${TCOL[x.col%TCOL.length]}"></i><span class="tg">${esc(traceLabel(x))}</span><button type="button" data-rm title="${tr('Poista signaali','Remove signal','Signal entfernen')}" aria-label="${tr('Poista signaali','Remove signal','Signal entfernen')}">✕</button></div>`;
   el.innerHTML=h;setTDRun(TD.run);$('#curs').textContent=cursText();
 }
 $('#sctl').addEventListener('change',e=>{if(e.target.id==='tdWin'){TD.win=+e.target.value;save();}});
@@ -934,8 +936,8 @@ $('#sctl').addEventListener('click',e=>{const t=e.target;
 function addTrace(target){
   const c=byId[target];if(!c||c.type==='jn'||(TY[c.type].src&&false))return;
   if(traces.some(p=>p.target===target))return;
-  if(traces.length>=8){flashWarn(tr('Aikakaaviossa on kahdeksan signaalia. Poista ensin jokin signaali.','The timing diagram has eight signals. Remove a signal first.'));return;}
-  if(!TY[c.type].active){flashWarn(tr(`${L2(TY[c.type].name)}: ei aikakaavioon sopivaa tilaa.`,`${L2(TY[c.type].name)}: no state for the timing diagram.`));return;}
+  if(traces.length>=8){flashWarn(tr('Aikakaaviossa on kahdeksan signaalia. Poista ensin jokin signaali.','The timing diagram has eight signals. Remove a signal first.','Das Zeitdiagramm enthält acht Signale. Entfernen Sie zuerst ein Signal.'));return;}
+  if(!TY[c.type].active){flashWarn(tr(`${L2(TY[c.type].name)}: ei aikakaavioon sopivaa tilaa.`,`${L2(TY[c.type].name)}: no state for the timing diagram.`,`${L2(TY[c.type].name)}: kein Zustand für das Zeitdiagramm.`));return;}
   snapshot();const used=new Set(traces.map(p=>p.col));let col=0;while(used.has(col))col++;
   const x={id:'tr'+(nextId++),target,col};initTraceBuf(x);traces.push(x);buildTDCtl();save();
 }
@@ -959,32 +961,33 @@ function render(){
   if(frame%10===0)updDer();
   if(frame%20===0)updWarns();
   $('#simTime').textContent=`t = ${nf(simT,simT<100?2:1)} s`;
-  if(frame%15===0){const st=$('#simTime');st.title=tr(`Simulointinopeus ${nf(simRate,2)} s/s, aika-askel 1 ms`,`Simulation rate ${nf(simRate,2)} s/s, time step 1 ms`);}
+  if(frame%15===0){const st=$('#simTime');st.title=tr(`Simulointinopeus ${nf(simRate,2)} s/s, aika-askel 1 ms`,`Simulation rate ${nf(simRate,2)} s/s, time step 1 ms`,`Simulationsgeschwindigkeit ${nf(simRate,2)} s/s, Zeitschritt 1 ms`);}
 }
 
 /* ---------- varoitukset ---------- */
 let lastWarnCodes=[];
 function updWarns(){
-  const out=[];const W=(fi,en,cl,code)=>out.push([tr(fi,en),cl,code]);
+  const out=[];const W=(fi,en,de,cl,code)=>out.push([tr(fi,en,de),cl,code]);
   for(const c of comps){const p=c.p,s=c.st,lb=c.label;
-    if(TY[c.type].src&&s.trip)c.type==='l3'?W(`${lb}: oikosulku pääpiirissä, syötön sulakkeet palavat. Korjaa kytkentä ja kuittaa klikkaamalla syöttöä.`,`${lb}: short circuit in the main circuit, the supply fuses blow. Correct the wiring and reset by clicking the supply.`,'','paaoikosulku')
-      :W(`${lb}: oikosulku, teholähteen suojaus laukesi. Korjaa kytkentä ja kuittaa klikkaamalla lähdettä.`,`${lb}: short circuit, the power supply protection tripped. Correct the wiring and reset by clicking the supply.`,'','oikosulku');
-    if(c.type==='qm'&&s.trip)s.why==='oikosulku'?W(`${lb}: oikosulku, moottorinsuojakytkin laukesi (magneettinen laukaisu).`,`${lb}: short circuit, the motor protection switch tripped (magnetic trip).`,'','qm_oikosulku')
-      :W(`${lb}: ylikuorma, moottorinsuojakytkin laukesi. Kytke uudelleen klikkaamalla, kun kytkin on jäähtynyt.`,`${lb}: overload, the motor protection switch tripped. Switch on again by clicking when it has cooled down.`,'','qm_ylikuorma');
-    if(c.type==='ol'&&s.trip)W(`${lb}: lämpörele laukesi (ylikuorma). Apukoskettimet 95–96 aukesivat ja 97–98 sulkeutuivat. ${p.pal==='kasi'?'Palauta klikkaamalla, kun rele on jäähtynyt.':''}`,`${lb}: the overload relay tripped. Auxiliary contacts 95–96 opened and 97–98 closed. ${p.pal==='kasi'?'Reset by clicking when the relay has cooled down.':''}`,'','lampo');
-    if((c.type==='k'||c.type==='kt'||c.type==='y'||c.type==='lamp')&&s.over)W(`${lb}: jännite ${nf(s.U,0)} V ylittää nimellisjännitteen ${p.Un} V. Kela tai lamppu tuhoutuisi.`,`${lb}: voltage ${nf(s.U,0)} V exceeds the rated ${p.Un} V. The coil or lamp would be destroyed.`,'','ylijannite');
-    if(TY[c.type].motor){if(s.why==='kaksi')W(`${lb}: vain kaksi vaihetta (vaihe puuttuu). Moottori ei käynnisty ja virta kasvaa.`,`${lb}: only two phases (a phase is missing). The motor does not start and the current rises.`,'','kaksivaihe');
-      if(s.why==='avoin')W(`${lb}: käämien toiset päät (U2, V2, W2) ovat kytkemättä: tähtipiste tai kolmiokytkentä puuttuu.`,`${lb}: the other winding ends (U2, V2, W2) are not connected: the star point or delta connection is missing.`,'','tahtipiste');
-      if(s.why==='virhe')W(`${lb}: virheellinen käämikytkentä. Tähti: U2, V2 ja W2 yhteen. Kolmio: U1–W2, V1–U2, W1–V2.`,`${lb}: incorrect winding connection. Star: U2, V2 and W2 together. Delta: U1–W2, V1–U2, W1–V2.`,'','kytkentavirhe');}
+    if(TY[c.type].src&&s.trip)c.type==='l3'?W(`${lb}: oikosulku pääpiirissä, syötön sulakkeet palavat. Korjaa kytkentä ja kuittaa klikkaamalla syöttöä.`,`${lb}: short circuit in the main circuit, the supply fuses blow. Correct the wiring and reset by clicking the supply.`,`${lb}: Kurzschluss im Hauptstromkreis, die Sicherungen der Versorgung lösen aus. Korrigieren Sie die Verdrahtung und setzen Sie durch Klick auf die Versorgung zurück.`,'','paaoikosulku')
+      :W(`${lb}: oikosulku, teholähteen suojaus laukesi. Korjaa kytkentä ja kuittaa klikkaamalla lähdettä.`,`${lb}: short circuit, the power supply protection tripped. Correct the wiring and reset by clicking the supply.`,`${lb}: Kurzschluss, der Schutz des Netzteils hat ausgelöst. Korrigieren Sie die Verdrahtung und setzen Sie durch Klick auf die Versorgung zurück.`,'','oikosulku');
+    if(c.type==='qm'&&s.trip)s.why==='oikosulku'?W(`${lb}: oikosulku, moottorinsuojakytkin laukesi (magneettinen laukaisu).`,`${lb}: short circuit, the motor protection switch tripped (magnetic trip).`,`${lb}: Kurzschluss, der Motorschutzschalter hat ausgelöst (magnetische Auslösung).`,'','qm_oikosulku')
+      :W(`${lb}: ylikuorma, moottorinsuojakytkin laukesi. Kytke uudelleen klikkaamalla, kun kytkin on jäähtynyt.`,`${lb}: overload, the motor protection switch tripped. Switch on again by clicking when it has cooled down.`,`${lb}: Überlast, der Motorschutzschalter hat ausgelöst. Nach dem Abkühlen per Klick wieder einschalten.`,'','qm_ylikuorma');
+    if(c.type==='ol'&&s.trip)W(`${lb}: lämpörele laukesi (ylikuorma). Apukoskettimet 95–96 aukesivat ja 97–98 sulkeutuivat. ${p.pal==='kasi'?'Palauta klikkaamalla, kun rele on jäähtynyt.':''}`,`${lb}: the overload relay tripped. Auxiliary contacts 95–96 opened and 97–98 closed. ${p.pal==='kasi'?'Reset by clicking when the relay has cooled down.':''}`,`${lb}: Das Motorschutzrelais hat ausgelöst (Überlast). Die Hilfskontakte 95–96 haben geöffnet und 97–98 geschlossen. ${p.pal==='kasi'?'Nach dem Abkühlen per Klick rückstellen.':''}`,'','lampo');
+    if((c.type==='k'||c.type==='kt'||c.type==='y'||c.type==='lamp')&&s.over)W(`${lb}: jännite ${nf(s.U,0)} V ylittää nimellisjännitteen ${p.Un} V. Kela tai lamppu tuhoutuisi.`,`${lb}: voltage ${nf(s.U,0)} V exceeds the rated ${p.Un} V. The coil or lamp would be destroyed.`,`${lb}: Die Spannung ${nf(s.U,0)} V überschreitet die Bemessungsspannung ${p.Un} V. Spule oder Leuchte würden zerstört.`,'','ylijannite');
+    if(TY[c.type].motor){if(s.why==='kaksi')W(`${lb}: vain kaksi vaihetta (vaihe puuttuu). Moottori ei käynnisty ja virta kasvaa.`,`${lb}: only two phases (a phase is missing). The motor does not start and the current rises.`,`${lb}: nur zwei Phasen (eine Phase fehlt). Der Motor läuft nicht an, und der Strom steigt.`,'','kaksivaihe');
+      if(s.why==='avoin')W(`${lb}: käämien toiset päät (U2, V2, W2) ovat kytkemättä: tähtipiste tai kolmiokytkentä puuttuu.`,`${lb}: the other winding ends (U2, V2, W2) are not connected: the star point or delta connection is missing.`,`${lb}: Die anderen Wicklungsenden (U2, V2, W2) sind nicht angeschlossen: Sternpunkt oder Dreieckschaltung fehlt.`,'','tahtipiste');
+      if(s.why==='virhe')W(`${lb}: virheellinen käämikytkentä. Tähti: U2, V2 ja W2 yhteen. Kolmio: U1–W2, V1–U2, W1–V2.`,`${lb}: incorrect winding connection. Star: U2, V2 and W2 together. Delta: U1–W2, V1–U2, W1–V2.`,`${lb}: falsche Wicklungsschaltung. Stern: U2, V2 und W2 verbinden. Dreieck: U1–W2, V1–U2, W1–V2.`,'','kytkentavirhe');}
     if(c.type==='sr'&&s.lock)W(`${lb}: ${s.lock==='erivat'?'turvareleen kanavat eriävät (toinen kanava ei avautunut). Lähdöt pysyvät auki, kunnes molemmat kanavat on avattu ja vika korjattu.':'kanavien välinen oikosulku. Lähdöt pysyvät auki, kunnes vika on korjattu ja kanavat avattu.'}`,
-      `${lb}: ${s.lock==='erivat'?'the safety relay channels differ (one channel did not open). The outputs stay open until both channels have been opened and the fault corrected.':'cross short between the channels. The outputs stay open until the fault is corrected and the channels opened.'}`,'','turvarele');
-    if(c.type==='cyl'&&s.both)W(`${lb}: venttiilin molemmat kelat saavat ohjauksen yhtä aikaa (signaaliristiriita).`,`${lb}: both valve solenoids are energised at the same time (signal conflict).`,'','ristiriita');
-    if((TY[c.type].contact||c.type==='y')&&!refComp(c))W(`${dispLabel(c)}: ${c.type==='y'?'sylinteriä':'kelaa tai laitetta'} ei ole valittu tai se puuttuu piiristä.`,`${dispLabel(c)}: the ${c.type==='y'?'cylinder':'coil or device'} is not selected or is missing from the circuit.`,'','viite');}
-  for(const c of comps)if(c.type==='plc'&&!c.st.pw)W(`${c.label}: PLC:llä ei ole syöttöä (L+ ja M 24 V).`,`${c.label}: the PLC has no supply (L+ and M 24 V).`,'','plc_syotto');
-  if(togg.length>20)W('Rele värähtelee: rele katkaisee oman ohjauksensa (esimerkiksi avautuva kosketin oman kelan piirissä).','A relay oscillates: it interrupts its own control (for example a normally closed contact in its own coil circuit).','','varahtely');
-  if(comps.length&&!S.srcs.length)W('Piirissä ei ole syöttöä. Lisää teholähde tai syöttö.','The circuit has no supply. Add a power supply.','info','syotto');
-  if(!comps.length)W('Vedä komponentteja vasemmalta piirtoalustalle tai valitse esimerkkipiiri.','Drag components from the left onto the canvas or load an example circuit.','info','tyhja');
-  else if(!wires.length)W('Kytke komponentit vetämällä liitännästä toiseen.','Connect components by dragging from one terminal to another.','info','kytke');
+      `${lb}: ${s.lock==='erivat'?'the safety relay channels differ (one channel did not open). The outputs stay open until both channels have been opened and the fault corrected.':'cross short between the channels. The outputs stay open until the fault is corrected and the channels opened.'}`,
+      `${lb}: ${s.lock==='erivat'?'Die Kanäle des Sicherheitsschaltgeräts sind ungleich (ein Kanal hat nicht geöffnet). Die Ausgänge bleiben offen, bis beide Kanäle geöffnet und der Fehler behoben ist.':'Querschluss zwischen den Kanälen. Die Ausgänge bleiben offen, bis der Fehler behoben ist und die Kanäle geöffnet wurden.'}`,'','turvarele');
+    if(c.type==='cyl'&&s.both)W(`${lb}: venttiilin molemmat kelat saavat ohjauksen yhtä aikaa (signaaliristiriita).`,`${lb}: both valve solenoids are energised at the same time (signal conflict).`,`${lb}: Beide Ventilmagnete werden gleichzeitig angesteuert (Signalüberschneidung).`,'','ristiriita');
+    if((TY[c.type].contact||c.type==='y')&&!refComp(c))W(`${dispLabel(c)}: ${c.type==='y'?'sylinteriä':'kelaa tai laitetta'} ei ole valittu tai se puuttuu piiristä.`,`${dispLabel(c)}: the ${c.type==='y'?'cylinder':'coil or device'} is not selected or is missing from the circuit.`,`${dispLabel(c)}: ${c.type==='y'?'Der Zylinder':'Die Spule bzw. das Gerät'} ist nicht gewählt oder fehlt in der Schaltung.`,'','viite');}
+  for(const c of comps)if(c.type==='plc'&&!c.st.pw)W(`${c.label}: PLC:llä ei ole syöttöä (L+ ja M 24 V).`,`${c.label}: the PLC has no supply (L+ and M 24 V).`,`${c.label}: Die SPS hat keine Versorgung (L+ und M 24 V).`,'','plc_syotto');
+  if(togg.length>20)W('Rele värähtelee: rele katkaisee oman ohjauksensa (esimerkiksi avautuva kosketin oman kelan piirissä).','A relay oscillates: it interrupts its own control (for example a normally closed contact in its own coil circuit).','Ein Relais schwingt: Es unterbricht seine eigene Ansteuerung (zum Beispiel ein Öffner im eigenen Spulenstromkreis).','','varahtely');
+  if(comps.length&&!S.srcs.length)W('Piirissä ei ole syöttöä. Lisää teholähde tai syöttö.','The circuit has no supply. Add a power supply.','Die Schaltung hat keine Versorgung. Fügen Sie ein Netzteil oder eine Versorgung hinzu.','info','syotto');
+  if(!comps.length)W('Vedä komponentteja vasemmalta piirtoalustalle tai valitse esimerkkipiiri.','Drag components from the left onto the canvas or load an example circuit.','Ziehen Sie Bauteile von links auf die Zeichenfläche oder laden Sie eine Beispielschaltung.','info','tyhja');
+  else if(!wires.length)W('Kytke komponentit vetämällä liitännästä toiseen.','Connect components by dragging from one terminal to another.','Verbinden Sie Bauteile, indem Sie von einem Anschluss zu einem anderen ziehen.','info','kytke');
   if(flashMsg&&performance.now()-flashT<4000)out.unshift([flashMsg,'info','ilmoitus']);else flashMsg=null;
   lastWarnCodes=out.map(o=>o[2]).filter(c=>c!=='ilmoitus');$('#warns').innerHTML=out.slice(0,4).map(([s,c])=>`<div class="${c}">${esc(s)}</div>`).join('');
 }
@@ -992,7 +995,7 @@ function updWarns(){
 /* ---------- tikapuukaavioeditori ---------- */
 const LD={tool:'sel',addr:'I0.0',pt:1000,pv:5,selCell:null,plcId:null};
 const LD_TOOLS=[['sel','↖',['Valitse','Select']],['h','──',['Johdin','Wire']],['no','┤ ├',['Sulkeutuva kosketin (NO)','Normally open contact (NO)']],['nc','┤/├',['Avautuva kosketin (NC)','Normally closed contact (NC)']],
-  ['p','┤P├',['Nouseva reuna','Rising edge']],['n','┤N├',['Laskeva reuna','Falling edge']],['coil','( )',['Kela','Coil']],['s','(S)',['Asetus (Set)','Set']],['r','(R)',['Nollaus (Reset)','Reset']],
+  ['p','┤P├',['Nouseva reuna','Rising edge']],['n','┤N├',['Laskeva reuna','Falling edge']],['coil','( )',['Kela','Coil']],['s','(S)',['Asetus (Set)','Set','Setzen']],['r','(R)',['Nollaus (Reset)','Reset','Rücksetzen']],
   ['ton','TON',['Vetoviive TON','On-delay TON']],['tof','TOF',['Päästöviive TOF','Off-delay TOF']],['ctu','CTU',['Ylöslaskuri CTU','Up counter CTU']],['v','│',['Pystyyhteys (haara)','Vertical link (branch)']],['del','✕',['Poista','Delete']]];
 const CW=74,RH=50,X0=18;
 let tdTab='td';
@@ -1003,10 +1006,10 @@ function setTab(t){tdTab=t;document.querySelectorAll('[data-tab]').forEach(b=>b.
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
 function ldToolbar(){
   return `<div class="ldbar">${LD_TOOLS.map(([k,s,l])=>`<button type="button" data-ldt="${k}" aria-pressed="${LD.tool===k}" title="${esc(L2(l))}">${esc(s)}</button>`).join('')}
-  <label>${tr('Osoite','Address')} <input id="ldAddr" value="${esc(LD.addr)}" maxlength="5" size="5" spellcheck="false"></label>
-  <label>${tr('Aika','Time')} <input id="ldPt" type="number" min="10" max="3600000" step="10" value="${LD.pt}"> ms</label>
-  <label>${tr('Raja','Preset')} <input id="ldPv" type="number" min="1" max="9999" step="1" value="${LD.pv}"></label>
-  <button type="button" class="btn" id="ldAddRung">${tr('+ Askel','+ Rung')}</button></div>`;}
+  <label>${tr('Osoite','Address','Adresse')} <input id="ldAddr" value="${esc(LD.addr)}" maxlength="5" size="5" spellcheck="false"></label>
+  <label>${tr('Aika','Time','Zeit')} <input id="ldPt" type="number" min="10" max="3600000" step="10" value="${LD.pt}"> ms</label>
+  <label>${tr('Raja','Preset','Sollwert')} <input id="ldPv" type="number" min="1" max="9999" step="1" value="${LD.pv}"></label>
+  <button type="button" class="btn" id="ldAddRung">${tr('+ Askel','+ Rung','+ Netzwerk')}</button></div>`;}
 function elSvg(el,x,y,on,sym,plc){const cx=x+CW/2,cy=y+RH/2,hot=on?' ldon':'';let h='';
   const wire=(a,b)=>`<line x1="${a}" y1="${cy}" x2="${b}" y2="${cy}" class="ldw${hot}"/>`;
   if(!el)return '';
@@ -1038,25 +1041,25 @@ function rungSvg(R,ri,plc){const n=R.rows,W=X0*2+(LD_COLS+1)*CW,H=n*RH+6;const V
     for(let b=1;b<=LD_COLS;b++)if(r<n-1&&R.v[r][b]){const x=X0+b*CW;h+=`<line x1="${x}" y1="${y+RH/2}" x2="${x}" y2="${y+RH+RH/2}" class="ldw${V&&V.cell[r]&&V.cell[r+1]&&(V.cell[r][b-1]||V.cell[r+1][b-1])?' ldon':''}"/>`;}}
   return h+'</svg>';}
 function buildLD(){const el=$('#plcEd');if(!el||el.hidden)return;const plc=ldPlc();
-  if(!plc){el.innerHTML=`<p class="empty">${tr('Piirissä ei ole PLC:tä. Lisää PLC paletin ryhmästä Releet ja logiikka, kytke L+ ja M 24 V:n syöttöön, tulot antureihin ja painikkeisiin ja lähdöt kuormiin.','The circuit has no PLC. Add a PLC from the palette group Relays and logic, connect L+ and M to the 24 V supply, the inputs to sensors and buttons and the outputs to loads.')}</p>`;return;}
+  if(!plc){el.innerHTML=`<p class="empty">${tr('Piirissä ei ole PLC:tä. Lisää PLC paletin ryhmästä Releet ja logiikka, kytke L+ ja M 24 V:n syöttöön, tulot antureihin ja painikkeisiin ja lähdöt kuormiin.','The circuit has no PLC. Add a PLC from the palette group Relays and logic, connect L+ and M to the 24 V supply, the inputs to sensors and buttons and the outputs to loads.','Die Schaltung enthält keine SPS. Fügen Sie eine SPS aus der Gruppe Relais und Logik hinzu, schließen Sie L+ und M an die 24-V-Versorgung, die Eingänge an Sensoren und Taster und die Ausgänge an Verbraucher an.')}</p>`;return;}
   const P=plc.p.prog;
-  let h=ldToolbar()+`<div class="ldhead"><b>${esc(plc.label)}</b> · ${plc.st.pw?(plc.st.run?'RUN':'STOP'):tr('ei syöttöä','no supply')} · <span class="kbd">${tr('Valitse elementti työkaluriviltä, kirjoita osoite ja klikkaa ruutua. Valitse-työkalulla klikattu elementti näyttää osoitteensa, ja osoitteen tai ajan muutos kohdistuu siihen. Kelat, asetus, nollaus, ajastimet ja laskurit sijoitetaan oikeanpuoleiseen sarakkeeseen. Pystyyhteys yhdistää ruudun vasemman reunan alla olevaan riviin (rinnakkaishaara). Osoitteet: I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15, C0–C15.','Choose an element on the toolbar, type the address and click a cell. With the Select tool, a clicked element shows its address, and changing the address or time applies to it. Coils, set, reset, timers and counters go in the right-hand column. A vertical link joins the left edge of a cell to the row below (parallel branch). Addresses: I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15, C0–C15.')}</span></div><div id="ldRungs">`;
-  P.rungs.forEach((R,ri)=>{h+=`<div class="ldr" data-ri="${ri}"><div class="ldrh"><b>${tr('Askel','Rung')} ${ri+1}</b><input class="ldk" data-ri="${ri}" value="${esc(R.k||'')}" placeholder="${tr('kommentti','comment')}" maxlength="80">
-    <button type="button" data-ldr="addrow" title="${tr('Lisää rinnakkaisrivi','Add parallel row')}"${R.rows>=LD_ROWS?' disabled':''}>+ ${tr('rivi','row')}</button><button type="button" data-ldr="delrow" title="${tr('Poista alin rivi','Remove bottom row')}"${R.rows<=1?' disabled':''}>− ${tr('rivi','row')}</button>
-    <button type="button" data-ldr="up" title="${tr('Siirrä ylös','Move up')}"${ri===0?' disabled':''}>↑</button><button type="button" data-ldr="down" title="${tr('Siirrä alas','Move down')}"${ri===P.rungs.length-1?' disabled':''}>↓</button>
-    <button type="button" data-ldr="del" title="${tr('Poista askel','Delete rung')}">✕</button></div>${rungSvg(R,ri,plc)}</div>`;});
+  let h=ldToolbar()+`<div class="ldhead"><b>${esc(plc.label)}</b> · ${plc.st.pw?(plc.st.run?'RUN':'STOP'):tr('ei syöttöä','no supply','keine Versorgung')} · <span class="kbd">${tr('Valitse elementti työkaluriviltä, kirjoita osoite ja klikkaa ruutua. Valitse-työkalulla klikattu elementti näyttää osoitteensa, ja osoitteen tai ajan muutos kohdistuu siihen. Kelat, asetus, nollaus, ajastimet ja laskurit sijoitetaan oikeanpuoleiseen sarakkeeseen. Pystyyhteys yhdistää ruudun vasemman reunan alla olevaan riviin (rinnakkaishaara). Osoitteet: I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15, C0–C15.','Choose an element on the toolbar, type the address and click a cell. With the Select tool, a clicked element shows its address, and changing the address or time applies to it. Coils, set, reset, timers and counters go in the right-hand column. A vertical link joins the left edge of a cell to the row below (parallel branch). Addresses: I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15, C0–C15.','Wählen Sie ein Element in der Werkzeugleiste, geben Sie die Adresse ein und klicken Sie auf eine Zelle. Mit dem Werkzeug Auswählen zeigt ein angeklicktes Element seine Adresse, und eine geänderte Adresse oder Zeit wird darauf angewendet. Spulen, Setzen, Rücksetzen, Zeiten und Zähler gehören in die rechte Spalte. Eine senkrechte Verbindung verbindet den linken Rand einer Zelle mit der Zeile darunter (Parallelzweig). Adressen: I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15, C0–C15.')}</span></div><div id="ldRungs">`;
+  P.rungs.forEach((R,ri)=>{h+=`<div class="ldr" data-ri="${ri}"><div class="ldrh"><b>${tr('Askel','Rung','Netzwerk')} ${ri+1}</b><input class="ldk" data-ri="${ri}" value="${esc(R.k||'')}" placeholder="${tr('kommentti','comment','Kommentar')}" maxlength="80">
+    <button type="button" data-ldr="addrow" title="${tr('Lisää rinnakkaisrivi','Add parallel row','Parallelzeile hinzufügen')}"${R.rows>=LD_ROWS?' disabled':''}>+ ${tr('rivi','row','Zeile')}</button><button type="button" data-ldr="delrow" title="${tr('Poista alin rivi','Remove bottom row','Unterste Zeile entfernen')}"${R.rows<=1?' disabled':''}>− ${tr('rivi','row','Zeile')}</button>
+    <button type="button" data-ldr="up" title="${tr('Siirrä ylös','Move up','Nach oben')}"${ri===0?' disabled':''}>↑</button><button type="button" data-ldr="down" title="${tr('Siirrä alas','Move down','Nach unten')}"${ri===P.rungs.length-1?' disabled':''}>↓</button>
+    <button type="button" data-ldr="del" title="${tr('Poista askel','Delete rung','Netzwerk löschen')}">✕</button></div>${rungSvg(R,ri,plc)}</div>`;});
   el.innerHTML=h+'</div>';
 }
 let ldLastView=null;
 function refreshLDOnline(){if(tdTab!=='plc')return;const plc=ldPlc();if(!plc)return;const v=JSON.stringify(plc.st.view)+JSON.stringify(plc.st.T)+JSON.stringify(plc.st.C)+plc.st.run+plc.st.pw;if(v===ldLastView)return;ldLastView=v;
   const P=plc.p.prog;document.querySelectorAll('#ldRungs .ldr').forEach(d=>{const ri=+d.dataset.ri;const R=P.rungs[ri];if(!R)return;const old=d.querySelector('svg');if(old)old.outerHTML=rungSvg(R,ri,plc);});
-  const hd=document.querySelector('.ldhead b');if(hd)hd.nextSibling.textContent=` · ${plc.st.pw?(plc.st.run?'RUN':'STOP'):tr('ei syöttöä','no supply')} · `;}
+  const hd=document.querySelector('.ldhead b');if(hd)hd.nextSibling.textContent=` · ${plc.st.pw?(plc.st.run?'RUN':'STOP'):tr('ei syöttöä','no supply','keine Versorgung')} · `;}
 function ldEdit(fn){const plc=ldPlc();if(!plc)return;snapshot();fn(plc.p.prog);plc.pu.prog=plc.p.prog;save();buildLD();}
-function ldValidAddr(t,a){const p=parseAddr(a);if(!p)return tr('Virheellinen osoite. Käytä muotoa I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15 tai C0–C15.','Invalid address. Use I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15 or C0–C15.');
-  if((t==='ton'||t==='tof')&&p.k!=='T')return tr('Ajastimen osoite on T0–T15.','A timer address is T0–T15.');
-  if(t==='ctu'&&p.k!=='C')return tr('Laskurin osoite on C0–C15.','A counter address is C0–C15.');
-  if((t==='coil'||t==='s')&&!(p.k==='Q'||p.k==='M'))return tr('Kelan ja asetuksen osoite on Q tai M.','A coil or set address is Q or M.');
-  if(t==='r'&&p.k==='I')return tr('Tuloa ei voi nollata.','An input cannot be reset.');
+function ldValidAddr(t,a){const p=parseAddr(a);if(!p)return tr('Virheellinen osoite. Käytä muotoa I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15 tai C0–C15.','Invalid address. Use I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15 or C0–C15.','Ungültige Adresse. Verwenden Sie I0.0–I0.7, Q0.0–Q0.7, M0.0–M3.7, T0–T15 oder C0–C15.');
+  if((t==='ton'||t==='tof')&&p.k!=='T')return tr('Ajastimen osoite on T0–T15.','A timer address is T0–T15.','Eine Zeitadresse ist T0–T15.');
+  if(t==='ctu'&&p.k!=='C')return tr('Laskurin osoite on C0–C15.','A counter address is C0–C15.','Eine Zähleradresse ist C0–C15.');
+  if((t==='coil'||t==='s')&&!(p.k==='Q'||p.k==='M'))return tr('Kelan ja asetuksen osoite on Q tai M.','A coil or set address is Q or M.','Eine Spulen- oder Setzadresse ist Q oder M.');
+  if(t==='r'&&p.k==='I')return tr('Tuloa ei voi nollata.','An input cannot be reset.','Ein Eingang kann nicht rückgesetzt werden.');
   return '';}
 $('#plcEd').addEventListener('click',e=>{const t=e.target;
   const tb=t.closest('[data-ldt]');if(tb){LD.tool=tb.dataset.ldt;document.querySelectorAll('[data-ldt]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.ldt===LD.tool));return;}
@@ -1071,11 +1074,11 @@ $('#plcEd').addEventListener('click',e=>{const t=e.target;
   const plc=ldPlc();const R=plc.p.prog.rungs[ri];const tool=LD.tool;
   if(tool==='sel'){LD.selCell=[ri,r,c];const el=R.cells[r][c];if(el){if(el.a)LD.addr=el.a;if(el.pt)LD.pt=el.pt;if(el.pv)LD.pv=el.pv;}buildLD();return;}
   if(tool==='del'){ldEdit(()=>{R.cells[r][c]=null;});return;}
-  if(tool==='v'){if(c===0||r>=R.rows-1){flashWarn(tr('Pystyyhteys tehdään ruudun vasempaan reunaan ylemmältä riviltä alemmalle. Lisää ensin rinnakkaisrivi.','A vertical link goes on the left edge of a cell from the upper row to the lower one. Add a parallel row first.'));return;}
+  if(tool==='v'){if(c===0||r>=R.rows-1){flashWarn(tr('Pystyyhteys tehdään ruudun vasempaan reunaan ylemmältä riviltä alemmalle. Lisää ensin rinnakkaisrivi.','A vertical link goes on the left edge of a cell from the upper row to the lower one. Add a parallel row first.','Eine senkrechte Verbindung liegt am linken Rand einer Zelle und führt von der oberen zur unteren Zeile. Fügen Sie zuerst eine Parallelzeile hinzu.'));return;}
     ldEdit(()=>{R.v[r][c]=!R.v[r][c];});return;}
   const out=LD_OUT.includes(tool);
-  if(out&&c!==LD_COLS){flashWarn(tr('Kela, asetus, nollaus, ajastin ja laskuri sijoitetaan oikeanpuoleiseen sarakkeeseen.','Coils, set, reset, timers and counters go in the right-hand column.'));return;}
-  if(!out&&c===LD_COLS){flashWarn(tr('Koskettimet ja johtimet sijoitetaan vasemmanpuoleisiin sarakkeisiin.','Contacts and wires go in the left-hand columns.'));return;}
+  if(out&&c!==LD_COLS){flashWarn(tr('Kela, asetus, nollaus, ajastin ja laskuri sijoitetaan oikeanpuoleiseen sarakkeeseen.','Coils, set, reset, timers and counters go in the right-hand column.','Spulen, Setzen, Rücksetzen, Zeiten und Zähler gehören in die rechte Spalte.'));return;}
+  if(!out&&c===LD_COLS){flashWarn(tr('Koskettimet ja johtimet sijoitetaan vasemmanpuoleisiin sarakkeisiin.','Contacts and wires go in the left-hand columns.','Kontakte und Verbindungen gehören in die linken Spalten.'));return;}
   if(tool==='h'){ldEdit(()=>{R.cells[r][c]={t:'h'};});return;}
   const a=(parseAddr(LD.addr)||{}).s||LD.addr;const err=ldValidAddr(tool,a);if(err){flashWarn(err);return;}
   ldEdit(()=>{const el={t:tool,a};if(tool==='ton'||tool==='tof')el.pt=LD.pt;if(tool==='ctu')el.pv=LD.pv;R.cells[r][c]=el;});
@@ -1092,32 +1095,32 @@ $('#plcEd').addEventListener('keydown',e=>{e.stopPropagation();});
 
 /* ---------- ominaisuuspaneeli ---------- */
 const insp=$('#insp');
-function ctlHtml(c){const t=TY[c.type],s=c.st,p=c.p;const B=(txt,on,act='ctl')=>`<div class="ctl"><span>${tr('Ohjaus','Operate')}</span><button class="btn ${on?'on':''}" data-act="${act}">${txt}</button></div>`;
-  if(c.type==='pb'&&p.toim==='palautuva')return `<div class="ctl"><span>${tr('Ohjaus','Operate')}</span><button class="btn" data-act="hold">${tr('Paina (pidä pohjassa)','Press (hold down)')}</button></div>`;
-  if(c.type==='pb')return B(s.on?tr('Pohjassa, vapauta','Pressed, release'):tr('Paina','Press'),s.on);
-  if(c.type==='sel')return B(s.on?tr('Asento 1, käännä 0','Position 1, turn to 0'):tr('Asento 0, käännä 1','Position 0, turn to 1'),s.on);
-  if(c.type==='estop')return B(s.on?tr('Painettu, vapauta (kierrä)','Pressed, release (twist)'):tr('Paina hätäseis','Press emergency stop'),s.on);
-  if((c.type==='ls'||c.type==='reed'||c.type==='prox')&&!p.ref)return B(s.on?tr('Tunnistaa, poista kohde','Detecting, remove target'):tr('Tuo kohde anturille','Bring target to sensor'),s.on);
-  if(c.type==='qm')return B(s.on?tr('Päällä, kytke pois','On, switch off'):tr('Pois, kytke päälle','Off, switch on'),s.on);
-  if(c.type==='ol'&&s.trip)return B(tr('Palauta (reset)','Reset'),true);
-  if(t.src&&s.trip)return B(tr('Kuittaa laukeaminen','Reset trip'),true);
-  if(c.type==='plc')return B(s.run?tr('RUN, vaihda STOP','RUN, switch to STOP'):tr('STOP, vaihda RUN','STOP, switch to RUN'),s.run)+`<div class="ctl"><span>${tr('Ohjelma','Program')}</span><button class="btn" data-act="ldopen">${tr('Avaa PLC-ohjelma','Open PLC program')}</button></div>`;
+function ctlHtml(c){const t=TY[c.type],s=c.st,p=c.p;const B=(txt,on,act='ctl')=>`<div class="ctl"><span>${tr('Ohjaus','Operate','Betätigen')}</span><button class="btn ${on?'on':''}" data-act="${act}">${txt}</button></div>`;
+  if(c.type==='pb'&&p.toim==='palautuva')return `<div class="ctl"><span>${tr('Ohjaus','Operate','Betätigen')}</span><button class="btn" data-act="hold">${tr('Paina (pidä pohjassa)','Press (hold down)','Drücken (gedrückt halten)')}</button></div>`;
+  if(c.type==='pb')return B(s.on?tr('Pohjassa, vapauta','Pressed, release','Gedrückt, loslassen'):tr('Paina','Press','Drücken'),s.on);
+  if(c.type==='sel')return B(s.on?tr('Asento 1, käännä 0','Position 1, turn to 0','Stellung 1, auf 0 drehen'):tr('Asento 0, käännä 1','Position 0, turn to 1','Stellung 0, auf 1 drehen'),s.on);
+  if(c.type==='estop')return B(s.on?tr('Painettu, vapauta (kierrä)','Pressed, release (twist)','Gedrückt, entriegeln (drehen)'):tr('Paina hätäseis','Press emergency stop','Not-Halt betätigen'),s.on);
+  if((c.type==='ls'||c.type==='reed'||c.type==='prox')&&!p.ref)return B(s.on?tr('Tunnistaa, poista kohde','Detecting, remove target','Erkennt, Objekt entfernen'):tr('Tuo kohde anturille','Bring target to sensor','Objekt zum Sensor bringen'),s.on);
+  if(c.type==='qm')return B(s.on?tr('Päällä, kytke pois','On, switch off','Ein, ausschalten'):tr('Pois, kytke päälle','Off, switch on','Aus, einschalten'),s.on);
+  if(c.type==='ol'&&s.trip)return B(tr('Palauta (reset)','Reset','Rückstellen'),true);
+  if(t.src&&s.trip)return B(tr('Kuittaa laukeaminen','Reset trip','Auslösung rückstellen'),true);
+  if(c.type==='plc')return B(s.run?tr('RUN, vaihda STOP','RUN, switch to STOP','RUN, auf STOP schalten'):tr('STOP, vaihda RUN','STOP, switch to RUN','STOP, auf RUN schalten'),s.run)+`<div class="ctl"><span>${tr('Ohjelma','Program','Programm')}</span><button class="btn" data-act="ldopen">${tr('Avaa PLC-ohjelma','Open PLC program','SPS-Programm öffnen')}</button></div>`;
   return '';}
 function refOpts(pd,c){const L=comps.filter(x=>pd.ref.includes(x.type)).map(x=>x.label);const cur=c.p[pd.k]||'';
   const none=pd.none?`<option value=""${!cur?' selected':''}>${L2(pd.none)}</option>`:`<option value=""${!cur?' selected':''}>–</option>`;
-  return none+[...new Set(L)].map(l=>`<option value="${esc(l)}"${l===cur?' selected':''}>${esc(l)}</option>`).join('')+(cur&&!L.includes(cur)?`<option value="${esc(cur)}" selected>${esc(cur)} (${tr('puuttuu','missing')})</option>`:'');}
+  return none+[...new Set(L)].map(l=>`<option value="${esc(l)}"${l===cur?' selected':''}>${esc(l)}</option>`).join('')+(cur&&!L.includes(cur)?`<option value="${esc(cur)}" selected>${esc(cur)} (${tr('puuttuu','missing','fehlt')})</option>`:'');}
 function buildInsp(){
   if(sel&&sel.w){const w=wires.find(x=>x.id===sel.w);if(!w){sel=null;return buildInsp();}
     const a=portByKey(w.a),b=portByKey(w.b);const nm=p=>p?`${esc(dispLabel(p.c))}${p.lab?'.'+esc(p.lab):''}`:'?';
-    insp.innerHTML=`<h2>${tr('Johdin','Wire')}</h2><p>${nm(a)} ↔ ${nm(b)}</p>
-    <div class="ctl"><span>${tr('Vika: johdin katkennut','Fault: wire broken')}</span><button class="btn ${w.broken?'on':''}" data-act="brk">${w.broken?tr('Katkennut, korjaa','Broken, repair'):tr('Katkaise','Break')}</button></div>
-    <h3>${tr('Tila','State')}</h3><dl class="der" id="der"></dl>
-    <p class="mnote">${tr('Muuta reittiä vetämällä johtimen osaa. Päät pysyvät kytkettyinä. Kaksoisklikkaus palauttaa automaattisen reitin.','Reshape the route by dragging a section of the wire. The ends stay connected. Double-click restores the automatic route.')}</p>
-    <div class="acts">${w.pts&&w.pts.length?`<button class="btn" data-act="autoroute">${tr('Automaattinen reitti','Automatic route')}</button>`:''}<button class="btn danger" data-act="del">${tr('Poista johdin','Delete wire')}</button></div>`;updDer();return;}
+    insp.innerHTML=`<h2>${tr('Johdin','Wire','Leitung')}</h2><p>${nm(a)} ↔ ${nm(b)}</p>
+    <div class="ctl"><span>${tr('Vika: johdin katkennut','Fault: wire broken','Fehler: Leitung unterbrochen')}</span><button class="btn ${w.broken?'on':''}" data-act="brk">${w.broken?tr('Katkennut, korjaa','Broken, repair','Unterbrochen, reparieren'):tr('Katkaise','Break','Unterbrechen')}</button></div>
+    <h3>${tr('Tila','State','Zustand')}</h3><dl class="der" id="der"></dl>
+    <p class="mnote">${tr('Muuta reittiä vetämällä johtimen osaa. Päät pysyvät kytkettyinä. Kaksoisklikkaus palauttaa automaattisen reitin.','Reshape the route by dragging a section of the wire. The ends stay connected. Double-click restores the automatic route.','Ändern Sie den Verlauf, indem Sie einen Abschnitt der Leitung ziehen. Die Enden bleiben verbunden. Ein Doppelklick stellt den automatischen Verlauf wieder her.')}</p>
+    <div class="acts">${w.pts&&w.pts.length?`<button class="btn" data-act="autoroute">${tr('Automaattinen reitti','Automatic route','Automatischer Verlauf')}</button>`:''}<button class="btn danger" data-act="del">${tr('Poista johdin','Delete wire','Leitung löschen')}</button></div>`;updDer();return;}
   if(sel&&sel.ids){const ids=selIds();
-    insp.innerHTML=`<h2>${tr(`${ids.length} komponenttia valittu`,`${ids.length} components selected`)}</h2><p>${ids.map(id=>esc(dispLabel(byId[id]))).join(', ')}</p>
-    <p class="mnote">${tr('Siirrä ryhmää vetämällä mitä tahansa valittua komponenttia. Shift+klikkaus lisää tai poistaa komponentin valinnasta. Ctrl+C kopioi, Ctrl+V liittää, Delete poistaa.','Drag any selected component to move the group. Shift+click adds or removes a component. Ctrl+C copies, Ctrl+V pastes, Delete deletes.')}</p>
-    <div class="acts"><button class="btn" data-act="copy">${tr('Kopioi','Copy')}</button><button class="btn" data-act="paste"${clip?'':' disabled'}>${tr('Liitä','Paste')}</button><button class="btn danger" data-act="del">${tr('Poista valitut','Delete selected')}</button></div>`;return;}
+    insp.innerHTML=`<h2>${tr(`${ids.length} komponenttia valittu`,`${ids.length} components selected`,`${ids.length} Bauteile ausgewählt`)}</h2><p>${ids.map(id=>esc(dispLabel(byId[id]))).join(', ')}</p>
+    <p class="mnote">${tr('Siirrä ryhmää vetämällä mitä tahansa valittua komponenttia. Shift+klikkaus lisää tai poistaa komponentin valinnasta. Ctrl+C kopioi, Ctrl+V liittää, Delete poistaa.','Drag any selected component to move the group. Shift+click adds or removes a component. Ctrl+C copies, Ctrl+V pastes, Delete deletes.','Ziehen Sie ein beliebiges ausgewähltes Bauteil, um die Gruppe zu verschieben. Umschalt+Klick fügt ein Bauteil hinzu oder entfernt es. Strg+C kopiert, Strg+V fügt ein, Entf löscht.')}</p>
+    <div class="acts"><button class="btn" data-act="copy">${tr('Kopioi','Copy','Kopieren')}</button><button class="btn" data-act="paste"${clip?'':' disabled'}>${tr('Liitä','Paste','Einfügen')}</button><button class="btn danger" data-act="del">${tr('Poista valitut','Delete selected','Auswahl löschen')}</button></div>`;return;}
   if(!sel||!byId[sel.id]){
     insp.innerHTML=tr(`<h2>Piiri</h2><p>Valitse komponentti nähdäksesi sen asetukset ja tilan.</p><dl class="der" id="der"></dl>
     <h3>Pikaohje</h3>
@@ -1128,60 +1131,64 @@ function buildInsp(){
     <h3>Quick guide</h3>
     <p>Drag a component from the palette onto the canvas, or click it. Connect by dragging from a terminal (small circle) to another. Several wires can be connected to the same terminal; use a junction to branch from the middle of a rail.</p>
     <p>Contacts are linked to a relay in the properties panel (Belongs to). Press a push button by holding the mouse button down on its actuator (left edge). Emergency stop, selector switch, motor protection switch and overload relay reset work by clicking.</p>
-    <p class="kbd">Keys: Del deletes, R rotates, Space starts or stops, Ctrl+Z undoes, Ctrl+C / Ctrl+V copy and paste, Ctrl+A selects all. Scroll to zoom, drag empty space to pan. Shift+drag selects with a box.</p>`);updDer();return;}
+    <p class="kbd">Keys: Del deletes, R rotates, Space starts or stops, Ctrl+Z undoes, Ctrl+C / Ctrl+V copy and paste, Ctrl+A selects all. Scroll to zoom, drag empty space to pan. Shift+drag selects with a box.</p>`,`<h2>Schaltung</h2><p>Wählen Sie ein Bauteil, um seine Einstellungen und seinen Zustand zu sehen.</p><dl class="der" id="der"></dl>
+    <h3>Kurzanleitung</h3>
+    <p>Ziehen Sie ein Bauteil aus der Palette auf die Zeichenfläche oder klicken Sie es an. Verbinden Sie, indem Sie von einem Anschluss (kleiner Kreis) zu einem anderen ziehen. An einen Anschluss können mehrere Leitungen angeschlossen werden; für einen Abzweig aus der Mitte einer Schiene verwenden Sie einen Verbindungspunkt.</p>
+    <p>Kontakte werden im Eigenschaftenfeld einem Relais zugeordnet (Gehört zu). Einen Taster betätigen Sie, indem Sie die Maustaste auf seinem Betätiger (linker Rand) gedrückt halten. Not-Halt, Wahlschalter, Motorschutzschalter und die Rückstellung des Motorschutzrelais werden per Klick bedient.</p>
+    <p class="kbd">Tasten: Entf löscht, R dreht, Leertaste startet oder stoppt, Strg+Z macht rückgängig, Strg+C / Strg+V kopieren und einfügen, Strg+A wählt alles aus. Mausrad zoomt, Ziehen auf freier Fläche verschiebt die Ansicht. Umschalt+Ziehen wählt mit einem Rahmen aus.</p>`);updDer();return;}
   const c=byId[sel.id],t=TY[c.type];
   let h=t.contact?`<div class="ih"><h2>${esc(dispLabel(c))}</h2><span class="tn">${esc(L2(t.name))}</span></div>`
-    :`<div class="ih"><input id="lblIn" value="${esc(c.label)}" aria-label="${tr('Tunnus','Tag')}" maxlength="10"><span class="tn">${esc(L2(t.name))}</span></div>`;
+    :`<div class="ih"><input id="lblIn" value="${esc(c.label)}" aria-label="${tr('Tunnus','Tag','Kennzeichen')}" maxlength="10"><span class="tn">${esc(L2(t.name))}</span></div>`;
   h+=ctlHtml(c);
-  if(t.active)h+=`<div class="ctl"><span>${tr('Aikakaavio','Timing diagram')}</span><button class="btn" data-act="trace">${tr('Lisää signaali','Add signal')}</button></div>`;
-  if(t.prm.length){h+=`<h3>${tr('Asetukset','Settings')}</h3>`;
+  if(t.active)h+=`<div class="ctl"><span>${tr('Aikakaavio','Timing diagram','Zeitdiagramm')}</span><button class="btn" data-act="trace">${tr('Lisää signaali','Add signal','Signal hinzufügen')}</button></div>`;
+  if(t.prm.length){h+=`<h3>${tr('Asetukset','Settings','Einstellungen')}</h3>`;
     for(const pd of t.prm){if(pd.show&&!pd.show(c))continue;
       if(pd.ref)h+=`<label class="fld"><span>${L2(pd.l)}</span><span class="inp"><select data-k="${pd.k}">${refOpts(pd,c)}</select></span></label>`;
       else if(pd.sel)h+=`<label class="fld"><span>${L2(pd.l)}</span><span class="inp"><select data-k="${pd.k}">${pd.sel.map(([v,f,e])=>`<option value="${v}"${String(c.p[pd.k])===v?' selected':''}>${tr(f,e)}</option>`).join('')}</select></span></label>`;
       else h+=`<label class="fld"><span>${L2(pd.l)}</span><span class="inp"><input type="number" data-k="${pd.k}" value="${c.p[pd.k]}" min="${pd.min}" max="${pd.max}" step="${pd.st}"><em>${pd.u}</em></span></label>`;}}
-  h+=`<h3>${tr('Tila','State')}</h3><dl class="der" id="der"></dl>`;
+  h+=`<h3>${tr('Tila','State','Zustand')}</h3><dl class="der" id="der"></dl>`;
   if(t.note)h+=`<p class="mnote">${t.note()}</p>`;
-  h+=`<div class="acts"><button class="btn" data-act="rot">${tr('Kierrä 90°','Rotate 90°')}</button><button class="btn danger" data-act="del">${tr('Poista','Delete')}</button></div>`;
+  h+=`<div class="acts"><button class="btn" data-act="rot">${tr('Kierrä 90°','Rotate 90°','Um 90° drehen')}</button><button class="btn danger" data-act="del">${tr('Poista','Delete','Löschen')}</button></div>`;
   insp.innerHTML=h;updDer();
 }
-const R=(fi,en,v)=>[tr(fi,en),v];
-const YES=b=>b?tr('kyllä','yes'):tr('ei','no');
+const R=(fi,en,de,v)=>[tr(fi,en,de),v];
+const YES=b=>b?tr('kyllä','yes','ja'):tr('ei','no','nein');
 function compRows(c){const s=c.st,p=c.p,ty=c.type,rows=[];
   const U=v=>`${nf(v||0,0)} V`;
-  if(TY[ty].src){rows.push(R('Tila','State',s.trip?tr('lauennut (oikosulku)','tripped (short circuit)'):tr('jännitteinen','energised')));return rows;}
-  if(ty==='k'||ty==='kt'||ty==='y'||ty==='lamp'){rows.push(R('Jännite','Voltage',U(s.U)));
-    if(ty==='k')rows.push(R('Kela','Coil',s.e?tr('ohjattu','energised'):tr('ei ohjausta','de-energised')),R('Koskettimet','Contacts',s.on?tr('vetäneet','operated'):tr('lepoasennossa','at rest')),R('Liitetyt koskettimet','Linked contacts',xref(c)||'–'));
-    if(ty==='kt')rows.push(R('Kela','Coil',s.e?tr('ohjattu','energised'):tr('ei ohjausta','de-energised')),R('Lähtö (koskettimet)','Output (contacts)',s.on?tr('vetäneet','operated'):tr('lepoasennossa','at rest')),R('Ajastin','Timer',s.tc>0?`${fs(s.tc)} / ${fs(p.T)}`:'–'),R('Liitetyt koskettimet','Linked contacts',xref(c)||'–'));
-    if(ty==='y')rows.push(R('Kela','Coil',s.e?tr('ohjattu','energised'):tr('ei ohjausta','de-energised')));
-    if(ty==='lamp')rows.push(R('Palaa','Lit',YES(s.e)));
+  if(TY[ty].src){rows.push(R('Tila','State','Zustand',s.trip?tr('lauennut (oikosulku)','tripped (short circuit)','ausgelöst (Kurzschluss)'):tr('jännitteinen','energised','angezogen')));return rows;}
+  if(ty==='k'||ty==='kt'||ty==='y'||ty==='lamp'){rows.push(R('Jännite','Voltage','Spannung',U(s.U)));
+    if(ty==='k')rows.push(R('Kela','Coil','Spule',s.e?tr('ohjattu','energised','angezogen'):tr('ei ohjausta','de-energised','abgefallen')),R('Koskettimet','Contacts','Kontakte',s.on?tr('vetäneet','operated','betätigt'):tr('lepoasennossa','at rest','Ruhestellung')),R('Liitetyt koskettimet','Linked contacts','Zugeordnete Kontakte',xref(c)||'–'));
+    if(ty==='kt')rows.push(R('Kela','Coil','Spule',s.e?tr('ohjattu','energised','angezogen'):tr('ei ohjausta','de-energised','abgefallen')),R('Lähtö (koskettimet)','Output (contacts)','Ausgang (Kontakte)',s.on?tr('vetäneet','operated','betätigt'):tr('lepoasennossa','at rest','Ruhestellung')),R('Ajastin','Timer','Zeitglied',s.tc>0?`${fs(s.tc)} / ${fs(p.T)}`:'–'),R('Liitetyt koskettimet','Linked contacts','Zugeordnete Kontakte',xref(c)||'–'));
+    if(ty==='y')rows.push(R('Kela','Coil','Spule',s.e?tr('ohjattu','energised','angezogen'):tr('ei ohjausta','de-energised','abgefallen')));
+    if(ty==='lamp')rows.push(R('Palaa','Lit','Leuchtet',YES(s.e)));
     return rows;}
-  if(ty==='prox')return [R('Syöttöjännite (BN–BU)','Supply voltage (BN–BU)',U(s.U)),R('Kohde','Target',sensed(c)?tr('tunnistettu','detected'):tr('ei kohdetta','none')),R('Lähtö','Output',proxOut(c)?tr('päällä','on'):tr('pois','off'))];
-  if(ty==='ls'||ty==='reed'||ty==='pb'||ty==='sel'||ty==='estop'){const a=TY[ty].active(c);rows.push(R(ty==='ls'||ty==='reed'?'Tunnistaa':'Painettu / käännetty',ty==='ls'||ty==='reed'?'Detecting':'Pressed / turned',YES(a)));
-    for(const [a1,b1,on] of TY[ty].sw(c))rows.push([`${tr('Kosketin','Contact')} ${plab(TY[ty].ports.find(q=>q.n===a1),c)}–${plab(TY[ty].ports.find(q=>q.n===b1),c)}`,on?tr('kiinni','closed'):tr('auki','open')]);return rows;}
-  if(TY[ty].contact){const r=refComp(c);rows.push(R('Kuuluu','Belongs to',r?`${r.label} (${L2(TY[r.type].name)})`:tr('ei valittu','not selected')));
-    TY[ty].sw(c).forEach(([a,b,on])=>rows.push([`${plab(TY[ty].ports.find(q=>q.n===a),c)}–${plab(TY[ty].ports.find(q=>q.n===b),c)}`,on?tr('kiinni','closed'):tr('auki','open')]));return rows;}
-  if(ty==='ol'||ty==='qm'){const r=s.I/p.Ir;rows.push(R('Moottorivirta','Motor current',`${nf(s.I,2)} A (${nf(r*100,0)} % Ir)`),R('Lämpenemä','Thermal level',`${nf(s.h/H_TRIP*100,0)} %`));
-    if(!(ty==='ol'?s.trip:!s.on)&&r*r>H_TRIP&&s.h<H_TRIP){const tt=-TAU_TH*Math.log((r*r-H_TRIP)/(r*r-s.h));rows.push(R('Laukeaa noin','Trips in about',fs(tt)));}
-    rows.push(R('Tila','State',ty==='ol'?(s.trip?tr('lauennut','tripped'):tr('normaali','normal')):(s.trip?tr('lauennut','tripped'):s.on?tr('päällä','on'):tr('pois','off'))));return rows;}
-  if(TY[ty].motor){rows.push(R('Kytkentä','Connection',s.mode==='full'?(s.conn==='Y'?tr('tähti (Y)','star (Y)'):s.conn==='D'?tr('kolmio (Δ)','delta (Δ)'):tr('suora','direct')):s.mode==='kaksi'?tr('kaksi vaihetta','two phases'):tr('ei syöttöä','no supply')),
-    R('Pyörimissuunta','Direction',s.dir>0?tr('myötäpäivään (L1–L2–L3 → U–V–W)','clockwise (L1–L2–L3 → U–V–W)'):s.dir<0?tr('vastapäivään','counter-clockwise'):'–'),
-    R('Pyörimisnopeus','Speed',`${nf(Math.abs(s.n),0)} ${tr('r/min','rpm')}`),R('Virta','Current',`${nf(s.I,2)} A (${nf(s.I/p.In,1)} × In)`));return rows;}
+  if(ty==='prox')return [R('Syöttöjännite (BN–BU)','Supply voltage (BN–BU)','Versorgungsspannung (BN–BU)',U(s.U)),R('Kohde','Target','Objekt',sensed(c)?tr('tunnistettu','detected','erkannt'):tr('ei kohdetta','none','keines')),R('Lähtö','Output','Ausgang',proxOut(c)?tr('päällä','on','ein'):tr('pois','off','aus'))];
+  if(ty==='ls'||ty==='reed'||ty==='pb'||ty==='sel'||ty==='estop'){const a=TY[ty].active(c);rows.push(R(ty==='ls'||ty==='reed'?'Tunnistaa':'Painettu / käännetty',ty==='ls'||ty==='reed'?'Detecting':'Pressed / turned',ty==='ls'||ty==='reed'?'Erkennt':'Betätigt / gedreht',YES(a)));
+    for(const [a1,b1,on] of TY[ty].sw(c))rows.push([`${tr('Kosketin','Contact','Kontakt')} ${plab(TY[ty].ports.find(q=>q.n===a1),c)}–${plab(TY[ty].ports.find(q=>q.n===b1),c)}`,on?tr('kiinni','closed','geschlossen'):tr('auki','open','offen')]);return rows;}
+  if(TY[ty].contact){const r=refComp(c);rows.push(R('Kuuluu','Belongs to','Gehört zu',r?`${r.label} (${L2(TY[r.type].name)})`:tr('ei valittu','not selected','nicht gewählt')));
+    TY[ty].sw(c).forEach(([a,b,on])=>rows.push([`${plab(TY[ty].ports.find(q=>q.n===a),c)}–${plab(TY[ty].ports.find(q=>q.n===b),c)}`,on?tr('kiinni','closed','geschlossen'):tr('auki','open','offen')]));return rows;}
+  if(ty==='ol'||ty==='qm'){const r=s.I/p.Ir;rows.push(R('Moottorivirta','Motor current','Motorstrom',`${nf(s.I,2)} A (${nf(r*100,0)} % Ir)`),R('Lämpenemä','Thermal level','Thermische Auslastung',`${nf(s.h/H_TRIP*100,0)} %`));
+    if(!(ty==='ol'?s.trip:!s.on)&&r*r>H_TRIP&&s.h<H_TRIP){const tt=-TAU_TH*Math.log((r*r-H_TRIP)/(r*r-s.h));rows.push(R('Laukeaa noin','Trips in about','Auslösung in etwa',fs(tt)));}
+    rows.push(R('Tila','State','Zustand',ty==='ol'?(s.trip?tr('lauennut','tripped','ausgelöst'):tr('normaali','normal','normal')):(s.trip?tr('lauennut','tripped','ausgelöst'):s.on?tr('päällä','on','ein'):tr('pois','off','aus'))));return rows;}
+  if(TY[ty].motor){rows.push(R('Kytkentä','Connection','Schaltung',s.mode==='full'?(s.conn==='Y'?tr('tähti (Y)','star (Y)','Stern (Y)'):s.conn==='D'?tr('kolmio (Δ)','delta (Δ)','Dreieck (Δ)'):tr('suora','direct','direkt')):s.mode==='kaksi'?tr('kaksi vaihetta','two phases','zwei Phasen'):tr('ei syöttöä','no supply','keine Versorgung')),
+    R('Pyörimissuunta','Direction','Drehrichtung',s.dir>0?tr('myötäpäivään (L1–L2–L3 → U–V–W)','clockwise (L1–L2–L3 → U–V–W)','Rechtslauf (L1–L2–L3 → U–V–W)'):s.dir<0?tr('vastapäivään','counter-clockwise','Linkslauf'):'–'),
+    R('Pyörimisnopeus','Speed','Drehzahl',`${nf(Math.abs(s.n),0)} ${tr('r/min','rpm','1/min')}`),R('Virta','Current','Strom',`${nf(s.I,2)} A (${nf(s.I/p.In,1)} × In)`));return rows;}
   if(ty==='cyl'){const ys=comps.filter(y=>y.type==='y'&&y.p.ref===c.label);
-    rows.push(R('Asento','Position',`${nf(s.x*100,0)} %`),R('Liike','Motion',s.x>=0.999&&s.dir>0||s.x<=0.001&&s.dir<0?tr('pysähtynyt','stopped'):s.dir>0?tr('ulos (+)','out (+)'):tr('sisään (−)','in (−)')),
-      R('Kelat','Solenoids',ys.length?ys.map(y=>`${y.label}${y.p.suunta==='plus'?'+':'−'}${y.st.e?' ●':''}`).join(', '):tr('ei kelaa','none')));return rows;}
-  if(ty==='plc'){const b=a=>a.map(x=>x?'1':'0').join('');return [R('Syöttö L+ – M','Supply L+ – M',U(s.U)),R('Tila','State',s.pw?(s.run?'RUN':'STOP'):tr('ei syöttöä','no supply')),
-    R('Tulot I0.0–I0.7','Inputs I0.0–I0.7',b(s.I)),R('Lähdöt Q0.0–Q0.7','Outputs Q0.0–Q0.7',b(s.Q)),R('Merkkerit M0.0–M0.7','Markers M0.0–M0.7',b(s.M.slice(0,8))),
-    R('Askelia ohjelmassa','Rungs in program',String((p.prog&&p.prog.rungs.length)||0)),R('Ohjelmakierroksia','Program scans',String(s.scans))];}
-  if(ty==='sr')return [R('Syöttö A1–A2','Supply A1–A2',U(s.U)),R('Kanava 1 (S11–S12)','Channel 1 (S11–S12)',s.c1?tr('kiinni','closed'):tr('auki','open')),R('Kanava 2 (S21–S22)','Channel 2 (S21–S22)',s.c2?tr('kiinni','closed'):tr('auki','open')),
-    R('Kuittaus (S33–S34)','Reset (S33–S34)',s.pr?tr('kiinni','closed'):tr('auki','open')),R('Lähdöt 13–14, 23–24','Outputs 13–14, 23–24',s.out?tr('kiinni','closed'):tr('auki','open')),R('Lukitus','Lockout',s.lock?srLock(s.lock):'–')];
+    rows.push(R('Asento','Position','Stellung',`${nf(s.x*100,0)} %`),R('Liike','Motion','Bewegung',s.x>=0.999&&s.dir>0||s.x<=0.001&&s.dir<0?tr('pysähtynyt','stopped','Stillstand'):s.dir>0?tr('ulos (+)','out (+)','aus (+)'):tr('sisään (−)','in (−)','ein (−)')),
+      R('Kelat','Solenoids','Magnetspulen',ys.length?ys.map(y=>`${y.label}${y.p.suunta==='plus'?'+':'−'}${y.st.e?' ●':''}`).join(', '):tr('ei kelaa','none','keines')));return rows;}
+  if(ty==='plc'){const b=a=>a.map(x=>x?'1':'0').join('');return [R('Syöttö L+ – M','Supply L+ – M','Versorgung L+ – M',U(s.U)),R('Tila','State','Zustand',s.pw?(s.run?'RUN':'STOP'):tr('ei syöttöä','no supply','keine Versorgung')),
+    R('Tulot I0.0–I0.7','Inputs I0.0–I0.7','Eingänge I0.0–I0.7',b(s.I)),R('Lähdöt Q0.0–Q0.7','Outputs Q0.0–Q0.7','Ausgänge Q0.0–Q0.7',b(s.Q)),R('Merkkerit M0.0–M0.7','Markers M0.0–M0.7','Merker M0.0–M0.7',b(s.M.slice(0,8))),
+    R('Askelia ohjelmassa','Rungs in program','Netzwerke im Programm',String((p.prog&&p.prog.rungs.length)||0)),R('Ohjelmakierroksia','Program scans','Programmzyklen',String(s.scans))];}
+  if(ty==='sr')return [R('Syöttö A1–A2','Supply A1–A2','Versorgung A1–A2',U(s.U)),R('Kanava 1 (S11–S12)','Channel 1 (S11–S12)','Kanal 1 (S11–S12)',s.c1?tr('kiinni','closed','geschlossen'):tr('auki','open','offen')),R('Kanava 2 (S21–S22)','Channel 2 (S21–S22)','Kanal 2 (S21–S22)',s.c2?tr('kiinni','closed','geschlossen'):tr('auki','open','offen')),
+    R('Kuittaus (S33–S34)','Reset (S33–S34)','Reset (S33–S34)',s.pr?tr('kiinni','closed','geschlossen'):tr('auki','open','offen')),R('Lähdöt 13–14, 23–24','Outputs 13–14, 23–24','Ausgänge 13–14, 23–24',s.out?tr('kiinni','closed','geschlossen'):tr('auki','open','offen')),R('Lukitus','Lockout','Verriegelung',s.lock?srLock(s.lock):'–')];
   return rows;}
 function updDer(){
   const el=$('#der');if(!el)return;let rows=[];
   if(sel&&sel.w){const w=wires.find(x=>x.id===sel.w);if(w){const [col,live]=wireColour(w);const i=S.pi[w.a];const T=i!==undefined?S.gT.get(S.root[i]):null;
-    rows=[R('Jännitteinen','Energised',YES(live)),R('Potentiaali','Potential',T&&T.length?T.map(x=>`${x.s.label} ${x.tag==='+'?'+':x.tag==='0'?(x.s.type==='dc'?'0V':'N'):x.tag}`).join(', '):'–')];}}
+    rows=[R('Jännitteinen','Energised','Angezogen',YES(live)),R('Potentiaali','Potential','Potenzial',T&&T.length?T.map(x=>`${x.s.label} ${x.tag==='+'?'+':x.tag==='0'?(x.s.type==='dc'?'0V':'N'):x.tag}`).join(', '):'–')];}}
   else if(sel&&byId[sel.id])rows=compRows(byId[sel.id]);
-  else rows=[R('Komponentteja','Components',String(comps.length)),R('Johtimia','Wires',String(wires.length)),R('Aika-askel','Time step','1 ms'),
-    R('Simulointinopeus','Simulation rate',`${nf(simRate,2)} s/s`),R('Simulointiaika','Simulation time',fs(simT))];
+  else rows=[R('Komponentteja','Components','Bauteile',String(comps.length)),R('Johtimia','Wires','Leitungen',String(wires.length)),R('Aika-askel','Time step','Zeitschritt','1 ms'),
+    R('Simulointinopeus','Simulation rate','Simulationsgeschwindigkeit',`${nf(simRate,2)} s/s`),R('Simulointiaika','Simulation time','Simulationszeit',fs(simT))];
   el.innerHTML=rows.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('');
 }
 insp.addEventListener('change',e=>{
@@ -1234,7 +1241,7 @@ let clip=null;
 function copySel(){const ids=selIds();if(!ids.length)return false;const set=new Set(ids);
   clip={comps:ids.map(id=>{const c=byId[id];return {id,type:c.type,x:c.x,y:c.y,rot:c.rot,p:{...c.pu}};}),
     wires:wires.filter(w=>set.has(w.a.split(':')[0])&&set.has(w.b.split(':')[0])).map(w=>({a:w.a,b:w.b,pts:w.pts?w.pts.map(p=>({...p})):null})),n:0};
-  flashWarn(tr(`Kopioitu ${ids.length} komponenttia. Liitä näppäimillä Ctrl+V.`,`Copied ${ids.length} components. Paste with Ctrl+V.`));return true;}
+  flashWarn(tr(`Kopioitu ${ids.length} komponenttia. Liitä näppäimillä Ctrl+V.`,`Copied ${ids.length} components. Paste with Ctrl+V.`,`${ids.length} Bauteile kopiert. Mit Strg+V einfügen.`));return true;}
 function pasteClip(){if(!clip)return;snapshot();clip.n++;const off=40*clip.n,map={};
   for(const c of clip.comps){const n=addComp(c.type,c.x+off,c.y+off,c.p,{rot:c.rot});map[c.id]=n.id;}
   const k=key=>{const i=key.indexOf(':');return map[key.slice(0,i)]+key.slice(i);};
@@ -1250,9 +1257,10 @@ function ser(){return JSON.stringify({v:1,app:'automaatiosimulaattori',comps:com
   wires:wires.map(w=>{const o={a:w.a,b:w.b};if(w.pts&&w.pts.length)o.pts=w.pts.map(p=>({x:r1(p.x),y:r1(p.y)}));if(w.broken)o.broken=true;return o;}),
   traces:traces.map(x=>({target:x.target,col:x.col})),td:{win:TD.win}});}
 function load(json,fit=true){
-  const d=typeof json==='string'?JSON.parse(json):json;if(!d||!Array.isArray(d.comps))throw new Error(tr('Tiedostosta puuttuu komponenttilista.','The file has no component list.'));
+  const d=typeof json==='string'?JSON.parse(json):json;if(!d||!Array.isArray(d.comps))throw new Error(tr('Tiedostosta puuttuu komponenttilista.','The file has no component list.','Die Datei enthält keine Bauteilliste.'));
   lC.innerHTML='';lL.innerHTML='';comps=[];byId={};wires=[];traces=[];sel=null;nextId=1;
-  for(const c of d.comps){if(!TY[c.type])continue;const n=parseInt(String(c.id).slice(1))||0;nextId=Math.max(nextId,n+1);addComp(c.type,c.x,c.y,Object.assign({ref:''},c.p),{id:c.id,rot:c.rot,label:c.label});}
+  for(const c of d.comps){if(!TY[c.type])continue;const n=parseInt(String(c.id).slice(1))||0;nextId=Math.max(nextId,n+1);const cp=Object.assign({ref:''},c.p);if(cp.prog&&cp.prog.rungs&&cp.prog.rungs.some(R=>Array.isArray(R.k))){cp.prog=JSON.parse(JSON.stringify(cp.prog));cp.prog.rungs.forEach(R=>{if(Array.isArray(R.k))R.k=L2(R.k);});}
+    addComp(c.type,c.x,c.y,cp,{id:c.id,rot:c.rot,label:c.label});}
   for(const c of comps)if(!('ref' in TY[c.type].def))delete c.pu.ref;
   for(const w of d.wires||[])if(portByKey(w.a)&&portByKey(w.b))wires.push({id:'w'+(nextId++),a:w.a,b:w.b,broken:!!w.broken,pts:Array.isArray(w.pts)?w.pts.filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y)).map(p=>({x:p.x,y:p.y})):null});
   const used=new Set();
@@ -1389,9 +1397,9 @@ function RG(k,rows,els,links=[]){const R=newRung(rows);R.k=k;
 /* PLC-esimerkkien yhteinen runko: 24 V, kisko, PLC (x0, y0) */
 function plcBase(x0,y0){return [K('c1','dc',x0-320,y0+40,{U:24},0,'G1'),K('c2','jn',x0-320,100),K('c3','jn',x0-320,y0+180)];}
 EX.ex9={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:[
-     RG('Itsepito: S1 (I0.1) käynnistää, S0 (I0.0) pysäyttää. S0 on avautuva painike, joten tulo on normaalisti 1 ja johtimen katkeaminen pysäyttää.',2,
+     RG(['Itsepito: S1 (I0.1) käynnistää, S0 (I0.0) pysäyttää. S0 on avautuva painike, joten tulo on normaalisti 1 ja johtimen katkeaminen pysäyttää.','Self-holding: S1 (I0.1) starts, S0 (I0.0) stops. S0 is a normally closed button, so the input is normally 1 and a broken wire stops the machine.','Selbsthaltung: S1 (I0.1) startet, S0 (I0.0) stoppt. S0 ist ein Öffner, daher ist der Eingang normalerweise 1, und ein Drahtbruch stoppt die Maschine.'],2,
        [[0,0,'no','I0.1'],[1,0,'no','Q0.0'],[0,1,'no','I0.0'],[0,7,'coil','Q0.0']],[[0,1]]),
-     RG('Seis-merkkivalo H2, kun ei käy',1,[[0,0,'nc','Q0.0'],[0,7,'coil','Q0.1']])]}},0,'PLC1'),
+     RG(['Seis-merkkivalo H2, kun ei käy','Stop lamp H2 when not running','Meldeleuchte Stopp H2, wenn nicht in Betrieb'],1,[[0,0,'nc','Q0.0'],[0,7,'coil','Q0.1']])]}},0,'PLC1'),
    K('c5','pb',380,150,{kosk:'NC'},0,'S0'),K('c6','pb',490,150,{kosk:'NO'},0,'S1'),
    K('c7','lamp',470,470,{vari:'vihrea'},0,'H1'),K('c8','lamp',600,470,{vari:'punainen'},0,'H2')],
   wires:Wr(['c1:p','c2:0'],['c1:n','c3:0'],['c1:p','c4:Lp'],['c1:n','c4:M'],['c2:0','c5:a'],['c2:0','c6:a'],
@@ -1399,12 +1407,12 @@ EX.ex9={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:[
    ['c4:q0','c7:x1',[[570,420],[470,420]]],['c4:q1','c8:x1'],['c7:x2','c3:0'],['c8:x2','c3:0']),
   traces:TRS('c5','c6','c7','c8'),td:{win:10}};
 EX.ex10={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:[
-     RG('Taukoaika: T1 käy, kun S1 on päällä ja T2 ei ole päättynyt',1,[[0,0,'no','I0.0'],[0,1,'nc','T2'],[0,7,'ton','T1',{pt:500}]]),
-     RG('Palamisaika: T2 käy T1:n päätyttyä',1,[[0,0,'no','T1'],[0,7,'ton','T2',{pt:500}]]),
-     RG('Vilkkuva merkkivalo H1',1,[[0,0,'no','T1'],[0,7,'coil','Q0.0']]),
-     RG('Laskuri: vilkahdukset (nouseva reuna)',1,[[0,0,'no','Q0.0'],[0,7,'ctu','C1',{pv:5}]]),
-     RG('H2 palaa, kun viisi vilkahdusta on laskettu',1,[[0,0,'no','C1'],[0,7,'coil','Q0.1']]),
-     RG('Kuittaus S2 nollaa laskurin',1,[[0,0,'no','I0.1'],[0,7,'r','C1']])]}},0,'PLC1'),
+     RG(['Taukoaika: T1 käy, kun S1 on päällä ja T2 ei ole päättynyt','Pause time: T1 runs while S1 is on and T2 has not elapsed','Pausenzeit: T1 läuft, solange S1 ein ist und T2 nicht abgelaufen ist'],1,[[0,0,'no','I0.0'],[0,1,'nc','T2'],[0,7,'ton','T1',{pt:500}]]),
+     RG(['Palamisaika: T2 käy T1:n päätyttyä','On time: T2 runs after T1 has elapsed','Leuchtdauer: T2 läuft, nachdem T1 abgelaufen ist'],1,[[0,0,'no','T1'],[0,7,'ton','T2',{pt:500}]]),
+     RG(['Vilkkuva merkkivalo H1','Flashing lamp H1','Blinkende Meldeleuchte H1'],1,[[0,0,'no','T1'],[0,7,'coil','Q0.0']]),
+     RG(['Laskuri: vilkahdukset (nouseva reuna)','Counter: flashes (rising edge)','Zähler: Blinkimpulse (steigende Flanke)'],1,[[0,0,'no','Q0.0'],[0,7,'ctu','C1',{pv:5}]]),
+     RG(['H2 palaa, kun viisi vilkahdusta on laskettu','H2 lights when five flashes have been counted','H2 leuchtet, wenn fünf Blinkimpulse gezählt sind'],1,[[0,0,'no','C1'],[0,7,'coil','Q0.1']]),
+     RG(['Kuittaus S2 nollaa laskurin','Acknowledge S2 resets the counter','Quittierung S2 setzt den Zähler zurück'],1,[[0,0,'no','I0.1'],[0,7,'r','C1']])]}},0,'PLC1'),
    K('c5','sel',380,150,{kosk:'NO'},0,'S1'),K('c6','pb',490,150,{kosk:'NO'},0,'S2'),
    K('c7','lamp',470,470,{vari:'keltainen'},0,'H1'),K('c8','lamp',600,470,{vari:'vihrea'},0,'H2')],
   wires:Wr(['c1:p','c2:0'],['c1:n','c3:0'],['c1:p','c4:Lp'],['c1:n','c4:M'],['c2:0','c5:a'],['c2:0','c6:a'],
@@ -1412,17 +1420,17 @@ EX.ex10={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:
    ['c4:q0','c7:x1',[[570,420],[470,420]]],['c4:q1','c8:x1'],['c7:x2','c3:0'],['c8:x2','c3:0']),
   traces:TRS('c5','c7','c8','c6'),td:{win:10}};
 EX.ex11={comps:[...plcBase(600,330),K('c4','plc',600,330,{kierto:10,prog:{rungs:[
-     RG('Askel 1 (A+): S1 käynnistää, kun A ja B ovat takana eikä jakso ole käynnissä',1,
+     RG(['Askel 1 (A+): S1 käynnistää, kun A ja B ovat takana eikä jakso ole käynnissä','Step 1 (A+): S1 starts when A and B are retracted and no cycle is running','Schritt 1 (A+): S1 startet, wenn A und B eingefahren sind und kein Zyklus läuft'],1,
        [[0,0,'p','I0.0'],[0,1,'no','I0.1'],[0,2,'no','I0.3'],[0,3,'nc','M0.1'],[0,4,'nc','M0.2'],[0,5,'nc','M0.3'],[0,6,'nc','M0.4'],[0,7,'s','M0.1']]),
-     RG('A ulkona (B2): odotus 0,5 s',1,[[0,0,'no','M0.1'],[0,1,'no','I0.2'],[0,7,'ton','T1',{pt:500}]]),
-     RG('Askel 2 (B+)',2,[[0,0,'no','T1'],[0,7,'s','M0.2'],[1,7,'r','M0.1']],[[0,7]]),
-     RG('Askel 3 (A−): B ulkona (B4)',2,[[0,0,'no','M0.2'],[0,1,'no','I0.4'],[0,7,'s','M0.3'],[1,7,'r','M0.2']],[[0,7]]),
-     RG('Askel 4 (B−): A takana (B1)',2,[[0,0,'no','M0.3'],[0,1,'no','I0.1'],[0,7,'s','M0.4'],[1,7,'r','M0.3']],[[0,7]]),
-     RG('Jakso valmis: B takana (B3)',1,[[0,0,'no','M0.4'],[0,1,'no','I0.3'],[0,7,'r','M0.4']]),
-     RG('Y1: A ulos',1,[[0,0,'no','M0.1'],[0,7,'coil','Q0.0']]),
-     RG('Y2: A sisään',1,[[0,0,'no','M0.3'],[0,7,'coil','Q0.1']]),
-     RG('Y3: B ulos',1,[[0,0,'no','M0.2'],[0,7,'coil','Q0.2']]),
-     RG('Y4: B sisään',1,[[0,0,'no','M0.4'],[0,7,'coil','Q0.3']])]}},0,'PLC1'),
+     RG(['A ulkona (B2): odotus 0,5 s','A extended (B2): wait 0.5 s','A ausgefahren (B2): Wartezeit 0,5 s'],1,[[0,0,'no','M0.1'],[0,1,'no','I0.2'],[0,7,'ton','T1',{pt:500}]]),
+     RG(['Askel 2 (B+)','Step 2 (B+)','Schritt 2 (B+)'],2,[[0,0,'no','T1'],[0,7,'s','M0.2'],[1,7,'r','M0.1']],[[0,7]]),
+     RG(['Askel 3 (A−): B ulkona (B4)','Step 3 (A−): B extended (B4)','Schritt 3 (A−): B ausgefahren (B4)'],2,[[0,0,'no','M0.2'],[0,1,'no','I0.4'],[0,7,'s','M0.3'],[1,7,'r','M0.2']],[[0,7]]),
+     RG(['Askel 4 (B−): A takana (B1)','Step 4 (B−): A retracted (B1)','Schritt 4 (B−): A eingefahren (B1)'],2,[[0,0,'no','M0.3'],[0,1,'no','I0.1'],[0,7,'s','M0.4'],[1,7,'r','M0.3']],[[0,7]]),
+     RG(['Jakso valmis: B takana (B3)','Cycle complete: B retracted (B3)','Zyklus beendet: B eingefahren (B3)'],1,[[0,0,'no','M0.4'],[0,1,'no','I0.3'],[0,7,'r','M0.4']]),
+     RG(['Y1: A ulos','Y1: A out','Y1: A ausfahren'],1,[[0,0,'no','M0.1'],[0,7,'coil','Q0.0']]),
+     RG(['Y2: A sisään','Y2: A in','Y2: A einfahren'],1,[[0,0,'no','M0.3'],[0,7,'coil','Q0.1']]),
+     RG(['Y3: B ulos','Y3: B out','Y3: B ausfahren'],1,[[0,0,'no','M0.2'],[0,7,'coil','Q0.2']]),
+     RG(['Y4: B sisään','Y4: B in','Y4: B einfahren'],1,[[0,0,'no','M0.4'],[0,7,'coil','Q0.3']])]}},0,'PLC1'),
    K('c5','pb',340,150,{kosk:'NO'},0,'S1'),K('c6','reed',465,150,{kosk:'NO',ref:'A',asema:'taka'},0,'B1'),K('c7','reed',590,150,{kosk:'NO',ref:'A',asema:'etu'},0,'B2'),
    K('c8','reed',715,150,{kosk:'NO',ref:'B',asema:'taka'},0,'B3'),K('c9','reed',840,150,{kosk:'NO',ref:'B',asema:'etu'},0,'B4'),
    K('c10','y',460,470,{ref:'A',suunta:'plus'},0,'Y1'),K('c11','y',560,470,{ref:'A',suunta:'miinus'},0,'Y2'),K('c12','y',680,470,{ref:'B',suunta:'plus'},0,'Y3'),K('c13','y',780,470,{ref:'B',suunta:'miinus'},0,'Y4'),
@@ -1448,8 +1456,8 @@ function buildPalette(){
   PAL.forEach(([cat,items],ci)=>{h+=`<h3>${L2(cat)}</h3>`;items.forEach((type,ii)=>{
     const t=TY[type],fake={type,label:'',p:Object.assign({},t.def),pu:Object.assign({},t.def),st:t.init({p:t.def})};const b=t.bb;
     const vb=`${b[0]-6} ${b[1]-6} ${b[2]-b[0]+12} ${b[3]-b[1]+12}`;
-    h+=`<button type="button" class="pitem" data-pi="${ci}:${ii}" title="${tr('Vedä alustalle tai klikkaa','Drag onto the canvas or click')}"><svg viewBox="${vb}" aria-hidden="true">${t.draw(fake)}${t.dyn?t.dyn(fake):''}</svg><span>${esc(L2(t.name))}</span></button>`;});});
-  h+=`<p class="copy">${tr('Tekijä','Author')}: Juho Pirttilahti, ${tr('Seinäjoen ammattikorkeakoulu','Seinäjoki University of Applied Sciences')} (SEAMK), 2026.<br>${tr('Suunnittelu, sisältö ja validointi: Juho Pirttilahti. Ohjelmakoodi toteutettu tekoälyavusteisesti (Claude, Anthropic).','Design, content and validation: Juho Pirttilahti. Code implemented with AI assistance (Claude, Anthropic).')}<br>${tr('Lisenssi','Licence')}: <a href="https://creativecommons.org/licenses/by/4.0/deed.fi" target="_blank" rel="license noopener">CC BY 4.0</a></p>`;
+    h+=`<button type="button" class="pitem" data-pi="${ci}:${ii}" title="${tr('Vedä alustalle tai klikkaa','Drag onto the canvas or click','Auf die Zeichenfläche ziehen oder anklicken')}"><svg viewBox="${vb}" aria-hidden="true">${t.draw(fake)}${t.dyn?t.dyn(fake):''}</svg><span>${esc(L2(t.name))}</span></button>`;});});
+  h+=`<p class="copy">${tr('Tekijä','Author','Autor')}: Juho Pirttilahti, ${tr('Seinäjoen ammattikorkeakoulu','Seinäjoki University of Applied Sciences','Fachhochschule Seinäjoki')} (SEAMK), 2026.<br>${tr('Suunnittelu, sisältö ja validointi: Juho Pirttilahti. Ohjelmakoodi toteutettu tekoälyavusteisesti (Claude, Anthropic).','Design, content and validation: Juho Pirttilahti. Code implemented with AI assistance (Claude, Anthropic).','Konzeption, Inhalt und Validierung: Juho Pirttilahti. Der Programmcode wurde KI-gestützt erstellt (Claude, Anthropic).')}<br>${tr('Lisenssi','Licence','Lizenz')}: <a href="https://creativecommons.org/licenses/by/4.0/deed.fi" target="_blank" rel="license noopener">CC BY 4.0</a></p>`;
   el.innerHTML=h;
 }
 
@@ -1516,9 +1524,9 @@ cv.addEventListener('wheel',e=>{e.preventDefault();const r=cv.getBoundingClientR
 function hoverTip(e){
   const t=e.target,stage=$('#stage').getBoundingClientRect();let s='';
   const portEl=t.closest&&t.closest('[data-port]'),wireEl=t.closest&&t.closest('.wire');
-  const pot=k=>{const i=S.pi[k];const T=i!==undefined?S.gT.get(S.root[i]):null;return T&&T.length?T.map(x=>`${x.s.label} ${x.tag==='+'?'+':x.tag==='0'?(x.s.type==='dc'?'0V':'N'):x.tag}`).join(', '):tr('jännitteetön','de-energised');};
+  const pot=k=>{const i=S.pi[k];const T=i!==undefined?S.gT.get(S.root[i]):null;return T&&T.length?T.map(x=>`${x.s.label} ${x.tag==='+'?'+':x.tag==='0'?(x.s.type==='dc'?'0V':'N'):x.tag}`).join(', '):tr('jännitteetön','de-energised','abgefallen');};
   if(portEl){const p=portByKey(portEl.dataset.port);if(p)s=`${dispLabel(p.c)}${p.lab?'.'+p.lab:''}: ${pot(p.k)}`;}
-  else if(wireEl){const w=wires.find(x=>x.id===wireEl.dataset.w);if(w)s=w.broken?tr('katkennut johdin','broken wire'):pot(w.a);}
+  else if(wireEl){const w=wires.find(x=>x.id===wireEl.dataset.w);if(w)s=w.broken?tr('katkennut johdin','broken wire','Leitungsbruch'):pot(w.a);}
   if(!s){tip.style.display='none';return;}
   tip.textContent=s;tip.style.display='block';tip.style.left=(e.clientX-stage.left+14)+'px';tip.style.top=(e.clientY-stage.top+14)+'px';
 }
@@ -1553,7 +1561,7 @@ document.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',(
 function setTool(t){tool=t;document.querySelectorAll('[data-tool]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tool===t));cv.style.cursor=t==='sel'?'':'crosshair';}
 $('#showRead').addEventListener('change',e=>{showRead=e.target.checked;});
 const runBtn=$('#runBtn');
-function setRun(r){running=r;runBtn.textContent=r?tr('Pysäytä','Pause'):tr('Käynnistä','Run');}
+function setRun(r){running=r;runBtn.textContent=r?tr('Pysäytä','Pause','Pause'):tr('Käynnistä','Run','Start');}
 runBtn.addEventListener('click',()=>setRun(!running));
 $('#resetBtn').addEventListener('click',()=>{resetStates();buildInsp();buildTDCtl();});
 $('#speed').addEventListener('change',e=>{speed=+e.target.value;});
@@ -1582,11 +1590,11 @@ function closeModal(){modal.classList.remove('open');}
 modal.addEventListener('click',e=>{if(e.target===modal||e.target.closest('[data-close]'))closeModal();});
 $('#ioBtn').addEventListener('click',()=>{
   openModal(tr(`<h2>Tallenna tai lataa piiri</h2><p>Piiri tallentuu automaattisesti tähän selaimeen. Siirtääksesi sen muualle kopioi alla oleva teksti talteen. Ladataksesi piirin liitä aiemmin kopioitu teksti kenttään ja valitse Lataa.</p>`,
-     `<h2>Save or load a circuit</h2><p>The circuit is saved automatically in this browser. To move it elsewhere, copy the text below. To load a circuit, paste previously copied text into the field and choose Load.</p>`)+
+     `<h2>Save or load a circuit</h2><p>The circuit is saved automatically in this browser. To move it elsewhere, copy the text below. To load a circuit, paste previously copied text into the field and choose Load.</p>`,`<h2>Schaltung speichern oder laden</h2><p>Die Schaltung wird in diesem Browser automatisch gespeichert. Um sie anderswohin zu übertragen, kopieren Sie den Text unten. Um eine Schaltung zu laden, fügen Sie zuvor kopierten Text in das Feld ein und wählen Sie Laden.</p>`)+
   `<textarea id="ioText" spellcheck="false">${esc(ser())}</textarea><p id="ioMsg" class="kbd"></p>
-  <div class="mrow"><button class="btn" id="ioCopy">${tr('Kopioi','Copy')}</button><button class="btn pri" id="ioLoad">${tr('Lataa','Load')}</button><button class="btn" data-close>${tr('Sulje','Close')}</button></div>`);
-  $('#ioCopy').addEventListener('click',async()=>{const ta=$('#ioText');ta.select();try{await navigator.clipboard.writeText(ta.value);$('#ioMsg').textContent=tr('Kopioitu leikepöydälle.','Copied to clipboard.');}catch(err){try{document.execCommand('copy');$('#ioMsg').textContent=tr('Kopioitu.','Copied.');}catch(e2){$('#ioMsg').textContent=tr('Kopiointi estetty. Valitse teksti ja kopioi näppäimillä Ctrl+C.','Copying was blocked. Select the text and copy with Ctrl+C.');}}});
-  $('#ioLoad').addEventListener('click',()=>{try{const s=$('#ioText').value;snapshot();load(s);save();closeModal();}catch(err){$('#ioMsg').textContent=tr('Lataus epäonnistui: teksti ei ole kelvollinen piiri (','Loading failed: the text is not a valid circuit (')+err.message+').';}});
+  <div class="mrow"><button class="btn" id="ioCopy">${tr('Kopioi','Copy','Kopieren')}</button><button class="btn pri" id="ioLoad">${tr('Lataa','Load','Laden')}</button><button class="btn" data-close>${tr('Sulje','Close','Schließen')}</button></div>`);
+  $('#ioCopy').addEventListener('click',async()=>{const ta=$('#ioText');ta.select();try{await navigator.clipboard.writeText(ta.value);$('#ioMsg').textContent=tr('Kopioitu leikepöydälle.','Copied to clipboard.','In die Zwischenablage kopiert.');}catch(err){try{document.execCommand('copy');$('#ioMsg').textContent=tr('Kopioitu.','Copied.','Kopiert.');}catch(e2){$('#ioMsg').textContent=tr('Kopiointi estetty. Valitse teksti ja kopioi näppäimillä Ctrl+C.','Copying was blocked. Select the text and copy with Ctrl+C.','Das Kopieren wurde blockiert. Markieren Sie den Text und kopieren Sie ihn mit Strg+C.');}}});
+  $('#ioLoad').addEventListener('click',()=>{try{const s=$('#ioText').value;snapshot();load(s);save();closeModal();}catch(err){$('#ioMsg').textContent=tr('Lataus epäonnistui: teksti ei ole kelvollinen piiri (','Loading failed: the text is not a valid circuit (','Laden fehlgeschlagen: Der Text ist keine gültige Schaltung (')+err.message+').';}});
 });
 $('#helpBtn').addEventListener('click',()=>openModal(tr(`<h2>Ohje</h2>
 <p>Täydellinen käyttöohje esimerkkeineen ja harjoitustehtävineen: <a href="https://jipirtti.github.io/Automaatiosimulaattori/docs/kayttoohje.html" target="_blank" rel="noopener">Automaatiosimulaattorin käyttöohje</a>.</p>
@@ -1598,25 +1606,34 @@ $('#helpBtn').addEventListener('click',()=>openModal(tr(`<h2>Ohje</h2>
 <h3>Malli ja rajoitukset</h3><p>Piiri ratkaistaan johtavuustarkasteluna 1 ms aika-askeleella: kuorma toimii, kun sen navat ovat saman lähteen eri napojen kanssa yhteydessä ja jännite on vähintään 70 % nimellisjännitteestä. Releen veto- ja päästöaika on 10 ms, kontaktorin 25 ms. Lämpöreleen ja moottorinsuojakytkimen laukaisu lasketaan lämpömallilla (aikavakio 100 s, laukeaminen 1,2·Ir pysyvällä virralla). Kosketinpomppua, valokaarta, kelojen induktiivisia ilmiöitä ja paineilman virtausta ei mallinneta.</p>
 <p class="mcopy">Tekijä: Juho Pirttilahti, Seinäjoen ammattikorkeakoulu (SEAMK), 2026. Suunnittelu, sisältö ja validointi: Juho Pirttilahti. Ohjelmakoodi toteutettu tekoälyavusteisesti (Claude, Anthropic). Ohjelma on lisensoitu <a href="https://creativecommons.org/licenses/by/4.0/deed.fi" target="_blank" rel="license noopener">Creative Commons Nimeä 4.0 Kansainvälinen -lisenssillä (CC BY 4.0)</a>. Saat kopioida, jakaa ja muokata sitä mihin tahansa tarkoitukseen, kunhan mainitset tekijän ja oppilaitoksen, merkitset lisenssin ja kerrot tekemistäsi muutoksista.</p>`,
 `<h2>Help</h2>
-<p>Full user manual with examples and exercises (in Finnish): <a href="https://jipirtti.github.io/Automaatiosimulaattori/docs/kayttoohje.html" target="_blank" rel="noopener">Automation simulator user manual</a>.</p>
+<p>Full user manual with examples and exercises: <a href="https://jipirtti.github.io/Automaatiosimulaattori/docs/user-manual.html" target="_blank" rel="noopener">Automation Simulator user manual</a>.</p>
 <h3>Building a circuit</h3><p>Drag a component from the left onto the canvas, or click it. Connect a wire by dragging from one terminal to another. Several wires can be connected to the same terminal. Use a junction to branch from the middle of a rail. Reshape a wire by dragging a section of it. Select several components by dragging with Shift held down or with Shift+click.</p>
 <h3>Relays and contacts</h3><p>A coil (relay, contactor, timer relay) and its contacts are separate components, as in a circuit diagram. A contact is linked to its device in the properties panel under Belongs to, and its terminal numbers follow the type and contact number (relay 13–14 / 21–22, timer relay 17–18 / 15–16, overload relay 95–96 / 97–98). The contactor main contacts 1–6 are a component of their own.</p>
 <h3>Operating</h3><p>Press a push button by holding the mouse button down on its actuator (left edge). Emergency stop, selector switch, motor protection switch, overload relay reset and supply reset work by clicking. Sensors follow the cylinder position, or are operated by hand if no actuator is selected.</p>
 <h3>Timing diagram</h3><p>Choose To timing diagram on the toolbar and click a component. The diagram shows the states of coils, contacts, buttons, sensors and lamps, the cylinder positions and the motor speeds. Click the diagram: two cursors show a time difference.</p>
 <h3>Faults</h3><p>Contacts, coils, sensors and emergency stops can be given a fault in the properties panel (for example a welded contact or an open coil). A wire can be broken by selecting it.</p>
 <h3>Model and limitations</h3><p>The circuit is solved as a connectivity problem with a 1 ms time step: a load operates when its terminals are connected to different terminals of the same source and the voltage is at least 70 % of the rated voltage. Relay operate and release time is 10 ms, contactor 25 ms. Overload and motor protection tripping uses a thermal model (time constant 100 s, trips at a steady 1.2·Ir). Contact bounce, arcing, inductive coil effects and compressed-air flow are not modelled.</p>
-<p class="mcopy">Author: Juho Pirttilahti, Seinäjoki University of Applied Sciences (SEAMK), 2026. Design, content and validation: Juho Pirttilahti. Code implemented with AI assistance (Claude, Anthropic). Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. You may copy, share and adapt it for any purpose, provided you credit the author and the institution, indicate the licence and state your changes.</p>`)+`<div class="mrow"><button class="btn pri" data-close>${tr('Selvä','OK')}</button></div>`));
+<p class="mcopy">Author: Juho Pirttilahti, Seinäjoki University of Applied Sciences (SEAMK), 2026. Design, content and validation: Juho Pirttilahti. Code implemented with AI assistance (Claude, Anthropic). Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>. You may copy, share and adapt it for any purpose, provided you credit the author and the institution, indicate the licence and state your changes.</p>`,`<h2>Hilfe</h2>
+<p>Vollständige Bedienungsanleitung mit Beispielen und Übungen: <a href="https://jipirtti.github.io/Automaatiosimulaattori/docs/bedienungsanleitung.html" target="_blank" rel="noopener">Bedienungsanleitung des Automatisierungs-Simulators</a>.</p>
+<h3>Schaltung aufbauen</h3><p>Ziehen Sie ein Bauteil von links auf die Zeichenfläche oder klicken Sie es an. Eine Leitung verbinden Sie, indem Sie von einem Anschluss zu einem anderen ziehen. An einen Anschluss können mehrere Leitungen angeschlossen werden. Für einen Abzweig aus der Mitte einer Schiene verwenden Sie einen Verbindungspunkt. Den Verlauf einer Leitung ändern Sie, indem Sie einen Abschnitt ziehen. Mehrere Bauteile wählen Sie mit gedrückter Umschalttaste durch Ziehen oder mit Umschalt+Klick aus.</p>
+<h3>Relais und Kontakte</h3><p>Eine Spule (Relais, Schütz, Zeitrelais) und ihre Kontakte sind getrennte Bauteile, wie im Stromlaufplan. Ein Kontakt wird im Eigenschaftenfeld unter Gehört zu seinem Gerät zugeordnet; seine Anschlussbezeichnungen richten sich nach Typ und Ordnungsziffer (Relais 13–14 / 21–22, Zeitrelais 17–18 / 15–16, Motorschutzrelais 95–96 / 97–98). Die Hauptkontakte 1–6 des Schützes sind ein eigenes Bauteil.</p>
+<h3>Bedienen</h3><p>Einen Taster betätigen Sie, indem Sie die Maustaste auf seinem Betätiger (linker Rand) gedrückt halten. Not-Halt, Wahlschalter, Motorschutzschalter, die Rückstellung des Motorschutzrelais und die Rückstellung der Versorgung werden per Klick bedient. Sensoren folgen der Zylinderstellung oder werden von Hand betätigt, wenn kein Betätiger gewählt ist.</p>
+<h3>Zeitdiagramm</h3><p>Wählen Sie in der Werkzeugleiste Ins Zeitdiagramm und klicken Sie ein Bauteil an. Das Diagramm zeigt die Zustände von Spulen, Kontakten, Tastern, Sensoren und Leuchten, die Zylinderstellungen und die Motordrehzahlen. Klicken Sie ins Diagramm: Zwei Cursor zeigen eine Zeitdifferenz.</p>
+<h3>Fehler</h3><p>Kontakten, Spulen, Sensoren und Not-Halt-Geräten kann im Eigenschaftenfeld ein Fehler zugewiesen werden (zum Beispiel ein verschweißter Kontakt oder eine unterbrochene Spule). Eine Leitung kann unterbrochen werden, indem man sie auswählt.</p>
+<h3>Modell und Grenzen</h3><p>Die Schaltung wird als Verbindungsproblem mit einem Zeitschritt von 1 ms gelöst: Ein Verbraucher spricht an, wenn seine Anschlüsse mit verschiedenen Polen derselben Quelle verbunden sind und die Spannung mindestens 70 % der Bemessungsspannung beträgt. Die Ansprech- und Rückfallzeit beträgt beim Relais 10 ms, beim Schütz 25 ms. Die Auslösung von Motorschutzrelais und Motorschutzschalter nutzt ein thermisches Modell (Zeitkonstante 100 s, Auslösung bei dauerhaft 1,2·Ir). Kontaktprellen, Lichtbögen, induktive Effekte der Spulen und der Druckluftdurchfluss werden nicht modelliert.</p>
+<p class="mcopy">Autor: Juho Pirttilahti, Fachhochschule Seinäjoki (SEAMK), 2026. Konzeption, Inhalt und Validierung: Juho Pirttilahti. Der Programmcode wurde KI-gestützt erstellt (Claude, Anthropic). Lizenziert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="license noopener">Creative Commons Namensnennung 4.0 International (CC BY 4.0)</a>. Sie dürfen das Werk für beliebige Zwecke kopieren, weitergeben und bearbeiten, sofern Sie den Autor und die Hochschule nennen, die Lizenz angeben und Ihre Änderungen kenntlich machen.</p>`)+`<div class="mrow"><button class="btn pri" data-close>${tr('Selvä','OK','OK')}</button></div>`));
 
 /* ---------- kielen vaihto ---------- */
 function applyStatic(){
-  document.querySelectorAll('[data-en]').forEach(el=>{if(el.dataset.fi===undefined)el.dataset.fi=el.textContent;el.textContent=lang==='en'?el.dataset.en:el.dataset.fi;});
-  document.querySelectorAll('[data-en-title]').forEach(el=>{if(el.dataset.fiTitle===undefined)el.dataset.fiTitle=el.getAttribute('title');el.setAttribute('title',lang==='en'?el.dataset.enTitle:el.dataset.fiTitle);});
-  document.querySelectorAll('[data-en-aria]').forEach(el=>{if(el.dataset.fiAria===undefined)el.dataset.fiAria=el.getAttribute('aria-label');el.setAttribute('aria-label',lang==='en'?el.dataset.enAria:el.dataset.fiAria);});
-  document.documentElement.lang=lang;document.title=lang==='en'?'Automation Simulator':'Automaatiosimulaattori';
+  document.querySelectorAll('[data-en]').forEach(el=>{if(el.dataset.fi===undefined)el.dataset.fi=el.textContent;el.textContent=lang==='en'?el.dataset.en:lang==='de'?(el.dataset.de??el.dataset.en):el.dataset.fi;});
+  document.querySelectorAll('[data-en-title]').forEach(el=>{if(el.dataset.fiTitle===undefined)el.dataset.fiTitle=el.getAttribute('title');el.setAttribute('title',lang==='en'?el.dataset.enTitle:lang==='de'?(el.dataset.deTitle??el.dataset.enTitle):el.dataset.fiTitle);});
+  document.querySelectorAll('[data-en-aria]').forEach(el=>{if(el.dataset.fiAria===undefined)el.dataset.fiAria=el.getAttribute('aria-label');el.setAttribute('aria-label',lang==='en'?el.dataset.enAria:lang==='de'?(el.dataset.deAria??el.dataset.enAria):el.dataset.fiAria);});
+  document.documentElement.lang=lang;document.title=({fi:'Automaatiosimulaattori',en:'Automation Simulator',de:'Automatisierungs-Simulator'})[lang];
+  {const ml=document.getElementById('manualLink');if(ml)ml.href='https://jipirtti.github.io/Automaatiosimulaattori/docs/'+({fi:'kayttoohje',en:'user-manual',de:'bedienungsanleitung'})[lang]+'.html';}
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
   buildLegend();
 }
-function setLang(l){if(l!=='fi'&&l!=='en')return;lang=l;try{localStorage.setItem('autsim-lang',l);}catch(e){}
+function setLang(l){if(!LANGS.includes(l))return;lang=l;try{localStorage.setItem('autsim-lang',l);}catch(e){}
   try{const u=new URL(location.href);if(u.searchParams.has('lang')){u.searchParams.set('lang',l);history.replaceState(null,'',u);}}catch(e){}
   applyStatic();buildPalette();setRun(running);for(const c of comps){renderStatic(c);placeComp(c);}buildInsp();buildTDCtl();buildLD();if(modal.classList.contains('open'))closeModal();updWarns();}
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
@@ -1651,7 +1668,8 @@ window.AutSim={redraw:()=>{drawTD();},
   setProg:(l,prog)=>{const c=byLabel(l);c.pu.prog=JSON.parse(JSON.stringify(prog));c.p=c.pu;buildLD();return true;},
   prog:l=>JSON.parse(JSON.stringify(byLabel(l).p.prog)),
   setTab:t=>{setTab(t);return tdTab;},
-  info:()=>({ports:S.np,groups:new Set(S.root).size,dt:DT})
+  info:()=>({ports:S.np,groups:new Set(S.root).size,dt:DT}),
+  select:l=>{if(l==null)sel=null;else if(typeof l==='number')sel={w:wires[l].id};else setSelIds(Array.isArray(l)?l.map(x=>byLabel(x).id):[byLabel(l).id]);renderSel();buildInsp();return true;}
 };
 
 /* ---------- käynnistys ---------- */
@@ -1718,6 +1736,24 @@ const TX={
   mailNote:{fi:'Raportti kopioitiin myös leikepöydälle. Jos viestin teksti jäi vajaaksi, liitä raportti viestiin.',en:'The report was also copied to the clipboard. If the message text is incomplete, paste the report into it.'},
   mailShort:{fi:'Raportti on leikepöydällä: liitä se tähän viestiin (Ctrl+V).',en:'The report is on the clipboard: paste it into this message (Ctrl+V).'}
 };
+const TXDE={btn:'Feedback',btnTitle:'Fehler, physikalische Beobachtung oder Idee melden',h:'Feedback zum Simulator',
+  intro:'Das Feedback wird als Issue im GitHub-Repository des Simulators gespeichert, und die Lehrkraft prüft jeden Eintrag als Korrekturvorschlag.',
+  type:'Art des Feedbacks',t_fysiikka:'Physik entspricht nicht der Erwartung',t_virhe:'Fehler in der Oberfläche oder einer Funktion',t_ehdotus:'Verbesserungsvorschlag',
+  title:'Titel',titlePh:'Kurze Beschreibung in einer Zeile',
+  a_fysiikka:'Phänomen und Situation: Was haben Sie getan und was ist passiert?',a_virhe:'Was ist passiert?',a_ehdotus:'Worin besteht der Bedarf? Was können Studierende oder Lehrkräfte derzeit nicht tun?',
+  b_fysiikka:'Erwartetes Ergebnis und Begründung (Formel, Berechnung, Quelle oder Messung)',b_virhe:'Wie lässt sich der Fehler reproduzieren?',b_ehdotus:'Lösungsvorschlag (optional)',
+  tunnus:'Validierungs-ID (optional, z. B. V05)',piiriH:'Piiri JSON-muodossa',piiri:'Aktuelle Schaltung anhängen (empfohlen: der Fehler lässt sich genau reproduzieren)',
+  privacy:'Issues sind öffentlich. Bitte keine personenbezogenen Daten angeben. Zum Öffnen auf GitHub ist ein GitHub-Konto erforderlich; ohne Konto verwenden Sie „Bericht kopieren“ oder „Per E-Mail senden“.',
+  open:'Auf GitHub öffnen',copy:'Bericht kopieren',mail:'Per E-Mail senden',cancel:'Abbrechen',req:'Bitte mindestens ausfüllen: ',
+  copied:'Bericht in die Zwischenablage kopiert.',copyFail:'Kopieren fehlgeschlagen. Markieren Sie den Text unten und kopieren Sie ihn selbst.',
+  opened:'GitHub wurde in einem neuen Tab geöffnet. Prüfen Sie die Felder und klicken Sie auf Create / Submit new issue.',
+  bigCirc:'Die Schaltung passte nicht in den Link und wurde daher in die Zwischenablage kopiert. Fügen Sie sie auf GitHub in das Feld „Piiri JSON-muodossa“ ein (Strg+V).',
+  bigCircPh:'(Die Schaltung passte nicht in den Link. Sie befindet sich in der Zwischenablage: hier mit Strg+V einfügen.)',
+  bigAll:'Der Bericht war für den Link zu lang und wurde daher vollständig in die Zwischenablage kopiert. Fügen Sie ihn auf GitHub in das erste Feld ein.',
+  bigAllPh:'(Der Bericht befindet sich in der Zwischenablage: hier mit Strg+V einfügen.)',
+  mailNote:'Der Bericht wurde auch in die Zwischenablage kopiert. Falls der Nachrichtentext unvollständig ist, fügen Sie den Bericht in die Nachricht ein.',
+  mailShort:'Der Bericht befindet sich in der Zwischenablage: Fügen Sie ihn in diese Nachricht ein (Strg+V).'};
+for(const k in TXDE)if(TX[k])TX[k].de=TXDE[k];
 // GitHub-lomakepohjat ovat suomeksi; nämä otsikot ja kenttätunnukset vastaavat niitä.
 const KIND={
   fysiikka:{template:'1-fysiikka.yml',prefix:'[Fysiikka] ',a:'ilmio',b:'odotus',bReq:true,piiri:'piiri'},
@@ -1726,8 +1762,8 @@ const KIND={
 };
 
 let C=null,root=null,btn=null,els={};
-const L=()=>{try{const l=C.api()&&C.api().lang();return l==='en'?'en':'fi';}catch(e){return 'fi';}};
-const t=k=>TX[k][L()];
+const L=()=>{try{const l=C.api()&&C.api().lang();return l==='en'||l==='de'?l:'fi';}catch(e){return 'fi';}};
+const t=k=>TX[k][L()]??TX[k].en;
 const safe=(f,d)=>{try{const v=f();return v===undefined?d:v;}catch(e){return d;}};
 
 function info(){
@@ -1834,8 +1870,8 @@ function onMail(){
 function relabel(){
   if(!root)return;
   const l=L();
-  root.querySelectorAll('[data-spl]').forEach(el=>{const k=el.dataset.spl;el.textContent=TX[k][l];});
-  root.querySelectorAll('[data-spl-ph]').forEach(el=>{el.placeholder=TX[el.dataset.splPh][l];});
+  root.querySelectorAll('[data-spl]').forEach(el=>{const k=el.dataset.spl;el.textContent=TX[k][l]??TX[k].en;});
+  root.querySelectorAll('[data-spl-ph]').forEach(el=>{el.placeholder=TX[el.dataset.splPh][l]??TX[el.dataset.splPh].en;});
   const kind=root.querySelector('input[name=spl-kind]:checked').value;
   els.aLbl.textContent=TX['a_'+kind][l];els.bLbl.textContent=TX['b_'+kind][l];
   els.tunnusRow.hidden=kind!=='fysiikka';
@@ -1848,7 +1884,7 @@ function close(){root.classList.remove('open');btn.focus();}
 function build(){
   btn=document.createElement('button');
   btn.type='button';btn.className='btn';btn.id='palauteBtn';
-  btn.dataset.en=TX.btn.en;btn.dataset.fi=TX.btn.fi;btn.dataset.enTitle=TX.btnTitle.en;btn.dataset.fiTitle=TX.btnTitle.fi;
+  btn.dataset.en=TX.btn.en;btn.dataset.fi=TX.btn.fi;btn.dataset.de=TX.btn.de;btn.dataset.enTitle=TX.btnTitle.en;btn.dataset.fiTitle=TX.btnTitle.fi;btn.dataset.deTitle=TX.btnTitle.de;
   btn.textContent=t('btn');btn.title=t('btnTitle');
   btn.addEventListener('click',open);
   const grps=document.querySelectorAll(C.paikka+' .grp');
@@ -1914,12 +1950,12 @@ window.SimPalaute={
   _limits:{URL_MAX,MAILTO_MAX}
 };
 })();
-SimPalaute.init({repo:'Jipirtti/Automaatiosimulaattori',nimi:{fi:'Automaatiosimulaattori',en:'Automation Simulator'},api:()=>window.AutSim,email:'juho.pirttilahti@seamk.fi',
-  tekstit:{btnTitle:{fi:'Ilmoita virheestä, toimintahavainnosta tai kehitysideasta',en:'Report a bug, a behaviour observation or an idea'},
-    t_fysiikka:{fi:'Toiminta ei vastaa odotusta',en:'Behaviour does not match expectation'},
-    a_fysiikka:{fi:'Toiminto ja tilanne: mitä teit ja mitä tapahtui?',en:'Function and situation: what did you do and what happened?'},
-    b_fysiikka:{fi:'Odotettu toiminta ja perustelu (kytkentäkaavio, standardi, valmistajan ohje tai mittaus)',en:'Expected behaviour and justification (circuit diagram, standard, manufacturer manual or measurement)'},
-    tunnus:{fi:'Validointitunnus (valinnainen, esim. A05)',en:'Validation ID (optional, e.g. A05)'}},
+SimPalaute.init({repo:'Jipirtti/Automaatiosimulaattori',nimi:{fi:'Automaatiosimulaattori',en:'Automation Simulator',de:'Automatisierungs-Simulator'},api:()=>window.AutSim,email:'juho.pirttilahti@seamk.fi',
+  tekstit:{btnTitle:{fi:'Ilmoita virheestä, toimintahavainnosta tai kehitysideasta',en:'Report a bug, a behaviour observation or an idea',de:'Fehler, Beobachtung zum Verhalten oder Verbesserungsidee melden'},
+    t_fysiikka:{fi:'Toiminta ei vastaa odotusta',en:'Behaviour does not match expectation',de:'Verhalten entspricht nicht der Erwartung'},
+    a_fysiikka:{fi:'Toiminto ja tilanne: mitä teit ja mitä tapahtui?',en:'Function and situation: what did you do and what happened?',de:'Funktion und Situation: Was haben Sie getan, und was ist passiert?'},
+    b_fysiikka:{fi:'Odotettu toiminta ja perustelu (kytkentäkaavio, standardi, valmistajan ohje tai mittaus)',en:'Expected behaviour and justification (circuit diagram, standard, manufacturer manual or measurement)',de:'Erwartetes Verhalten und Begründung (Stromlaufplan, Norm, Herstelleranleitung oder Messung)'},
+    tunnus:{fi:'Validointitunnus (valinnainen, esim. A05)',en:'Validation ID (optional, e.g. A05)',de:'Validierungs-ID (optional, z. B. A05)'}},
   lajit:{fysiikka:{template:'1-toiminta.yml',prefix:'[Toiminta] '}}});
 </script>
 <script>
@@ -1937,19 +1973,20 @@ SimPalaute.init({repo:'Jipirtti/Automaatiosimulaattori',nimi:{fi:'Automaatiosimu
             nakyy:()=>bool} */
 (function(){
 'use strict';
-const T={btn:{fi:'Kopioi kuva',en:'Copy image'},
-  title:{fi:'Kopioi kaavio kuvana leikepöydälle (otsikko, selite ja lähdemerkintä mukana)',en:'Copy the chart to the clipboard as an image (with title, legend and source note)'},
-  ok:{fi:'Kuva kopioitu leikepöydälle',en:'Image copied to the clipboard'},
-  busy:{fi:'Kopioidaan…',en:'Copying…'},
-  fbH:{fi:'Kopioi kuva',en:'Copy the image'},
+const T={btn:{fi:'Kopioi kuva',en:'Copy image',de:'Bild kopieren'},
+  title:{fi:'Kopioi kaavio kuvana leikepöydälle (otsikko, selite ja lähdemerkintä mukana)',en:'Copy the chart to the clipboard as an image (with title, legend and source note)',de:'Diagramm als Bild in die Zwischenablage kopieren (mit Titel, Legende und Quellenangabe)'},
+  ok:{fi:'Kuva kopioitu leikepöydälle',en:'Image copied to the clipboard',de:'Bild in die Zwischenablage kopiert'},
+  busy:{fi:'Kopioidaan…',en:'Copying…',de:'Wird kopiert …'},
+  fbH:{fi:'Kopioi kuva',en:'Copy the image',de:'Bild kopieren'},
   fbP:{fi:'Selain ei sallinut kuvan kopiointia leikepöydälle. Napsauta kuvaa hiiren oikealla painikkeella (puhelimessa paina pitkään) ja valitse Kopioi kuva, tai tallenna kuva alla olevasta linkistä.',
-       en:'The browser did not allow copying the image to the clipboard. Right-click the image (long-press on a phone) and choose Copy image, or save it with the link below.'},
-  save:{fi:'Tallenna PNG-kuvana',en:'Save as PNG'},close:{fi:'Sulje',en:'Close'},
-  err:{fi:'Kuvan muodostaminen epäonnistui: ',en:'Creating the image failed: '},
-  empty:{fi:'Kaaviossa ei ole vielä mitään kopioitavaa.',en:'The chart has nothing to copy yet.'}};
+       en:'The browser did not allow copying the image to the clipboard. Right-click the image (long-press on a phone) and choose Copy image, or save it with the link below.',
+       de:'Der Browser hat das Kopieren in die Zwischenablage nicht erlaubt. Klicken Sie mit der rechten Maustaste auf das Bild (auf dem Smartphone lange drücken) und wählen Sie „Bild kopieren“, oder speichern Sie es über den Link unten.'},
+  save:{fi:'Tallenna PNG-kuvana',en:'Save as PNG',de:'Als PNG speichern'},close:{fi:'Sulje',en:'Close',de:'Schließen'},
+  err:{fi:'Kuvan muodostaminen epäonnistui: ',en:'Creating the image failed: ',de:'Das Bild konnte nicht erstellt werden: '},
+  empty:{fi:'Kaaviossa ei ole vielä mitään kopioitavaa.',en:'The chart has nothing to copy yet.',de:'Das Diagramm enthält noch nichts zum Kopieren.'}};
 let C=null,lastErr=null;
-const lang=()=>{try{const l=C&&C.api&&C.api()&&C.api().lang&&C.api().lang();if(l==='fi'||l==='en')return l;}catch(e){}return (document.documentElement.lang||'fi').slice(0,2)==='en'?'en':'fi';};
-const t=k=>T[k][lang()];
+const lang=()=>{try{const l=C&&C.api&&C.api()&&C.api().lang&&C.api().lang();if(l==='fi'||l==='en'||l==='de')return l;}catch(e){}const d=(document.documentElement.lang||'fi').slice(0,2);return d==='en'||d==='de'?d:'fi';};
+const t=k=>T[k][lang()]??T[k].en;
 const one=s=>typeof s==='function'?s():typeof s==='string'?document.querySelector(s):s;
 /* 'auto': lähin kaavion edellä oleva otsikko (h3/h4) samassa kortissa */
 function autoHead(o){let el=one(typeof o.kohde==='function'?null:o.kohde);while(el&&!(el.classList&&el.classList.contains('card'))){let p=el.previousElementSibling;
@@ -2024,7 +2061,7 @@ function capture(k){const o=C.kaaviot.find(x=>x.id===k);if(!o)throw new Error('k
 async function compose(cap){const S=cap.dpr,PAD=16,FOOT=11.5,TIT=17,LEG=13;const rows=cap.o.asettelu==='rivit';const LW=rows?190:0;
   for(const it of cap.items)if(it.svg){const sc=Math.min(S,5000/Math.max(it.w,it.h));it.img=await svgImg(it.svg,sc);it.sc=sc;}
   const d=new Date(),ds=lang()==='en'?d.toISOString().slice(0,10):d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
-  const nimi=C.nimi[lang()]||C.nimi.fi,url=C.repo?'jipirtti.github.io/'+C.repo.split('/')[1]+'/':'';
+  const nimi=C.nimi[lang()]||C.nimi.en||C.nimi.fi,url=C.repo?'jipirtti.github.io/'+C.repo.split('/')[1]+'/':'';
   const foot=`${nimi} · Juho Pirttilahti, SEAMK · CC BY 4.0${url?' · '+url:''} · ${ds}`;
   const m=document.createElement('canvas').getContext('2d');m.font=FOOT+'px '+FONT;const footW=m.measureText(foot).width;
   m.font='600 '+TIT+'px '+FONT;const titW=cap.title?m.measureText(cap.title).width:0;
@@ -2103,7 +2140,7 @@ window.SimKuva={
   render,copy,ids:()=>C?C.kaaviot.map(o=>o.id):[],lastError:()=>lastErr};
 })();
 
-SimKuva.init({nimi:{fi:'Automaatiosimulaattori',en:'Automation Simulator'},repo:'Jipirtti/Automaatiosimulaattori',api:()=>window.AutSim,redraw:()=>window.AutSim.redraw(),
+SimKuva.init({nimi:{fi:'Automaatiosimulaattori',en:'Automation Simulator',de:'Automatisierungs-Simulator'},repo:'Jipirtti/Automaatiosimulaattori',api:()=>window.AutSim,redraw:()=>window.AutSim.redraw(),
   kaaviot:[
     {id:'piiri',kohde:'#cv',otsikko:()=>(window.AutSim&&window.AutSim.lang&&window.AutSim.lang()==='en')?'Circuit diagram':'Piirikaavio',selite:'#legend',paikka:{sel:'#stage',tapa:'kulma'},
      svg:{rajaa:['#lWires','#lComps','#lPorts','#lLabels'],piilota:['#lSel','#tmpWire','#gridRect'],maailma:'#world'}},
